@@ -1,0 +1,23 @@
+extends ../layout
+
+block title
+	title= 'Школа Опойцева'
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/main.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/main.js' + version)
+
+block content
+	.rounds_group
+		each round in new Array(7)
+			.round
+	.triangle
+	.blocks_group
+		each block in new Array(7)
+			.block
+	.round_big
+	.round_small
+	.desc_block
+		| час, затраченый на понимание, экономит год жизни

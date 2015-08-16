@@ -1,0 +1,15 @@
+mixin contentItem(num, title, description)
+	.content_item_block
+		a.item_body(href=attributes.href)
+			.item_title_block
+				.item_num= num
+				.item_title= title
+			.item_description!= description
+		.item_links
+			.link.video(video_id=attributes.video)
+			each file in new Array(3)
+				.link.pdf(file_path='/files/op.pdf')
+		.item_counters
+			.social-likes.social-likes_horizontal.social-likes_light(data-url='http://' + host + attributes.href, data-title=title)
+				.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
+				.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте

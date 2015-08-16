@@ -1,0 +1,37 @@
+include globals.jade
+
+doctype html
+html
+	head
+		include vars
+		include header
+	body
+		include counters
+		.preview_block
+		.main_block
+			.header_block
+				.menu_block
+					a.menu_logo(href='/') Школа Опойцева
+					.menu_navigate
+						if session.user_id
+							a(class= (menu_current == 0 && 'current'), href="/auth") звездочет
+						a(class= (menu_current == 1 && 'current'), href="/lectures") лекции
+						a(class= (menu_current == 2 && 'current'), href="/about") об авторе
+						a(class= (menu_current == 3 && 'current'), href="/other") разное
+						a(class= (menu_current == 4 && 'current'), href="/write") написать
+				.social_block
+					a(href='#'): img(src='/images/design/social/vk.png')
+					a(href='#'): img(src='/images/design/social/facebook.png')
+					a(href='#'): img(src='/images/design/social/twitter.png')
+			.search_block
+				input.search_input(type='text', placeholder='поиск...')
+				.content_body_block.results
+					.column_left_block
+						a.current(href='#') Все
+						a(href='#') Лекции
+						a(href='#') Разное
+					.column_main_block
+						+contentItem(1.1, 'О взаимодействии сознания с подсознанием', 'Подсознание (англ. subconsciousness) — устаревший термин, применявшийся для обозначения психических процессов, протекающих без отображения их в сознании и помимо сознательного управления. В науку термин введён в 1889 году Пьером Жане в философской диссертации. Позже он развил его в медицинской диссертации «Психический мир истериков» («L’at mental des hystr- iques» 1892). Одновременно следует отметить, что современные дискуссии о подсознательном берут начало в 1869 году, когда немецкий философ Эдуард фон Гартман опубликовал “Философию подсознательного”.')
+						+contentItem('22.01.1991', 'Туту', 'Буддисты в монастырях сначала учат текст наизусть. Далее практикуют.Далее наступает понимание (просветление).')
+			.content_block
+				block content

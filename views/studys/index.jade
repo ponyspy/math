@@ -1,0 +1,24 @@
+extends ../layout
+
+block title
+	title= 'Школа Опойцева / Лекции'
+	- var menu_current = 1
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/studys.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/studys.js' + version)
+
+block content
+	.content_title_block
+		each theme in themes
+			a(class= (theme.sym == current_theme.sym && 'current'), href='/lectures/' + theme.sym + '/0')=theme.title
+	.content_body_block
+		.column_left_block
+			each sub_theme, i in current_theme.sub
+				a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= i + ' - ' + sub_theme.title
+		.column_main_block
+			each study, i in studys
+				+contentItem(sub_num + '.' + i, study.title, study.description)(href='/lectures/' + study._short_id, video=study.video)
+
