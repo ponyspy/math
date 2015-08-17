@@ -34,6 +34,7 @@ var studySchema = new Schema({
 
 var categorySchema = new Schema({
 	title: { type: String, trim: true },
+	status: String,
 	_short_id: { type: String, unique: true, index: true },
 	date: {type: Date, default: Date.now},
 });

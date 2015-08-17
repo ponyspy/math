@@ -9,7 +9,7 @@ var __appdir = path.dirname(require.main.filename);
 
 exports.index = function(req, res) {
 	Study.where('type').equals('other').sort('date').limit(20).exec(function(err, studys) {
-		Category.find().exec(function(err, categorys) {
+		Category.where('status').equals('other').exec(function(err, categorys) {
 			res.render('other', {studys: studys, categorys: categorys});
 		});
 	});

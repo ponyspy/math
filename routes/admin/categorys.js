@@ -30,6 +30,7 @@ exports.add_form = function(req, res) {
 
   category._short_id = shortid.generate();
   category.title = post.title;
+  category.status = post.status;
 
   category.save(function(err, category) {
     res.redirect('/auth/categorys');
@@ -57,6 +58,7 @@ exports.edit_form = function(req, res) {
   Category.findById(id).exec(function(err, category) {
 
     category.title = post.title;
+    category.status = post.status;
 
     category.save(function(err, category) {
       res.redirect('/auth/categorys');
