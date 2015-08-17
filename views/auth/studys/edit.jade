@@ -32,6 +32,8 @@ block content
 			.form_title Видимость:
 			input(type='checkbox', name='status', value='hidden', checked=study.status)
 			| скрыть
+			.form_title Категории:
+			+form_multiple_select('categorys', categorys, study.categorys)
 			.form_title Видео:
 			input.form_text.video(type='text', name='video', value=study.video)
 			.form_title Файлы:

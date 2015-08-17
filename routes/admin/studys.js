@@ -1,5 +1,6 @@
 var Study = require('../../models/main.js').Study;
 var Theme = require('../../models/main.js').Theme;
+var Category = require('../../models/main.js').Category;
 var shortid = require('shortid');
 
 
@@ -42,7 +43,9 @@ exports.list = function(req, res) {
 exports.add = function(req, res) {
 	var id = req.params.sub_id;
 	Theme.findById(id).exec(function(err, theme) {
-		res.render('auth/studys/add.jade', {theme: theme});
+		Category.find().exec(function(err, categorys) {
+			res.render('auth/studys/add.jade', {theme: theme, categorys: categorys});
+		});
 	});
 }
 
@@ -54,6 +57,8 @@ exports.add_form = function(req, res) {
 	study._short_id = shortid.generate();
 	study.title = post.title;
 	study.description = post.description;
+	study.categorys = post.categorys == '' ? [] : post.categorys;
+	study.status = post.status;
 	study.video = post.video;
 
 	study.save(function(err, study) {
@@ -83,7 +88,9 @@ exports.edit = function(req, res) {
 
 	Theme.findById(theme_id).exec(function(err, theme) {
 		Study.findById(study_id).exec(function(err, study) {
-			res.render('auth/studys/edit.jade', {study: study, theme: theme});
+			Category.find().exec(function(err, categorys) {
+				res.render('auth/studys/edit.jade', {study: study, theme: theme, categorys: categorys});
+			});
 		});
 	});
 }
@@ -97,6 +104,8 @@ exports.edit_form = function(req, res) {
 
 		study.title = post.title;
 		study.description = post.description;
+		study.categorys = post.categorys == '' ? [] : post.categorys;
+		study.status = post.status;
 		study.video = post.video;
 
 		study.save(function(err, study) {
