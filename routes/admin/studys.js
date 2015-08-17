@@ -4,14 +4,33 @@ var shortid = require('shortid');
 
 
 // ------------------------
+// *** Handlers Block ***
+// ------------------------
+
+
+var move = function (array, from, to) {
+	if( to === from ) return;
+
+	var target = array[from];
+	var increment = to < from ? -1 : 1;
+
+	for(var k = from; k != to; k += increment) {
+		array[k] = array[k + increment];
+	}
+	array[to] = target;
+}
+
+
+
+// ------------------------
 // *** Admin Studys Block ***
 // ------------------------
 
 
 exports.list = function(req, res) {
-  Theme.findById(req.params.sub_id).populate('studys').exec(function(err, theme) {
-    res.render('auth/studys/', {studys: theme.studys, theme_id: req.params.id, sub_theme_id: req.params.sub_id});
-  });
+	Theme.findById(req.params.sub_id).populate('studys').exec(function(err, theme) {
+		res.render('auth/studys/', {studys: theme.studys, theme_id: req.params.id, sub_theme_id: req.params.sub_id});
+	});
 }
 
 
@@ -21,28 +40,35 @@ exports.list = function(req, res) {
 
 
 exports.add = function(req, res) {
-  res.render('auth/studys/add.jade');
+	var id = req.params.sub_id;
+	Theme.findById(id).exec(function(err, theme) {
+		res.render('auth/studys/add.jade', {theme: theme});
+	});
 }
 
 exports.add_form = function(req, res) {
-  var post = req.body;
+	var post = req.body;
 
-  var study = new Study();
+	var study = new Study();
 
-  study._short_id = shortid.generate();
-  study.title = post.title;
-  study.description = post.description;
-  study.video = post.video;
+	study._short_id = shortid.generate();
+	study.title = post.title;
+	study.description = post.description;
+	study.video = post.video;
 
-  study.save(function(err, study) {
-    Theme.findById(req.params.sub_id).exec(function(err, theme) {
-      theme.studys.push(study._id);
+	study.save(function(err, study) {
+		Theme.findById(req.params.sub_id).exec(function(err, theme) {
+			if (theme.studys.length == +post.order) {
+				theme.studys.push(study._id);
+			} else {
+				theme.studys.splice(post.order, 0, study._id);
+			}
 
-      theme.save(function(err, theme) {
-        res.redirect('/auth');
-      });
-    });
-  });
+			theme.save(function(err, theme) {
+				res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
+			});
+		});
+	});
 }
 
 
@@ -52,27 +78,38 @@ exports.add_form = function(req, res) {
 
 
 exports.edit = function(req, res) {
-  var id = req.params.study_id;
+	var study_id = req.params.study_id;
+	var theme_id = req.params.sub_id;
 
-  Study.findById(id).exec(function(err, study) {
-    res.render('auth/studys/edit.jade', {study: study});
-  });
+	Theme.findById(theme_id).exec(function(err, theme) {
+		Study.findById(study_id).exec(function(err, study) {
+			res.render('auth/studys/edit.jade', {study: study, theme: theme});
+		});
+	});
 }
 
 exports.edit_form = function(req, res) {
-  var post = req.body;
-  var id = req.params.study_id;
+	var post = req.body;
+	var study_id = req.params.study_id;
+	var theme_id = req.params.sub_id;
 
-  Study.findById(id).exec(function(err, study) {
+	Study.findById(study_id).exec(function(err, study) {
 
-    study.title = post.title;
-    study.description = post.description;
-    study.video = post.video;
+		study.title = post.title;
+		study.description = post.description;
+		study.video = post.video;
 
-    study.save(function(err, study) {
-      res.redirect('/auth');
-    });
-  });
+		study.save(function(err, study) {
+			Theme.findById(theme_id).exec(function(err, theme) {
+				var current_index = theme.studys.indexOf(study._id);
+				move(theme.studys, current_index, post.order);
+				theme.markModified('studys');
+				theme.save(function(err, theme) {
+					res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
+				});
+			});
+		});
+	});
 }
 
 
@@ -82,8 +119,8 @@ exports.edit_form = function(req, res) {
 
 
 exports.remove = function(req, res) {
-  var id = req.body.id;
-  Study.findByIdAndRemove(id, function() {
-    res.send('ok');
-  });
+	var id = req.body.id;
+	Study.findByIdAndRemove(id, function() {
+		res.send('ok');
+	});
 }

@@ -25,6 +25,11 @@ block content
 			input.form_text(type='text', name='title')
 			.form_title Описание:
 			textarea.editor(name='description')
+			.form_title Порядок:
+			select(name='order')
+				each option, i in theme.studys
+					option(value=i)= i
+				option(value=theme.studys.length, selected=true)= theme.studys.length
 			.form_title Видимость:
 			input(type='checkbox', name='status', value='hidden')
 			| скрыть
