@@ -56,7 +56,6 @@ var lectures = require('./routes/lectures.js');
 var other = require('./routes/other.js');
 var write = require('./routes/write.js');
 var content = require('./routes/content.js');
-var files = require('./routes/files.js');
 
 var auth = require('./routes/auth.js');
 
@@ -65,7 +64,6 @@ var admin_categorys = require('./routes/admin/categorys.js');
 var admin_studys = require('./routes/admin/studys.js');
 var admin_themes = require('./routes/admin/themes.js');
 
-var options = require('./routes/admin/options.js');
 var globals = require('./routes/globals.js');
 
 
@@ -87,21 +85,16 @@ function checkAuth (req, res, next) {
 
 
 // === Main Route
-app.route('/')
-	.get(main.index)
-
+app.route('/').get(main.index)
 
 // === Lectures Route
-app.route('/lectures/:theme_sym/:sub_num')
-	.get(lectures.index);
+app.route('/lectures/:theme_sym/:sub_num').get(lectures.index);
 
 // === Lecture Route
-app.route('/lectures/:id')
-	.get(lectures.lecture);
+app.route('/lectures/:id').get(lectures.lecture);
 
 // === Lectures Redirect
-app.route('/lectures')
-	.get(lectures.redirect);
+app.route('/lectures').get(lectures.redirect);
 
 // === Other Route
 app.route('/other')
@@ -109,8 +102,7 @@ app.route('/other')
 	.post(other.get_items);
 
 // === Write Route
-app.route('/write')
-	.get(write.index)
+app.route('/write').get(write.index)
 
 
 // ------------------------
@@ -270,16 +262,6 @@ app.route('/registr')
 app.route('/about').get(content.about);
 
 
-
-// ------------------------
-// *** Options Routers Block ***
-// ------------------------
-
-
-app.route('/preview')
-	 .post(options.preview)
-
-
 // ------------------------
 // *** Globals Routers Block ***
 // ------------------------
@@ -288,21 +270,6 @@ app.route('/preview')
 // === Search Route
 app.route('/search')
 	 .post(globals.search)
-
-
-// ------------------------
-// *** Files Routers Block ***
-// ------------------------
-
-
-
-// === Files #sitemap.xml Route
-app.route('/sitemap.xml').get(files.sitemap);
-
-
-// === Files #robots.txt Route
-app.route('/robots.txt').get(files.robots);
-
 
 
 // ------------------------
