@@ -24,6 +24,7 @@ var studySchema = new Schema({
 	title: { type: String, trim: true, index: 'text' },
 	description: { type: String, trim: true, index: 'text' },
 	type: { type: String, default: 'lectures' },
+	categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 	status: String,
 	files: [String],
 	video: String,
@@ -35,16 +36,6 @@ var categorySchema = new Schema({
 	title: { type: String, trim: true },
 	_short_id: { type: String, unique: true, index: true },
 	date: {type: Date, default: Date.now},
-});
-
-var postSchema = new Schema({
-	title: { type: String, trim: true, index: 'text' },
-	description: { type: String, trim: true, index: 'text' },
-	category: { type: Schema.Types.ObjectId, ref: 'Category' },
-	files: [String],
-	video: String,
-	_short_id: { type: String, unique: true, index: true },
-	date: { type: Date, default: Date.now },
 });
 
 
