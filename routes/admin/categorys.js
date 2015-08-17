@@ -1,3 +1,4 @@
+var shortid = require('shortid');
 var Category = require('../../models/main.js').Category;
 
 
@@ -27,6 +28,7 @@ exports.add_form = function(req, res) {
 
   var category = new Category();
 
+  category._short_id = shortid.generate();
   category.title = post.title;
 
   category.save(function(err, category) {

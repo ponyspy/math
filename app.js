@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
 
 
 var main = require('./routes/main.js');
-var studys = require('./routes/studys.js');
+var lectures = require('./routes/lectures.js');
 var other = require('./routes/other.js');
 var write = require('./routes/write.js');
 var content = require('./routes/content.js');
@@ -91,17 +91,17 @@ app.route('/')
 	.get(main.index)
 
 
-// === Studys Route
+// === Lectures Route
 app.route('/lectures/:theme_sym/:sub_num')
-	.get(studys.index);
+	.get(lectures.index);
 
-// === Study Route
+// === Lecture Route
 app.route('/lectures/:id')
-	.get(studys.study);
+	.get(lectures.lecture);
 
-// === Studys Redirect
+// === Lectures Redirect
 app.route('/lectures')
-	.get(studys.redirect);
+	.get(lectures.redirect);
 
 // === Other Route
 app.route('/other')
@@ -111,10 +111,6 @@ app.route('/other')
 // === Write Route
 app.route('/write')
 	.get(write.index)
-
-// === Test Route
-app.route('/test')
-	.get(studys.test)
 
 
 // ------------------------
