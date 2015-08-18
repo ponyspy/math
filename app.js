@@ -61,7 +61,8 @@ var auth = require('./routes/auth.js');
 
 var admin_users = require('./routes/admin/users.js');
 var admin_categorys = require('./routes/admin/categorys.js');
-var admin_studys = require('./routes/admin/studys.js');
+var admin_lectures_studys = require('./routes/admin/lectures.js');
+var admin_other_studys = require('./routes/admin/other.js');
 var admin_themes = require('./routes/admin/themes.js');
 
 var globals = require('./routes/globals.js');
@@ -100,6 +101,9 @@ app.route('/lectures').get(lectures.redirect);
 app.route('/other')
 	.get(other.index)
 	.post(other.get_items);
+
+// === Other item Route
+app.route('/other/:id').get(other.other_item)
 
 // === Write Route
 app.route('/write').get(write.index)
@@ -161,7 +165,7 @@ app.route('/auth/categorys/remove')
 
 
 // ------------------------
-// *** Admin Themes Routes Block ***
+// *** Admin Lectures Routes Block ***
 // ------------------------
 
 
@@ -204,25 +208,55 @@ app.route('/auth/themes/remove')
 	 .post(checkAuth, admin_themes.remove);
 
 
-// === Admin studys Route
-app.route('/auth/themes/:id/sub/edit/:sub_id/studys').get(checkAuth, admin_studys.list);
+// === Admin lectures studys Route
+app.route('/auth/themes/:id/sub/edit/:sub_id/studys').get(checkAuth, admin_lectures_studys.list);
 
 
-// === Admin @add studys Route
+// === Admin @add lectures studys Route
 app.route('/auth/themes/:id/sub/edit/:sub_id/studys/add')
-	 .get(checkAuth, admin_studys.add)
-	 .post(checkAuth, admin_studys.add_form);
+	 .get(checkAuth, admin_lectures_studys.add)
+	 .post(checkAuth, admin_lectures_studys.add_form);
 
 
-// === Admin @edit studys Route
+// === Admin @edit lectures studys Route
 app.route('/auth/themes/:id/sub/edit/:sub_id/studys/edit/:study_id')
-	 .get(checkAuth, admin_studys.edit)
-	 .post(checkAuth, admin_studys.edit_form);
+	 .get(checkAuth, admin_lectures_studys.edit)
+	 .post(checkAuth, admin_lectures_studys.edit_form);
 
 
-// === Admin @remove studys Route
+// === Admin @remove lectures studys Route
 app.route('/auth/studys/remove')
-	 .post(checkAuth, admin_studys.remove);
+	 .post(checkAuth, admin_lectures_studys.remove);
+
+
+
+// ------------------------
+// *** Admin Other Routes Block ***
+// ------------------------
+
+
+
+// === Admin other studys Route
+app.route('/auth/other').get(checkAuth, admin_other_studys.list);
+
+
+// === Admin @add other studys Route
+app.route('/auth/other/add')
+	 .get(checkAuth, admin_other_studys.add)
+	 .post(checkAuth, admin_other_studys.add_form);
+
+
+// === Admin @edit other studys Route
+app.route('/auth/other/edit/:id')
+	 .get(checkAuth, admin_other_studys.edit)
+	 .post(checkAuth, admin_other_studys.edit_form);
+
+
+// === Admin @remove other studys Route
+app.route('/auth/other/remove')
+	 .post(checkAuth, admin_other_studys.remove);
+
+
 
 
 

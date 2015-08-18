@@ -1,0 +1,30 @@
+extends ../layout
+
+block title
+	title= 'Школа Опойцева - Разное / ' + study.title
+	- var menu_current = 3
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/study.css' + version)
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/study.js' + version)
+
+block content
+	.content_body_block
+		.column_left_block
+			a.current(href='/other') все
+			each category in categorys
+				a(href='/other/' + category._id)= category.title
+		.column_main_block
+			.study_title= study.title
+			.study_description!= study.description
+			.study_video
+				.study_links
+					each file in new Array(3)
+						.link.pdf(file_path='/files/op.pdf')
+				.study_counters
+					.social-likes.social-likes_vertical.social-likes_light(data-title=study.title)
+						.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
+						.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
+				iframe(width='720', height='400', src='https://www.youtube.com/embed/SqstNSIl1iU', frameborder='0', allowfullscreen='')

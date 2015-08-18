@@ -30,7 +30,7 @@ var move = function (array, from, to) {
 
 exports.list = function(req, res) {
 	Theme.findById(req.params.sub_id).populate('studys').exec(function(err, theme) {
-		res.render('auth/studys/', {studys: theme.studys, theme_id: req.params.id, sub_theme_id: req.params.sub_id});
+		res.render('auth/lectures/', {studys: theme.studys, theme_id: req.params.id, sub_theme_id: req.params.sub_id});
 	});
 }
 
@@ -44,7 +44,7 @@ exports.add = function(req, res) {
 	var id = req.params.sub_id;
 	Theme.findById(id).exec(function(err, theme) {
 		Category.find().exec(function(err, categorys) {
-			res.render('auth/studys/add.jade', {theme: theme, categorys: categorys});
+			res.render('auth/lectures/add.jade', {theme: theme, categorys: categorys});
 		});
 	});
 }
@@ -89,7 +89,7 @@ exports.edit = function(req, res) {
 	Theme.findById(theme_id).exec(function(err, theme) {
 		Study.findById(study_id).exec(function(err, study) {
 			Category.find().exec(function(err, categorys) {
-				res.render('auth/studys/edit.jade', {study: study, theme: theme, categorys: categorys});
+				res.render('auth/lectures/edit.jade', {study: study, theme: theme, categorys: categorys});
 			});
 		});
 	});

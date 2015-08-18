@@ -1,7 +1,7 @@
 extends ../layout
 
 block title
-	title= 'Школа Опойцева / Разное'
+	title= 'Школа Опойцева - Разное'
 	- var menu_current = 3
 
 block content_style
@@ -18,4 +18,4 @@ block content
 				a(href='/other/' + category._short_id)= category.title
 		.column_main_block
 			each study, i in studys
-				+contentItem(sub_num + '.' + i, study.title, study.description)(href='/other/' + study._short_id, video=study.video, files=study.files)
+				+contentItem(parseDate(study.date), study.description)(href='/other/' + study._short_id, video=study.video, files=study.files)

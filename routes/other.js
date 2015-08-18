@@ -15,6 +15,16 @@ exports.index = function(req, res) {
 	});
 }
 
+exports.other_item = function(req, res) {
+	var id = req.params.id;
+
+	Category.find().exec(function(err, categorys) {
+		Study.findOne({'_short_id': id}).exec(function(err, study) {
+			res.render('other/study.jade', {study: study, categorys: categorys});
+		});
+	});
+}
+
 
 exports.get_items = function(req, res) {
 
