@@ -8,10 +8,8 @@ var __appdir = path.dirname(require.main.filename);
 
 
 exports.index = function(req, res) {
-	Study.where('type').equals('other').sort('date').limit(20).exec(function(err, studys) {
-		Category.where('status').equals('other').exec(function(err, categorys) {
-			res.render('other', {studys: studys, categorys: categorys});
-		});
+	Category.where('status').equals('other').exec(function(err, categorys) {
+		res.render('other', {categorys: categorys});
 	});
 }
 
@@ -27,5 +25,13 @@ exports.other_item = function(req, res) {
 
 
 exports.get_items = function(req, res) {
+	var post = req.body;
+	var Query = post.context.category == 'all'
+		? Study.find({'type': 'other'})
+		: Study.find({'type': 'other', 'categorys': post.context.category});
 
+	Query.skip(post.context.skip).limit(post.context.limit).exec(function(err, studys) {
+		var opts = {studys: studys, compileDebug: false, debug: false, cache: true, pretty: false};
+		res.send(jade.renderFile(__appdir + '/views/other/get_studys.jade', opts));
+	});
 }

@@ -1,7 +1,7 @@
 - var parseDate = function(date) { return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('.') }
 
 mixin contentItem(num, title, description)
-	.content_item_block
+	.content_item_block(class=attributes.type)
 		a.item_body(href=attributes.href)
 			.item_title_block
 				.item_num= num
@@ -15,3 +15,17 @@ mixin contentItem(num, title, description)
 			.social-likes.social-likes_horizontal.social-likes_light(data-url='http://' + host + attributes.href, data-title=title)
 				.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
 				.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
+
+mixin contentStudy(study)
+	.study_block
+		.study_title= study.title
+		.study_description!= study.description
+		.study_video
+			.study_links
+				each file in new Array(3)
+					.link.pdf(file_path='/files/op.pdf')
+			.study_counters
+				.social-likes.social-likes_vertical.social-likes_light(data-title=study.title)
+					.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
+					.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
+			iframe(width='720', height='400', src='https://www.youtube.com/embed/SqstNSIl1iU', frameborder='0', allowfullscreen='')

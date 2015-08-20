@@ -1,4 +1,5 @@
 extends ../layout
+include ../globals
 
 block title
 	title= 'Школа Опойцева - Лекции / ' + study.title
@@ -19,14 +20,4 @@ block content
 			each sub_theme, i in theme_parent.sub
 				a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + i)= i + ' - ' + sub_theme.title
 		.column_main_block
-			.study_title= study.title
-			.study_description!= study.description
-			.study_video
-				.study_links
-					each file in new Array(3)
-						.link.pdf(file_path='/files/op.pdf')
-				.study_counters
-					.social-likes.social-likes_vertical.social-likes_light(data-title=study.title)
-						.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
-						.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
-				iframe(width='720', height='400', src='https://www.youtube.com/embed/SqstNSIl1iU', frameborder='0', allowfullscreen='')
+			+contentStudy(study)

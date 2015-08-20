@@ -13,9 +13,7 @@ block content_scripts
 block content
 	.content_body_block
 		.column_left_block
-			a.current(href='#') все
+			a.category_item(class='all', href='#') все
 			each category in categorys
-				a(href='/other/' + category._short_id)= category.title
-		.column_main_block
-			each study, i in studys
-				+contentItem(parseDate(study.date), study.description)(href='/other/' + study._short_id, video=study.video, files=study.files)
+				a.category_item(class=category._id.toString(), href='#' + category._id.toString())= category.title
+		.column_main_block.studys_other
