@@ -21,8 +21,8 @@ var themeSchema = new Schema({
 });
 
 var studySchema = new Schema({
-	title: { type: String, trim: true, index: 'text' },
-	description: { type: String, trim: true, index: 'text' },
+	title: { type: String, trim: true },
+	description: { type: String, trim: true },
 	type: { type: String, default: 'lectures' },
 	categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 	status: String,
@@ -38,6 +38,8 @@ var categorySchema = new Schema({
 	_short_id: { type: String, unique: true, index: true },
 	date: {type: Date, default: Date.now},
 });
+
+studySchema.index({'title': 'text', 'description': 'text'}, {default_language: 'russian', weights: {title: 2, description: 1 }});
 
 
 // ------------------------

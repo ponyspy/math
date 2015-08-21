@@ -1,50 +1,41 @@
 $(document).ready(function() {
-	// var search = {
-	// 	val: '', buf: '',
-	// 	checkResult: function() {
-	// 		if (this.buf != this.val) {
-	// 			this.buf = this.val;
-	// 			this.getResult.call(search, this.val);
-	// 		}
-	// 	},
-	// 	getResult: function (result) {
-	// 		$.post('/search', {search: result}).done(function(data) {
-	// 			data.events.length == 0 && data.exhibits.length == 0
-	// 				? $('.search_result').hide()
-	// 				: $('.search_result').show();
+	var search = {
+		val: '', buf: '',
+		checkResult: function() {
+			if (this.buf != this.val) {
+				this.buf = this.val;
+				this.getResult.call(search, this.val);
+			}
+		},
+		getResult: function (result) {
+			$.post('/search', {search: result}).done(function(data) {
+				$('.search_results').children('.column_main_block').empty().append(data.studys);
 
-	// 			$('.search_context').hide().children('.context_results_block').empty();
+				$('.search_block').find('.categorys_block').empty();
+				data.categorys.forEach(function(category) {
+					var $category = $('<a/>', {'class': 'category_item', 'href':'#', 'text': category.title});
+					$('.search_block').find('.categorys_block').append($category);
+				});
+			});
+		}
+	};
 
-	// 			data.exhibits.forEach(function(exhibit) {
-	// 				var context_result = $('<a/>', {'class': 'context_result', 'href': '/exhibits/' + exhibit._id, 'text': exhibit.title[0].value});
-	// 				$('.search_context.exhibits').show().children('.context_results_block').append(context_result);
-	// 			});
-
-	// 			data.events.forEach(function(event) {
-	// 				var context_result = $('<a/>', {'class': 'context_result', 'href': '/events/' + event.type + '/' + event._id, 'text': event.title[0].value});
-	// 				$('.search_context.events').show().children('.context_results_block').append(context_result);
-	// 			});
-	// 		});
-	// 	}
-	// };
-
-	// $('.search_input')
-	// .on('keyup change', function(event) {
-	// 	search.val = $(this).val();
-	// })
-	// .on('focusin', function(event) {
-	// 	search.interval = setInterval(function() {
-	// 		search.checkResult.call(search);
-	// 	}, 1000);
-	// })
-	// .on('focusout', function(event) {
-	// 	clearInterval(search.interval);
-	// });
-
+	$('.search_input')
+	.on('keyup change', function(event) {
+		search.val = $(this).val();
+	})
+	.on('focusin', function(event) {
+		search.interval = setInterval(function() {
+			search.checkResult.call(search);
+		}, 1000);
+	})
+	.on('focusout', function(event) {
+		clearInterval(search.interval);
+	});
 
 	$('.search_input').on('focusin', function(event) {
 		$('.content_block').hide();
-		$('.results').fadeIn(300);
+		$('.search_results').fadeIn(300);
 		$('.search_input').addClass('focus');
 	});
 
@@ -52,7 +43,7 @@ $(document).ready(function() {
 		.on('mouseup.search', function(event) {
 			if (!/item_block|item_title|item_description|search_input|link|preview_block/.test(event.target.className)) {
 				$('.content_block').fadeIn(300);
-				$('.results').hide();
+				$('.search_results').hide();
 				$('.search_input').removeClass('focus');
 			}
 		})
@@ -88,8 +79,7 @@ $(document).ready(function() {
 
 			if ($(this).hasClass('pdf')) {
 				var path = $(this).attr('file_path');
-				window.open(path,'_blank');
-				// window.location.href = path;
+				window.open(path, '_blank');
 			}
 		});
 });

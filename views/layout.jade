@@ -1,5 +1,3 @@
-include globals
-
 doctype html
 html
 	head
@@ -25,13 +23,16 @@ html
 					a(href='#'): img(src='/images/design/social/twitter.png')
 			.search_block
 				input.search_input(type='text', placeholder='поиск...')
-				.content_body_block.results
+				//- .content_title_block
+					a.current(href='#') все
+					a(href='#') лекции
+					a(href='#') разное
+				.content_body_block.search_results
 					.column_left_block
-						a.current(href='#') Все
-						a(href='#') Лекции
-						a(href='#') Разное
+						a.current(href='#') все
+						a(href='#') лекции
+						a(href='#') разное
+						.categorys_block
 					.column_main_block
-						+contentItem(1.1, 'О взаимодействии сознания с подсознанием', 'Подсознание (англ. subconsciousness) — устаревший термин, применявшийся для обозначения психических процессов, протекающих без отображения их в сознании и помимо сознательного управления. В науку термин введён в 1889 году Пьером Жане в философской диссертации. Позже он развил его в медицинской диссертации «Психический мир истериков» («L’at mental des hystr- iques» 1892). Одновременно следует отметить, что современные дискуссии о подсознательном берут начало в 1869 году, когда немецкий философ Эдуард фон Гартман опубликовал “Философию подсознательного”.')
-						+contentItem('22.01.1991', 'Туту', 'Буддисты в монастырях сначала учат текст наизусть. Далее практикуют.Далее наступает понимание (просветление).')
 			.content_block
 				block content
