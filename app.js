@@ -106,7 +106,9 @@ app.route('/other')
 app.route('/other/:id').get(other.other_item)
 
 // === Write Route
-app.route('/write').get(write.index)
+app.route('/write')
+	 .get(write.index)
+	 .post(write.mail);
 
 
 // ------------------------

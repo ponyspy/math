@@ -20,6 +20,7 @@
     "mongoose": "^4.0.3",
     "mongoose-bcrypt": "^1.1.1",
     "multer": "^0.1.4",
+    "nodemailer": "^1.4.0",
     "shortid": "^2.2.2"
   },
   "devDependencies": {
