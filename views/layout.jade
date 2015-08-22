@@ -23,16 +23,17 @@ html
 					a(href='#'): img(src='/images/design/social/twitter.png')
 			.search_block
 				input.search_input(type='text', placeholder='поиск...')
-				//- .content_title_block
-					a.current(href='#') все
-					a(href='#') лекции
-					a(href='#') разное
-				.content_body_block.search_results
-					.column_left_block
-						a.current(href='#') все
-						a(href='#') лекции
-						a(href='#') разное
-						.categorys_block
-					.column_main_block
+				.search_results
+					//- .content_title_block
+					//- 	a.current(href='#') все
+					//- 	a(href='#') лекции
+					//- 	a(href='#') разное
+					.content_body_block
+						.column_left_block
+							a.current(href='#') все
+							a(href='#') лекции
+							a(href='#') разное
+							.categorys_block
+						.column_main_block
 			.content_block
 				block content

@@ -9,7 +9,7 @@ $(document).ready(function() {
 		},
 		getResult: function (result) {
 			$.post('/search', {search: result}).done(function(data) {
-				$('.search_results').children('.column_main_block').empty().append(data.studys);
+				$('.search_results').find('.column_main_block').empty().append(data.studys);
 
 				$('.search_block').find('.categorys_block').empty();
 				data.categorys.forEach(function(category) {
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 	$(document)
 		.on('mouseup.search', function(event) {
-			if (!/item_block|item_title|item_description|search_input|link|preview_block/.test(event.target.className)) {
+			if (!/item_block|item_title|item_description|search_input|search_results|link|preview_block/.test(event.target.className)) {
 				$('.content_block').fadeIn(300);
 				$('.search_results').hide();
 				$('.search_input').removeClass('focus');
