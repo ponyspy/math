@@ -26,7 +26,11 @@ var studySchema = new Schema({
 	type: { type: String, default: 'lectures' },
 	categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 	status: String,
-	files: [String],
+	files: [{
+		path: String,
+		desc: String
+	}],
+	image: String,
 	video: String,
 	_short_id: { type: String, unique: true, index: true },
 	date: { type: Date, default: Date.now },

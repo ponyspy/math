@@ -20,7 +20,7 @@ block content
 	.form_block
 		a.back_link(href='/auth') < Назад
 		.title РЕДАКТИРОВАТЬ МАТЕРИАЛ
-		form(action="", method="post")
+		form(action="", method="post", enctype="multipart/form-data")
 			.form_title Заголовок:
 			input.form_text(type='text', name='title', value=study.title)
 			.form_title Описание:
@@ -30,9 +30,11 @@ block content
 			| скрыть
 			.form_title Категории:
 			+form_multiple_select('categorys', categorys, study.categorys)
-			.form_title Видео:
+			.form_title Видео YouTube:
 			input.form_text.video(type='text', name='video', value=study.video)
-			.form_title Файлы:
+			.form_title Изображение:
+			input(type='file', name='image')
+			.form_title Файлы PDF:
 			input(type='file')
 			br
 			button добавить файл
