@@ -58,7 +58,7 @@ exports.add_form = function(req, res) {
 
 				mkdirp(__appdir + '/public' + dir_name, function() {
 					gm(__appdir + '/' + files.image[0].path).resize(720, false).quality(100).write(__appdir + '/public' + dir_name + '/' + file_name, function() {
-						study.image = '/public' + dir_name + '/' + file_name;
+						study.image = dir_name + '/' + file_name;
 						callback(null, 'image');
 					});
 				});
@@ -75,7 +75,7 @@ exports.add_form = function(req, res) {
 					mkdirp(__appdir + '/public' + dir_name, function() {
 						fs.rename(__appdir + '/' + file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
 							study.files.push({
-								path: '/public' + dir_name + '/' + file_name,
+								path: dir_name + '/' + file_name,
 								desc: post.attach_desc[i] || ''
 							});
 							callback();
@@ -132,7 +132,7 @@ exports.edit_form = function(req, res) {
 
 					mkdirp(__appdir + '/public' + dir_name, function() {
 						gm(__appdir + '/' + files.image[0].path).resize(720, false).quality(100).write(__appdir + '/public' + dir_name + '/' + file_name, function() {
-							study.image = '/public' + dir_name + '/' + file_name;
+							study.image = dir_name + '/' + file_name;
 							callback(null, 'image');
 						});
 					});
@@ -164,7 +164,7 @@ exports.edit_form = function(req, res) {
 						mkdirp(__appdir + '/public' + dir_name, function() {
 							fs.rename(__appdir + '/' + file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
 								study.files.push({
-									path: '/public' + dir_name + '/' + file_name,
+									path: dir_name + '/' + file_name,
 									desc: post.attach_desc[i] || ''
 								});
 								callback();

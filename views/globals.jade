@@ -1,19 +1,20 @@
 - var parseDate = function(date) { return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('.') }
 
-mixin contentItem(num, title, description)
+mixin contentItem(num, study)
 	.content_item_block(class=attributes.type)
 		a.item_body(href=attributes.href)
 			.item_title_block
 				.item_num= num
-				.item_title= title
-			.item_description!= description
+				.item_title= study.title
+			.item_description!= study.description
 		.item_links
-			.link.video(video_id=attributes.video)
-			each file in new Array(3)
-				.link.pdf(file_path='file.path')
-					.tooltip лалалала
+			.link.video(video_id=study.video)
+			each file in study.files
+				.link.pdf(file_path=file.path)
+					if file.desc != ''
+						.tooltip= file.desc
 		.item_counters
-			.social-likes.social-likes_horizontal.social-likes_light(data-url='http://' + host + attributes.href, data-title=title)
+			.social-likes.social-likes_horizontal.social-likes_light(data-url='http://' + host + attributes.href, data-title=study.title)
 				.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
 				.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
 
@@ -25,6 +26,8 @@ mixin contentStudy(study)
 			.study_links
 				each file in study.files
 					.link.pdf(file_path=file.path)
+						if file.desc != ''
+							.tooltip= file.desc
 			.study_counters
 				.social-likes.social-likes_vertical.social-likes_light(data-title=study.title)
 					.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook

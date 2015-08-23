@@ -21,5 +21,5 @@ block content
 				a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= i + ' - ' + sub_theme.title
 		.column_main_block
 			each study, i in studys
-				+contentItem(sub_num + '.' + i, study.title, study.description)(href='/lectures/' + study._short_id, video=study.video)
+				+contentItem(sub_num + '.' + i, study)(type='lecture_item', href='/lectures/' + study._short_id)
 
