@@ -10,7 +10,8 @@ mixin contentItem(num, title, description)
 		.item_links
 			.link.video(video_id=attributes.video)
 			each file in new Array(3)
-				.link.pdf(file_path='/files/op.pdf')
+				.link.pdf(file_path='file.path')
+					.tooltip лалалала
 		.item_counters
 			.social-likes.social-likes_horizontal.social-likes_light(data-url='http://' + host + attributes.href, data-title=title)
 				.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
@@ -22,10 +23,10 @@ mixin contentStudy(study)
 		.study_description!= study.description
 		.study_video
 			.study_links
-				each file in new Array(3)
-					.link.pdf(file_path='/files/op.pdf')
+				each file in study.files
+					.link.pdf(file_path=file.path)
 			.study_counters
 				.social-likes.social-likes_vertical.social-likes_light(data-title=study.title)
 					.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
 					.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
-			iframe(width='720', height='400', src='https://www.youtube.com/embed/SqstNSIl1iU', frameborder='0', allowfullscreen='')
+			iframe(width='720', height='400', src='https://www.youtube.com/embed/' + study.video, frameborder='0', allowfullscreen='')

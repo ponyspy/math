@@ -66,6 +66,12 @@ $(document).ready(function() {
 				$(this).trigger('mouseup.search');
 			}
 		})
+		.on('mousemove', '.link.pdf', function(event) {
+			var x = (event.clientX + 20),
+					y = (event.clientY + 20);
+
+			$(this).children('.tooltip').css({top: y, left: x});
+		})
 		.on('click', '.link', function() {
 			if ($(this).hasClass('video')) {
 				var id = $(this).attr('video_id');
