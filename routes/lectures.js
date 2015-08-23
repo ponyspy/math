@@ -12,7 +12,8 @@ exports.index = function(req, res) {
 	var sym = req.params.theme_sym;
 
 	Theme.where('sym').equals(sym).select('title sub sym').exec(function(err, current_theme) {
-		if (current_theme.length == 0 || !Number.isInteger(sub_num) || current_theme[0].sub.length - 1 < sub_num) return res.redirect('/lectures');
+		if (current_theme.length == 0 || current_theme[0].sub.length == 0) return res.status(500).render('error', {status: 500});
+		else if (current_theme.length == 0 || !Number.isInteger(sub_num) || current_theme[0].sub.length - 1 < sub_num) return res.redirect('/lectures');
 		Theme.populate(current_theme, {path: 'sub'}, function(err, current_theme) {
 			var studys = (current_theme[0].sub[sub_num] && current_theme[0].sub[sub_num].studys) || [];
 
@@ -42,6 +43,7 @@ exports.lecture = function(req, res) {
 
 exports.redirect = function(req, res) {
 	Theme.where('parent').exists(false).sort('date').select('sym').exec(function(err, themes) {
+		if (themes.length == 0) return res.status(500).render('error', {status: 500});
 		res.redirect('/lectures/' + themes[0].sym + '/' + 0)
 	});
 }
