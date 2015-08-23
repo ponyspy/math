@@ -10,6 +10,7 @@ var express = require('express'),
 		methodOverride = require('method-override'),
 			app = express();
 
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
@@ -18,13 +19,15 @@ app.set('json spaces', 2);
 mongoose.set('debug', false);
 
 var MongoStore = require('connect-mongo')(session);
+var upload = multer({ dest: 'uploads/' });
 
 app.use(express.static(__dirname + '/public'));
-app.use(multer({ dest: __dirname + '/uploads', includeEmptyFields: true}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(cookieParser());
+
+var cpUpload = upload.fields([{ name: 'image', maxCount: 1 }, { name: 'attach', maxCount: 8 }]);
 
 app.use(session({
 	key: 'math.sess',
@@ -245,13 +248,13 @@ app.route('/auth/other').get(checkAuth, admin_other_studys.list);
 // === Admin @add other studys Route
 app.route('/auth/other/add')
 	 .get(checkAuth, admin_other_studys.add)
-	 .post(checkAuth, admin_other_studys.add_form);
+	 .post(checkAuth, cpUpload, admin_other_studys.add_form);
 
 
 // === Admin @edit other studys Route
 app.route('/auth/other/edit/:id')
 	 .get(checkAuth, admin_other_studys.edit)
-	 .post(checkAuth, admin_other_studys.edit_form);
+	 .post(checkAuth, cpUpload, admin_other_studys.edit_form);
 
 
 // === Admin @remove other studys Route

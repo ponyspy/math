@@ -31,13 +31,16 @@ block content
 			.form_title Категории:
 			+form_multiple_select('categorys', categorys, study.categorys)
 			.form_title Видео YouTube:
-			input.form_text.video(type='text', name='video', value=study.video)
+			input.form_text.video(type='text', name='video', value=study.video && 'https://youtu.be/' + study.video)
 			.form_title Изображение:
 			input(type='file', name='image')
 			.form_title Файлы PDF:
-			input(type='file')
-			br
-			button добавить файл
-			br
+			if study.files.length > 0
+				each file, i in study.files
+					input(type='checkbox', name='files_delete', value=i)
+					!= ' удалить | ' + (file.desc || 'файл ' + i)
+					br
+				br
+			+form_multiple_files('attach', 'attach_desc')
 			br
 			input(type='submit', value='отправить')

@@ -35,7 +35,7 @@ block content
 			.form_title Категории:
 			+form_multiple_select('categorys', categorys, study.categorys)
 			.form_title Видео YouTube:
-			input.form_text.video(type='text', name='video', value=study.video)
+			input.form_text.video(type='text', name='video', value=study.video && 'https://youtu.be/' + study.video)
 			.form_title Файлы PDF:
 			input(type='file')
 			button добавить файл
