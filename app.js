@@ -111,7 +111,7 @@ app.route('/other/:id').get(other.other_item)
 // === Write Route
 app.route('/write')
 	 .get(write.index)
-	 .post(write.mail);
+	 .post(upload.single('attach'), write.mail);
 
 
 // ------------------------
@@ -220,13 +220,13 @@ app.route('/auth/themes/:id/sub/edit/:sub_id/studys').get(checkAuth, admin_lectu
 // === Admin @add lectures studys Route
 app.route('/auth/themes/:id/sub/edit/:sub_id/studys/add')
 	 .get(checkAuth, admin_lectures_studys.add)
-	 .post(checkAuth, admin_lectures_studys.add_form);
+	 .post(checkAuth, cpUpload, admin_lectures_studys.add_form);
 
 
 // === Admin @edit lectures studys Route
 app.route('/auth/themes/:id/sub/edit/:sub_id/studys/edit/:study_id')
 	 .get(checkAuth, admin_lectures_studys.edit)
-	 .post(checkAuth, admin_lectures_studys.edit_form);
+	 .post(checkAuth, cpUpload, admin_lectures_studys.edit_form);
 
 
 // === Admin @remove lectures studys Route
@@ -316,36 +316,36 @@ app.route('/search')
 // ------------------------
 
 
-app.use(function(req, res, next) {
-	var accept = accepts(req);
-	res.status(404);
+// app.use(function(req, res, next) {
+// 	var accept = accepts(req);
+// 	res.status(404);
 
-	// respond with html page
-	if (accept.types('html')) {
-		res.render('error', { url: req.url, status: 404 });
-		return;
-	}
+// 	// respond with html page
+// 	if (accept.types('html')) {
+// 		res.render('error', { url: req.url, status: 404 });
+// 		return;
+// 	}
 
-	// respond with json
-	if (accept.types('json')) {
-			res.send({
-			error: {
-				status: 'Not found'
-			}
-		});
-		return;
-	}
+// 	// respond with json
+// 	if (accept.types('json')) {
+// 			res.send({
+// 			error: {
+// 				status: 'Not found'
+// 			}
+// 		});
+// 		return;
+// 	}
 
-	// default to plain-text
-	res.type('txt').send('Not found');
-});
+// 	// default to plain-text
+// 	res.type('txt').send('Not found');
+// });
 
-app.use(function(err, req, res, next) {
-	var status = err.status || 500;
+// app.use(function(err, req, res, next) {
+// 	var status = err.status || 500;
 
-	res.status(status);
-	res.render('error', { error: err, status: status });
-});
+// 	res.status(status);
+// 	res.render('error', { error: err, status: status });
+// });
 
 
 // ------------------------

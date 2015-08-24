@@ -35,6 +35,6 @@ block content
 			.form_title Изображение:
 			input(type='file', name='image')
 			.form_title Файлы PDF:
-			+form_multiple_files('attach', 'attach_desc')
+			+form_multiple_files('attach', 'attach_desc[]')
 			br
 			input(type='submit', value='отправить')

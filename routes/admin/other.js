@@ -52,7 +52,7 @@ exports.add_form = function(req, res) {
 
 	async.series({
 		imageUpload: function(callback) {
-			if (files.attach && files.attach.length > 0) {
+			if (files.image && files.image.length > 0) {
 				var dir_name = '/images/studys/' + study._id.toString();
 				var file_name = Date.now() + '.' + mime.extension(files.image[0].mimetype);
 

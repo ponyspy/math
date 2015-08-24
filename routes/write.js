@@ -1,6 +1,7 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
 var del = require('del');
+var mime = require('mime');
 
 var __appdir = path.dirname(require.main.filename);
 
@@ -28,14 +29,15 @@ exports.mail = function(req, res) {
 		text: req.body.description,
 	}
 
-	if (req.files.attach) {
+	if (req.file) {
 		opts.attachments= [{
-			path: req.files.attach.path
+			path: __appdir + '/' + req.file.path,
+			filename: req.file.originalname
 		}]
 	}
 
 	transporter.sendMail(opts, function(err, info) {
-		del([req.files.attach.path], function() {
+		del([__appdir + '/' + req.file.path], function() {
 			res.redirect('/write');
 		});
 	});

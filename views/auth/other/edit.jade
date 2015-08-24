@@ -41,6 +41,6 @@ block content
 					!= ' удалить | ' + (file.desc || 'файл ' + i)
 					br
 				br
-			+form_multiple_files('attach', 'attach_desc')
+			+form_multiple_files('attach', 'attach_desc[]')
 			br
 			input(type='submit', value='отправить')

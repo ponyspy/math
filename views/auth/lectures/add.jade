@@ -20,7 +20,7 @@ block content
 	.form_block
 		a.back_link(href='/auth/studys') < Назад
 		.title ДОБАВИТЬ МАТЕРИАЛ
-		form(action="", method="post")
+		form(action="", method="post", enctype="multipart/form-data")
 			.form_title Заголовок:
 			input.form_text(type='text', name='title')
 			.form_title Описание:
@@ -38,9 +38,6 @@ block content
 			.form_title Видео YouTube:
 			input.form_text.video(type='text', name='video')
 			.form_title Файлы PDF:
-			input(type='file')
-			br
-			button добавить файл
-			br
+			+form_multiple_files('attach', 'attach_desc[]')
 			br
 			input(type='submit', value='отправить')
