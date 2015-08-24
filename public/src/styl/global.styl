@@ -1,8 +1,7 @@
-.search_input
-	::-webkit-input-placeholder {color:white;}
-	::-moz-placeholder          {color:white;}/* Firefox 19+ */
-	:-moz-placeholder           {color:white;}/* Firefox 18- */
-	:-ms-input-placeholder      {color:white;}
+.search_input::-webkit-input-placeholder {color: white;}
+.search_input::-moz-placeholder          {color: white;}/* Firefox 19+ */
+.search_input:-moz-placeholder           {color: white;}/* Firefox 18- */
+.search_input:-ms-input-placeholder      {color: white;}
 
 body
 	margin 0
@@ -83,7 +82,7 @@ body
 			font 14px/26px 'fontello'
 			text-align center
 			color white
-			background-color grey
+			background-color rgb(147, 149, 152)
 			text-decoration none
 
 .search_block
@@ -107,6 +106,10 @@ body
 	.search_results
 		clear both
 		display none
+		.categorys_block
+			border-top 2px solid rgb(147, 149, 152)
+			padding-top 15px
+			display none
 
 .preview_block
 	width 100%

@@ -11,11 +11,14 @@ $(document).ready(function() {
 			$.post('/search', {search: result}).done(function(data) {
 				$('.search_results').find('.column_main_block').empty().append(data.studys);
 
-				$('.search_block').find('.categorys_block').empty();
-				data.categorys.forEach(function(category) {
-					var $category = $('<a/>', {'class': 'category_item', 'href':'#', 'text': category.title});
-					$('.search_block').find('.categorys_block').append($category);
-				});
+				$('.search_block').find('.categorys_block').hide().empty();
+				if (data.categorys.length > 0) {
+					$('.search_block').find('.categorys_block').show();
+					data.categorys.forEach(function(category) {
+						var $category = $('<a/>', {'class': 'category_item', 'href':'#', 'text': category.title});
+						$('.search_block').find('.categorys_block').append($category);
+					});
+				}
 			});
 		}
 	};

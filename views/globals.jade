@@ -8,7 +8,8 @@ mixin contentItem(num, study)
 				.item_title= study.title
 			.item_description!= study.description
 		.item_links
-			.link.video(video_id=study.video)
+			if study.video
+				.link.video(video_id=study.video)
 			each file in study.files
 				.link.pdf(file_path=file.path)
 					if file.desc != ''
