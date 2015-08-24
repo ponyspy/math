@@ -31,7 +31,7 @@ exports.get_items = function(req, res) {
 		: Study.find({'type': 'other', 'categorys': post.context.category});
 
 	Query.skip(post.context.skip).limit(post.context.limit).exec(function(err, studys) {
-		var opts = {studys: studys, compileDebug: false, debug: false, cache: true, pretty: false};
+		var opts = {studys: studys, host: req.hostname, compileDebug: false, debug: false, cache: true, pretty: false};
 		res.send(jade.renderFile(__appdir + '/views/other/get_studys.jade', opts));
 	});
 }

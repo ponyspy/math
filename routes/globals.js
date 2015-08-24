@@ -27,7 +27,7 @@ exports.search = function(req, res) {
 	Study.distinct('categorys', { $text: { $search: search } }).exec(function(err, categorys) {
 		Category.where('_id').in(categorys).select('title _id').exec(function(err, categorys) {
 			Study.find({ $text: { $search: search } }, { score : { $meta: 'textScore' } }).sort({ score : { $meta : 'textScore' } }).exec(function(err, studys) {
-				var opts = {studys: studys, compileDebug: false, debug: false, cache: true, pretty: false};
+				var opts = {studys: studys, host: req.hostname, compileDebug: false, debug: false, cache: true, pretty: false};
 				var html = jade.renderFile(__appdir + '/views/other/get_studys.jade', opts);
 				res.send({studys: html, categorys: categorys});
 			});

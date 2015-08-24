@@ -12,3 +12,14 @@
 	font-family: 'GillSansLight';
 	src: url('/fonts/GillSansLightC.otf');
 }
+
+@font-face {
+  font-family: 'fontello';
+  src: url('/fonts/icons/fontello.eot?94633487');
+  src: url('/fonts/icons/fontello.eot?94633487#iefix') format('embedded-opentype'),
+       url('/fonts/icons/fontello.woff?94633487') format('woff'),
+       url('/fonts/icons/fontello.ttf?94633487') format('truetype'),
+       url('/fonts/icons/fontello.svg?94633487#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
