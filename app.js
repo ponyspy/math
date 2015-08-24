@@ -19,7 +19,7 @@ app.set('json spaces', 2);
 mongoose.set('debug', false);
 
 var MongoStore = require('connect-mongo')(session);
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: __dirname + '/uploads/' });
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());

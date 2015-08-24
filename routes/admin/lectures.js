@@ -80,7 +80,7 @@ exports.add_form = function(req, res) {
 					var file_name = Date.now() + '.' + mime.extension(file.mimetype);
 
 					mkdirp(__appdir + '/public' + dir_name, function() {
-						fs.rename(__appdir + '/' + file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
+						fs.rename(file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
 							study.files.push({
 								path: dir_name + '/' + file_name,
 								desc: post.attach_desc[i] || ''
@@ -169,7 +169,7 @@ exports.edit_form = function(req, res) {
 						var file_name = Date.now() + '.' + mime.extension(file.mimetype);
 
 						mkdirp(__appdir + '/public' + dir_name, function() {
-							fs.rename(__appdir + '/' + file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
+							fs.rename(file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
 								study.files.push({
 									path: dir_name + '/' + file_name,
 									desc: post.attach_desc[i] || ''
