@@ -31,13 +31,13 @@ exports.mail = function(req, res) {
 
 	if (req.file) {
 		opts.attachments= [{
-			path: __appdir + '/' + req.file.path,
+			path: req.file.path,
 			filename: req.file.originalname
 		}]
 	}
 
 	transporter.sendMail(opts, function(err, info) {
-		del([__appdir + '/' + req.file.path], function() {
+		del([req.file.path], function() {
 			res.redirect('/write');
 		});
 	});
