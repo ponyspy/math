@@ -149,7 +149,7 @@ exports.edit_form = function(req, res) {
 		async.series({
 			filesDelete: function(callback) {
 				if (post.files_delete && post.files_delete.length > 0) {
-					async.forEach(post.files_delete, function(num, callback) {
+					async.forEachSeries(post.files_delete, function(num, callback) {
 						del([study.files[num].path], function() {
 							study.files.splice(num, 1);
 							study.markModified('files');
