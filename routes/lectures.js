@@ -32,7 +32,7 @@ exports.lecture = function(req, res) {
 	Study.findOne({'_short_id': id}).exec(function(err, study) {
 		if (!study) return res.redirect('/lectures');
 		Theme.findOne({studys: study._id}).select('title parent').exec(function(err, theme_sub) {
-			Theme.findById(theme_sub.parent).populate({path: 'sub', select: 'title'}).select('sym sub').exec(function(err, theme_parent) {
+			Theme.findById(theme_sub.parent).populate({path: 'sub', select: 'title numb'}).select('sym sub').exec(function(err, theme_parent) {
 				Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
 					res.render('lectures/study.jade', {study: study, theme_sub: theme_sub, theme_parent: theme_parent, themes: themes});
 				});

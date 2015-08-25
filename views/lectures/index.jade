@@ -18,8 +18,9 @@ block content
 	.content_body_block
 		.column_left_block
 			each sub_theme, i in current_theme.sub
-				a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= i + ' - ' + sub_theme.title
+				a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= sub_theme.numb ? sub_theme.title : i + ' - ' + sub_theme.title
 		.column_main_block
 			each study, i in studys
-				+contentItem(sub_num + '.' + i, study)(type='lecture_item', href='/lectures/' + study._short_id)
+				- var num = study.overlay ? study.overlay : sub_num + '.' + i
+				+contentItem(num, study)(type='lecture_item', href='/lectures/' + study._short_id)
 

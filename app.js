@@ -67,6 +67,7 @@ var admin_categorys = require('./routes/admin/categorys.js');
 var admin_lectures_studys = require('./routes/admin/lectures.js');
 var admin_other_studys = require('./routes/admin/other.js');
 var admin_themes = require('./routes/admin/themes.js');
+var admin_themes_sub = require('./routes/admin/themes_sub.js');
 
 var globals = require('./routes/globals.js');
 
@@ -170,7 +171,7 @@ app.route('/auth/categorys/remove')
 
 
 // ------------------------
-// *** Admin Lectures Routes Block ***
+// *** Admin Lectures Themes Routes Block ***
 // ------------------------
 
 
@@ -191,26 +192,44 @@ app.route('/auth/themes/:id/edit')
 	 .post(checkAuth, admin_themes.edit_form);
 
 
+// === Admin @remove themes Route
+app.route('/auth/themes/remove/main')
+	 .post(checkAuth, admin_themes.remove);
+
+
+// ------------------------
+// *** Admin Lectures Themes Sub Routes Block ***
+// ------------------------
+
+
+
 // === Admin sub themes Route
 app.route('/auth/themes/:id/sub')
-	 .get(checkAuth, admin_themes.list_sub);
+	 .get(checkAuth, admin_themes_sub.list);
 
 
 // === Admin @add themes sub Route
 app.route('/auth/themes/:id/sub/add')
-	 .get(checkAuth, admin_themes.add)
-	 .post(checkAuth, admin_themes.add_form);
+	 .get(checkAuth, admin_themes_sub.add)
+	 .post(checkAuth, admin_themes_sub.add_form);
 
 
 // === Admin @edit themes sub Route
 app.route('/auth/themes/:id/sub/edit/:sub_id')
-	 .get(checkAuth, admin_themes.edit)
-	 .post(checkAuth, admin_themes.edit_form);
+	 .get(checkAuth, admin_themes_sub.edit)
+	 .post(checkAuth, admin_themes_sub.edit_form);
 
 
-// === Admin @remove themes Route
-app.route('/auth/themes/remove')
-	 .post(checkAuth, admin_themes.remove);
+// === Admin @remove themes sub Route
+app.route('/auth/themes/remove/sub')
+	 .post(checkAuth, admin_themes_sub.remove);
+
+
+
+// ------------------------
+// *** Admin Lectures Studys Routes Block ***
+// ------------------------
+
 
 
 // === Admin lectures studys Route
@@ -263,8 +282,6 @@ app.route('/auth/other/remove')
 
 
 
-
-
 // ------------------------
 // *** Auth Routes Block ***
 // ------------------------
@@ -297,13 +314,16 @@ app.route('/registr')
 // ------------------------
 
 
+
 // === About Route
 app.route('/about').get(content.about);
+
 
 
 // ------------------------
 // *** Globals Routers Block ***
 // ------------------------
+
 
 
 // === Search Route

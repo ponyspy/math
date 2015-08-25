@@ -25,6 +25,8 @@ block content
 			input.form_text(type='text', name='title', value=study.title)
 			.form_title Описание:
 			textarea.editor(name='description')= study.description
+			.form_title Перекрытие номера:
+			input(type='text', name='overlay', value=study.overlay)
 			.form_title Порядок:
 			select(name='order')
 				each option, i in theme.studys
@@ -40,7 +42,8 @@ block content
 			if study.files.length > 0
 				each file, i in study.files
 					input(type='checkbox', name='files_delete', value=i)
-					!= ' удалить | ' + (file.desc || 'файл ' + i)
+					!= ' удалить | '
+					a(href=file.path, target='_blank')=file.desc || 'файл ' + i
 					br
 				br
 			+form_multiple_files('attach', 'attach_desc[]')

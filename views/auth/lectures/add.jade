@@ -18,13 +18,15 @@ block content_scripts
 
 block content
 	.form_block
-		a.back_link(href='/auth/studys') < Назад
+		a.back_link(href='/auth') < Назад
 		.title ДОБАВИТЬ МАТЕРИАЛ
 		form(action="", method="post", enctype="multipart/form-data")
 			.form_title Заголовок:
 			input.form_text(type='text', name='title')
 			.form_title Описание:
 			textarea.editor(name='description')
+			.form_title Перекрытие номера:
+			input(type='text', name='overlay')
 			.form_title Порядок:
 			select(name='order')
 				each option, i in theme.studys
