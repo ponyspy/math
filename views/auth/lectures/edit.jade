@@ -25,8 +25,6 @@ block content
 			input.form_text(type='text', name='title', value=study.title)
 			.form_title Описание:
 			textarea.editor(name='description')= study.description
-			.form_title Перекрытие номера:
-			input(type='text', name='overlay', value=study.overlay)
 			.form_title Порядок:
 			select(name='order')
 				each option, i in theme.studys

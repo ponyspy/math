@@ -19,8 +19,9 @@ block content
 			.form_title Заголовок:
 			input.form_text(type='text', name='title')
 			.form_title Нумерация:
-			input(type='checkbox', name='numb', value='hidden')
-			| скрыть
+			input(type='checkbox', name='overlay[on]', value='true')
+			!= ' выкл. -->'
+			input(type='text', name='overlay[desc]', placeholder='псевдоним')
 			.form_title Порядок:
 			select(name='order')
 				each option, i in parent_theme.sub

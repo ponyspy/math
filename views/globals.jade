@@ -4,7 +4,8 @@ mixin contentItem(num, study)
 	.content_item_block(class=attributes.type)
 		a.item_body(href=attributes.href)
 			.item_title_block
-				.item_num= num
+				if num
+					.item_num= num
 				.item_title= study.title
 			.item_description!= study.description
 		.item_links

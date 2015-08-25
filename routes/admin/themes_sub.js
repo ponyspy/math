@@ -53,8 +53,8 @@ exports.add_form = function(req, res) {
   var theme = new Theme();
 
   theme.title = post.title;
-  theme.numb = post.numb;
   theme.parent = parent_id;
+  theme.overlay = post.overlay;
 
   theme.save(function(err, theme) {
     Theme.findById(parent_id).exec(function(err, parent_theme) {
@@ -92,12 +92,11 @@ exports.edit_form = function(req, res) {
   var post = req.body;
   var parent_id = req.params.id;
   var sub_id = req.params.sub_id;
-  console.log(post.numb)
 
   Theme.findById(sub_id).exec(function(err, theme) {
 
     theme.title = post.title;
-    theme.numb = post.numb;
+    theme.overlay = post.overlay;
 
     theme.save(function(err, theme) {
       Theme.findById(parent_id).exec(function(err, parent_theme) {
