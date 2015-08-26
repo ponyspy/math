@@ -14,10 +14,7 @@ var userSchema = new Schema({
 var themeSchema = new Schema({
 	title: { type: String, trim: true },
 	sym: { type: String, trim: true, index: true, unique: true, sparse: true },
-	overlay: {
-		on: {type: Boolean, default: false},
-		desc: { type: String, trim: true }
-	},
+	overlay: { type: String, trim: true },
 	numbering: {
 		offset: Number,
 		start: Number

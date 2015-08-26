@@ -18,10 +18,8 @@ block content
 		form(action="", method="post")
 			.form_title Заголовок:
 			input.form_text(type='text', name='title')
-			.form_title Нумерация:
-			input(type='checkbox', name='overlay[on]', value='true')
-			!= ' выкл. -->'
-			input(type='text', name='overlay[desc]', placeholder='псевдоним')
+			.form_title Псевдоним:
+			input(type='text', name='overlay', placeholder='необязательно')
 			.form_title Порядок:
 			select(name='order')
 				each option, i in parent_theme.sub

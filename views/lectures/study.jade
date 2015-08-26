@@ -18,6 +18,9 @@ block content
 	.content_body_block
 		.column_left_block
 			each sub_theme, i in theme_parent.sub
-				a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + i)= sub_theme.overlay.on ? sub_theme.title : i + ' - ' + sub_theme.title
+				if (i < theme_parent.numbering.offset || sub_theme.overlay)
+					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + i)= sub_theme.title
+				else
+					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + i)= (i + theme_parent.numbering.start - theme_parent.numbering.offset) + ' - ' + sub_theme.title
 		.column_main_block
 			+contentStudy(study)

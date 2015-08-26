@@ -23,12 +23,12 @@ block content
 			| отступ:
 			select(name='numbering[offset]')
 				each option,i in new Array(10)
-					option(value=i)= i
+					option(value=i, selected=(i == theme.numbering.offset))= i
 			!= ' | '
 			| начинать с:
 			select(name='numbering[start]')
-				each option,i in new Array(2)
-					option(value=i)= i
+				each option,i in new Array(10)
+					option(value=i, selected=(i == theme.numbering.start))= i
 			br
 			br
 			input(type='submit', value='отправить')
