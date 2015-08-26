@@ -18,7 +18,10 @@ block content
 	.content_body_block
 		.column_left_block
 			each sub_theme, i in current_theme.sub
-				a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= sub_theme.overlay.on ? sub_theme.title : i + ' - ' + sub_theme.title
+				if (i < current_theme.numbering.offset)
+					a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= sub_theme.title
+				else
+					a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= (i + current_theme.numbering.start - current_theme.numbering.offset) + ' - ' + sub_theme.title
 		.column_main_block
 			each study, i in studys
 				- var num

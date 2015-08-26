@@ -20,6 +20,16 @@ block content
 			input.form_text(type='text', name='title')
 			.form_title Синоним:
 			input(type='text', name='sym')
+			.form_title Нумерация:
+			| отступ:
+			select(name='numbering[offset]')
+				each option,i in new Array(10)
+					option(value=i)= i
+			!= ' | '
+			| начинать с:
+			select(name='numbering[start]')
+				each option,i in new Array(2)
+					option(value=i)= i
 			br
 			br
 			input(type='submit', value='отправить')

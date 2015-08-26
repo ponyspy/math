@@ -11,7 +11,7 @@ exports.index = function(req, res) {
 	var sub_num = +req.params.sub_num;
 	var sym = req.params.theme_sym;
 
-	Theme.where('sym').equals(sym).select('title sub sym').exec(function(err, current_theme) {
+	Theme.where('sym').equals(sym).select('title sub sym numbering').exec(function(err, current_theme) {
 		if (current_theme.length == 0 || current_theme[0].sub.length == 0) return res.status(500).render('error', {status: 500});
 		else if (current_theme.length == 0 || !Number.isInteger(sub_num) || current_theme[0].sub.length - 1 < sub_num) return res.redirect('/lectures');
 		Theme.populate(current_theme, {path: 'sub'}, function(err, current_theme) {

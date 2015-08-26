@@ -18,6 +18,10 @@ var themeSchema = new Schema({
 		on: {type: Boolean, default: false},
 		desc: { type: String, trim: true }
 	},
+	numbering: {
+		offset: Number,
+		start: Number
+	},
 	parent: { type: Schema.Types.ObjectId, ref: 'Theme' },
 	sub: [{ type: Schema.Types.ObjectId, ref: 'Theme' }],
 	studys: [{ type: Schema.Types.ObjectId, ref: 'Study' }],

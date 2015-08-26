@@ -29,6 +29,7 @@ exports.add_form = function(req, res) {
 
   theme.title = post.title;
   theme.sym = post.sym ? post.sym : undefined;
+  theme.numbering = post.numbering;
 
   theme.save(function(err, theme) {
     res.redirect('/auth/themes');
@@ -53,14 +54,13 @@ exports.edit = function(req, res) {
 
 exports.edit_form = function(req, res) {
   var post = req.body;
-  var id = req.params.sub_id
-    ? req.params.sub_id
-    : req.params.id;
+  var id = req.params.id;
 
   Theme.findById(id).exec(function(err, theme) {
 
     theme.title = post.title;
     theme.sym = post.sym ? post.sym : undefined;
+    theme.numbering = post.numbering;
 
     theme.save(function(err, theme) {
       res.redirect('/auth/themes');
