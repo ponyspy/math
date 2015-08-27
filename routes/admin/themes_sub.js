@@ -61,7 +61,7 @@ exports.add_form = function(req, res) {
 
   theme.title = post.title;
   theme.parent = parent_id;
-  theme.overlay = post.overlay;
+  theme.overlay = post.overlay != '' ? post.overlay : undefined;
   theme._short_id = shortid.generate();
 
   theme.save(function(err, theme) {
@@ -104,7 +104,7 @@ exports.edit_form = function(req, res) {
   Theme.findById(sub_id).exec(function(err, theme) {
 
     theme.title = post.title;
-    theme.overlay = post.overlay;
+    theme.overlay = post.overlay != '' ? post.overlay : undefined;
 
     theme.save(function(err, theme) {
       Theme.findById(parent_id).exec(function(err, parent_theme) {
