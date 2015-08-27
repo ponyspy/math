@@ -56,7 +56,7 @@ $(document).ready(function() {
 			if (!container.is(event.target)
 					&& container.has(event.target).length === 0)
 			{
-					$('.preview_block').hide().empty();
+					$('.preview_block').fadeOut(300).empty();
 					$('.main_block').removeClass('preview');
 					$('body').removeClass('stop_scroll');
 			}
@@ -81,7 +81,9 @@ $(document).ready(function() {
 				var url = 'https://www.youtube.com/embed/' + id;
 				var video = $('<iframe>', {'class': 'preview_video', 'width':'720px', 'height': '400px', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
 
-				$('.preview_block').empty().append(video).show();
+				$('.preview_block').empty().fadeIn(300, function() {
+					$('.preview_block').append(video);
+				});
 				$('.main_block').addClass('preview');
 				$('body').addClass('stop_scroll');
 			}
