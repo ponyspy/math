@@ -207,7 +207,12 @@ exports.edit_form = function(req, res) {
 
 exports.remove = function(req, res) {
 	var id = req.body.id;
-	Study.findByIdAndRemove(id, function() {
-		res.send('ok');
+
+	Study.findByIdAndRemove(id, function(err, study) {
+		Theme.update({'studys': id}, {$pull: {studys: id}}, {multi: true}).exec(function() {
+      del([__appdir + '/public/images/studys/' + study._id.toString(), __appdir + '/public/files/studys/' + study._id.toString()], function() {
+        res.send('ok');
+      });
+		});
 	});
 }

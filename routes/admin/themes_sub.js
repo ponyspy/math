@@ -1,6 +1,12 @@
 var Theme = require('../../models/main.js').Theme;
+var Study = require('../../models/main.js').Study;
 
+var path = require('path');
 var shortid = require('shortid');
+var del = require('del');
+var async = require('async');
+
+var __appdir = path.dirname(require.main.filename);
 
 
 // ------------------------
@@ -121,7 +127,18 @@ exports.edit_form = function(req, res) {
 
 exports.remove = function(req, res) {
   var id = req.body.id;
-  Theme.findByIdAndRemove(id, function() {
-    res.send('ok');
+
+  Theme.findByIdAndRemove(id, function(err, theme) {
+    Theme.update({'sub': id}, {$pull: {sub: id}}, {multi: true}).exec(function() {
+      Study.remove({$in: theme.studys}).exec(function() {
+        async.forEachSeries(theme.studys, function(study, callback) {
+          del([__appdir + '/public/images/studys/' + study, __appdir + '/public/files/studys/' + study], function() {
+            callback();
+          });
+        }, function() {
+          res.send('ok');
+        });
+      });
+    });
   });
 }

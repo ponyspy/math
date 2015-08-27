@@ -252,7 +252,7 @@ app.route('/auth/themes/:id/sub/edit/:sub_id/studys/edit/:study_id')
 
 
 // === Admin @remove lectures studys Route
-app.route('/auth/studys/remove')
+app.route('/auth/lecture/remove')
 	 .post(checkAuth, admin_lectures_studys.remove);
 
 
