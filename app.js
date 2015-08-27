@@ -96,10 +96,13 @@ app.route('/').get(main.index)
 app.route('/lectures/:theme_sym/:sub_id').get(lectures.index);
 
 // === Lecture Route
-app.route('/lectures/:id').get(lectures.lecture);
+app.route('/lecture/:id').get(lectures.lecture);
 
 // === Lectures Redirect
 app.route('/lectures').get(lectures.redirect);
+
+// === Lectures Route
+app.route('/lectures/:theme_sym').get(lectures.redirect_sym);
 
 // === Other Route
 app.route('/other')

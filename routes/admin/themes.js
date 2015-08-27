@@ -44,9 +44,7 @@ exports.add_form = function(req, res) {
 
 
 exports.edit = function(req, res) {
-  var id = req.params.sub_id
-    ? req.params.sub_id
-    : req.params.id;
+  var id = req.params.id;
 
   Theme.findById(id).exec(function(err, theme) {
     res.render('auth/themes/main/edit.jade', {theme: theme});

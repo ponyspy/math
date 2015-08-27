@@ -28,8 +28,8 @@ block content
 				if (sub_num < current_theme.numbering.offset)
 					- num = null
 				else if (current_sub.overlay)
-					- num = current_sub.overlay + '.' + i
+					- num = current_sub.overlay + '.' + (i + 1)
 				else
-					- num = sub_num + '.' + i
-				+contentItem(num, study)(type='lecture_item', href='/lectures/' + study._short_id)
+					- num = sub_num + '.' + (i + 1)
+				+contentItem(num, study)(type='lecture_item', href='/lecture/' + study._short_id)
 
