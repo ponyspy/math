@@ -12,9 +12,10 @@ exports.index = function(req, res) {
 	var sym = req.params.theme_sym;
 
 	Theme.findOne({'sym': sym}).select('title sub sym numbering').exec(function(err, current_theme) {
-		if (current_theme.length == 0 || current_theme.sub.length == 0) return res.status(500).render('error', {status: 500});
+		if (!current_theme || current_theme.sub.length == 0) return res.status(500).render('error', {status: 500});
 		Theme.populate(current_theme, {path: 'sub'}, function(err, current_theme) {
 			var current_sub = current_theme.sub.filter(function(theme_sub) { return theme_sub._short_id == sub_id })[0];
+			if (!current_sub) return res.status(500).render('error', {status: 500});
 			var sub_num = current_theme.sub.map(function(e) { return e._short_id; }).indexOf(sub_id);
 
 			Study.where('_id').in(current_sub.studys).exec(function(err, studys) {
@@ -30,7 +31,7 @@ exports.lecture = function(req, res) {
 	var id = req.params.id;
 
 	Study.findOne({'_short_id': id}).exec(function(err, study) {
-		if (!study) return res.redirect('/lectures');
+		if (!study) return res.status(500).render('error', {status: 500});
 		Theme.findOne({studys: study._id}).select('title parent').exec(function(err, theme_sub) {
 			Theme.findById(theme_sub.parent).populate({path: 'sub', select: 'title overlay'}).select('sym sub numbering').exec(function(err, theme_parent) {
 				Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
