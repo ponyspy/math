@@ -1,5 +1,6 @@
 var Theme = require('../../models/main.js').Theme;
 
+var shortid = require('shortid');
 
 
 // ------------------------
@@ -55,6 +56,7 @@ exports.add_form = function(req, res) {
   theme.title = post.title;
   theme.parent = parent_id;
   theme.overlay = post.overlay;
+  theme._short_id = shortid.generate();
 
   theme.save(function(err, theme) {
     Theme.findById(parent_id).exec(function(err, parent_theme) {

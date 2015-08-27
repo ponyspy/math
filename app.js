@@ -93,7 +93,7 @@ function checkAuth (req, res, next) {
 app.route('/').get(main.index)
 
 // === Lectures Route
-app.route('/lectures/:theme_sym/:sub_num').get(lectures.index);
+app.route('/lectures/:theme_sym/:sub_id').get(lectures.index);
 
 // === Lecture Route
 app.route('/lectures/:id').get(lectures.lecture);

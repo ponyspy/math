@@ -8,18 +8,18 @@ var __appdir = path.dirname(require.main.filename);
 
 
 exports.index = function(req, res) {
-	var sub_num = +req.params.sub_num;
+	var sub_id = req.params.sub_id;
 	var sym = req.params.theme_sym;
 
-	Theme.where('sym').equals(sym).select('title sub sym numbering').exec(function(err, current_theme) {
-		if (current_theme.length == 0 || current_theme[0].sub.length == 0) return res.status(500).render('error', {status: 500});
-		else if (current_theme.length == 0 || !Number.isInteger(sub_num) || current_theme[0].sub.length - 1 < sub_num) return res.redirect('/lectures');
+	Theme.findOne({'sym': sym}).select('title sub sym numbering').exec(function(err, current_theme) {
+		if (current_theme.length == 0 || current_theme.sub.length == 0) return res.status(500).render('error', {status: 500});
 		Theme.populate(current_theme, {path: 'sub'}, function(err, current_theme) {
-			var studys = (current_theme[0].sub[sub_num] && current_theme[0].sub[sub_num].studys) || [];
+			var current_sub = current_theme.sub.filter(function(theme_sub) { return theme_sub._short_id == sub_id })[0];
+			var sub_num = current_theme.sub.map(function(e) { return e._short_id; }).indexOf(sub_id);
 
-			Study.where('_id').in(studys).exec(function(err, studys) {
+			Study.where('_id').in(current_sub.studys).exec(function(err, studys) {
 				Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
-					res.render('lectures', {themes: themes, current_theme: current_theme[0], studys: studys, sub_num: sub_num});
+					res.render('lectures', {themes: themes, current_theme: current_theme, studys: studys, sub_num: sub_num, current_sub: current_sub});
 				});
 			});
 		});
@@ -42,8 +42,12 @@ exports.lecture = function(req, res) {
 }
 
 exports.redirect = function(req, res) {
-	Theme.where('parent').exists(false).sort('date').select('sym').exec(function(err, themes) {
+	Theme.where('parent').exists(false).sort('date').select('sym sub').exec(function(err, themes) {
 		if (themes.length == 0) return res.status(500).render('error', {status: 500});
-		res.redirect('/lectures/' + themes[0].sym + '/' + 0)
+		Theme.populate(themes[0], {path: 'sub'}, function(err, theme) {
+			Theme.findOne({'_id': theme.sub[0]._id}).exec(function(err, sub_theme) {
+				res.redirect('/lectures/' + theme.sym + '/' + sub_theme._short_id)
+			});
+		});
 	});
 }

@@ -22,6 +22,7 @@ var themeSchema = new Schema({
 	parent: { type: Schema.Types.ObjectId, ref: 'Theme' },
 	sub: [{ type: Schema.Types.ObjectId, ref: 'Theme' }],
 	studys: [{ type: Schema.Types.ObjectId, ref: 'Study' }],
+	_short_id: { type: String, unique: true, index: true },
 	date: { type: Date, default: Date.now },
 });
 

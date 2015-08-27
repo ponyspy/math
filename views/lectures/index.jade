@@ -14,21 +14,21 @@ block content_scripts
 block content
 	.content_title_block
 		each theme in themes
-			a(class= (theme.sym == current_theme.sym && 'current'), href='/lectures/' + theme.sym + '/0')=theme.title
+			a(class= (theme.sym == current_theme.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
 	.content_body_block
 		.column_left_block
 			each sub_theme, i in current_theme.sub
 				if (i < current_theme.numbering.offset || sub_theme.overlay)
-					a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= sub_theme.title
+					a(class= (sub_theme._id.toString() == current_sub._id.toString() && 'current'), href='/lectures/' + current_theme.sym + '/' + sub_theme._short_id)= sub_theme.title
 				else
-					a(class= (i == sub_num && 'current'), href='/lectures/' + current_theme.sym + '/' + i)= (i + current_theme.numbering.start - current_theme.numbering.offset) + ' - ' + sub_theme.title
+					a(class= (sub_theme._id.toString() == current_sub._id.toString() && 'current'), href='/lectures/' + current_theme.sym + '/' + sub_theme._short_id)= (i + current_theme.numbering.start - current_theme.numbering.offset) + ' - ' + sub_theme.title
 		.column_main_block
 			each study, i in studys
 				- var num
 				if (sub_num < current_theme.numbering.offset)
 					- num = null
-				else if (current_theme.sub[sub_num].overlay)
-					- num = current_theme.sub[sub_num].overlay + '.' + i
+				else if (current_sub.overlay)
+					- num = current_sub.overlay + '.' + i
 				else
 					- num = sub_num + '.' + i
 				+contentItem(num, study)(type='lecture_item', href='/lectures/' + study._short_id)
