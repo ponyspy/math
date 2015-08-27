@@ -194,6 +194,8 @@ exports.edit_form = function(req, res) {
 exports.remove = function(req, res) {
 	var id = req.body.id;
 	Study.findByIdAndRemove(id, function() {
-		res.send('ok');
+		del([__appdir + '/public/images/studys/' + id, __appdir + '/public/files/studys/' + id], function() {
+			res.send('ok');
+		});
 	});
 }

@@ -1,4 +1,5 @@
 var Theme = require('../../models/main.js').Theme;
+var Study = require('../../models/main.js').Study;
 
 
 // ------------------------

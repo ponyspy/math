@@ -20,7 +20,7 @@ block content
 		if (theme.sub.length > 0)
 			each theme_sub in theme.sub
 				.theme
-					a.rm_theme(href='#', id=theme_sub._id)= 'удалить '
+					a.rm_theme_sub(href='#', id=theme_sub._id)= 'удалить '
 					!=' | '
 					a(href='/auth/themes/' + theme._id + '/sub/edit/' + theme_sub._id)= theme_sub.title
 					!=' --> '

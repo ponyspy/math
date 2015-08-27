@@ -1,5 +1,6 @@
 var shortid = require('shortid');
 var Category = require('../../models/main.js').Category;
+var Study = require('../../models/main.js').Study;
 
 
 // ------------------------
@@ -74,7 +75,10 @@ exports.edit_form = function(req, res) {
 
 exports.remove = function(req, res) {
   var id = req.body.id;
+
   Category.findByIdAndRemove(id, function(err, category) {
-    res.send('ok');
+    Study.update({'categorys': id}, {$pull: {categorys: id}}, {multi: true}).exec(function() {
+      res.send('ok');
+    });
   });
 }
