@@ -1,6 +1,12 @@
 var Theme = require('../../models/main.js').Theme;
 var Study = require('../../models/main.js').Study;
 
+var path = require('path');
+var async = require('async');
+var del = require('del');
+
+var __appdir = path.dirname(require.main.filename);
+
 
 // ------------------------
 // *** Admin Themes Block ***
@@ -75,9 +81,22 @@ exports.edit_form = function(req, res) {
 
 exports.remove = function(req, res) {
   var id = req.body.id;
-  Theme.findByIdAndRemove(id, function() {
-    Theme.remove({'parent': id}, function() {
-      res.send('ok');
-    })
+
+  Theme.findByIdAndRemove(id).exec(function(err, theme) {
+    Theme.find({'parent': id}).populate('studys').exec(function(err, themes_sub) {
+      Theme.remove({'parent': id}, function(err) {
+        async.forEachSeries(themes_sub, function(theme_sub, callback) {
+          async.forEachSeries(theme_sub.studys, function(study, callback) {
+            Study.findByIdAndRemove(study._id).exec(function() {
+              del([__appdir + '/public/images/studys/' + study._id.toString(), __appdir + '/public/files/studys/' + study._id.toString()], function() {
+                callback();
+              });
+            });
+          }, callback);
+        }, function() {
+          res.send('ok');
+        });
+      });
+    });
   });
 }
