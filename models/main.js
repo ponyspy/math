@@ -22,7 +22,7 @@ var themeSchema = new Schema({
 	parent: { type: Schema.Types.ObjectId, ref: 'Theme' },
 	sub: [{ type: Schema.Types.ObjectId, ref: 'Theme' }],
 	studys: [{ type: Schema.Types.ObjectId, ref: 'Study' }],
-	_short_id: { type: String, unique: true, index: true },
+	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });
 
@@ -38,14 +38,14 @@ var studySchema = new Schema({
 	}],
 	image: String,
 	video: String,
-	_short_id: { type: String, unique: true, index: true },
+	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: { type: Date, default: Date.now },
 });
 
 var categorySchema = new Schema({
 	title: { type: String, trim: true },
 	status: String,
-	_short_id: { type: String, unique: true, index: true },
+	_short_id: { type: String, unique: true, index: true, sparse: true },
 	date: {type: Date, default: Date.now},
 });
 
