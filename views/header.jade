@@ -2,12 +2,18 @@
 meta(charset="utf-8")
 link(href='/images/design/favicon.png', rel='shortcut icon', type='image/vnd.microsoft.icon')
 block title
-	meta(property='og:type', content=content_video_youtube ? 'video' : 'website')
 	if content_title
 		title= content_title
-		meta(property='og:title', content=content_title)
 	if content_description
 		meta(name='description', content=content_description)
+
+	//- Open Graph Block Start
+
+	meta(property='og:type', content=content_video_youtube ? 'video' : 'website')
+	meta(property='og:url', content='http://' + host + url)
+	if content_title
+		meta(property='og:title', content=content_title)
+	if content_description
 		meta(property='og:description', content=content_description)
 	if content_video_youtube
 		meta(property='og:image', content='https://img.youtube.com')
@@ -17,6 +23,9 @@ block title
 		meta(property='og:video:height', content='200')
 	each image in content_images || []
 		meta(property='og:image' content='http://' + host + '/' + image)
+
+//- Open Graph Block End
+
 link(rel='stylesheet', type='text/css', href='/build/libs/css/social-likes_birman.css' + version)
 link(rel='stylesheet', type='text/css', href='/build/libs/css/fonts.css' + version)
 link(rel='stylesheet', type='text/css', href='/build/css/global.css' + version)
