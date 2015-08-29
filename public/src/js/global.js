@@ -81,8 +81,8 @@ $(document).ready(function() {
 				var url = 'https://www.youtube.com/embed/' + id;
 				var video = $('<iframe>', {'class': 'preview_video', 'width':'720px', 'height': '400px', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
 
-				$('.preview_block').empty().fadeIn(300, function() {
-					$('.preview_block').append(video);
+				$('.preview_block').empty().append(video).promise().done(function() {
+					$('.preview_block').delay(100).fadeIn(200);
 				});
 				$('.main_block').addClass('preview');
 				$('body').addClass('stop_scroll');
