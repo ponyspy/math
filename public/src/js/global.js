@@ -61,14 +61,6 @@ $(document).ready(function() {
 					$('body').removeClass('stop_scroll');
 			}
 		})
-		.on('keyup', function(event) {
-			if (event.shiftKey && event.which == 70) {
-				$('.search_input').focus();
-			} else if (event.which == 27) {
-				$('.search_input').blur();
-				$(this).trigger('mouseup.search');
-			}
-		})
 		.on('mousemove', '.link.pdf', function(event) {
 			var x = (event.clientX + 20),
 					y = (event.clientY + 20);

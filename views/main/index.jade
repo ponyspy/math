@@ -1,7 +1,8 @@
 extends ../layout
 
-block title
-	title= 'Школа Опойцева'
+block paths
+	- var content_title= 'Школа Опойцева'
+	- var content_description= 'Школа Опойцева - час, затраченый на понимание, экономит год жизни.'
 
 block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/main.css' + version)
