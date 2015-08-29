@@ -13,6 +13,7 @@ var userSchema = new Schema({
 
 var themeSchema = new Schema({
 	title: { type: String, trim: true },
+	description: { type: String, trim: true },
 	sym: { type: String, trim: true, index: true, unique: true, sparse: true },
 	overlay: { type: String, trim: true },
 	numbering: {

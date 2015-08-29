@@ -1,8 +1,8 @@
 extends ../layout
 include ../globals
 
-block title
-	title= 'Школа Опойцева' + ' - ' + 'Лекции' + ' / ' + current_sub.title
+block paths
+	- var content_title= 'Школа Опойцева' + ' - ' + 'Лекции' + ' / ' + current_sub.title
 	- var menu_current = 1
 
 block content_style
