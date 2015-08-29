@@ -82,9 +82,9 @@ $(document).ready(function() {
 				var video = $('<iframe>', {'class': 'preview_video', 'width':'720px', 'height': '400px', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
 
 				$('.preview_block').empty().append(video).promise().done(function() {
-					$('.preview_block').delay(100).fadeIn(200);
+					$('.main_block').addClass('preview');
+					$('.preview_block').delay(100).fadeIn(300);
 				});
-				$('.main_block').addClass('preview');
 				$('body').addClass('stop_scroll');
 			}
 
