@@ -10,7 +10,10 @@ block title
 		meta(name='description', content=content_description)
 		meta(property='og:description', content=content_description)
 	if content_video_youtube
-		meta(property='og:video' content='https://www.youtube.com/v/' + content_video_youtube)
+		meta(property='og:video', content='https://www.youtube.com/v/' + content_video_youtube)
+		meta(property='og:video:type', content='application/x-shockwave-flash')
+		meta(property='og:video:width', content='300')
+		meta(property='og:video:height', content='200')
 	each image in content_images || []
 		meta(property='og:image' content='http://' + host + '/' + image)
 link(rel='stylesheet', type='text/css', href='/build/libs/css/social-likes_birman.css' + version)
