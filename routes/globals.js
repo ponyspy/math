@@ -28,7 +28,7 @@ exports.search = function(req, res) {
 		Category.where('_id').in(categorys).select('title _id').exec(function(err, categorys) {
 			Study.find({ $text: { $search: search } }, { score : { $meta: 'textScore' } }).sort({ score : { $meta : 'textScore' } }).exec(function(err, studys) {
 				var opts = {studys: studys, host: req.hostname, compileDebug: false, debug: false, cache: true, pretty: false};
-				var html = jade.renderFile(__appdir + '/views/other/get_studys.jade', opts);
+				var html = jade.renderFile(__appdir + '/views/get_studys_search.jade', opts);
 				res.send({studys: html, categorys: categorys});
 			});
 		});

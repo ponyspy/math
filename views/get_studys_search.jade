@@ -1,0 +1,5 @@
+include globals
+
+each study, i in studys
+	- var categorys = study.categorys.map(function(category) { return category.toString() });
+	+contentItem(null, study)(type='search_item ' + study.type, categorys=categorys, href='/other/' + study._short_id)

@@ -1,7 +1,7 @@
 - var parseDate = function(date) { return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('.') }
 
 mixin contentItem(num, study)
-	.content_item_block(class=attributes.type)
+	.content_item_block(class=attributes.type, class=attributes.categorys)
 		a.item_body(href=attributes.href)
 			.item_title_block
 				if num

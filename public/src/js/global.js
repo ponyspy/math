@@ -15,7 +15,7 @@ $(document).ready(function() {
 				if (data.categorys.length > 0) {
 					$('.search_block').find('.categorys_block').show();
 					data.categorys.forEach(function(category) {
-						var $category = $('<a/>', {'class': 'category_item', 'href':'#', 'text': category.title});
+						var $category = $('<div/>', {'class': 'nav_item ' + category._id, 'text': category.title});
 						$('.search_block').find('.categorys_block').append($category);
 					});
 				}
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
 	$(document)
 		.on('mouseup.search', function(event) {
-			if (!/item_block|item_title|item_description|search_input|search_results|link|preview_block/.test(event.target.className)) {
+			if (!/item_block|item_title|item_description|search_input|search_results|search_nav|nav_item|link|preview_block/.test(event.target.className)) {
 				$('.content_block').fadeIn(300);
 				$('.search_results').hide();
 				$('.search_input').removeClass('focus');
@@ -92,5 +92,13 @@ $(document).ready(function() {
 				var path = $(this).attr('file_path');
 				window.open(path, '_blank');
 			}
+		})
+		.on('click', '.search_nav .nav_item', function() {
+			var type = $(this).attr('class').split(' ')[1];
+			$('.search_nav .nav_item').removeClass('current');
+			$(this).addClass('current');
+			type == 'all'
+				? $('.column_main_block').children('.search_item').show()
+				: $('.column_main_block').children('.search_item').show().not('.' + type).hide();
 		});
 });
