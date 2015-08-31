@@ -62,7 +62,7 @@ $(document).ready(function() {
 			}
 		})
 		.on('keyup.keyboard', function(event) {
-			if (event.shiftKey && event.which == 70) {
+			if (event.shiftKey && event.which == 70 && !$('input, textarea, [contenteditable]').is(':focus')) {
 				$('.search_input').focus();
 			} else if (event.which == 27) {
 				$('.search_input').blur();

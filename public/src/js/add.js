@@ -9,7 +9,6 @@ var parseYouTubeId = function(url) {
 }
 
 $(document).ready(function() {
-	$(document).off('keyup.keyboard');
 	$('form').on('submit', function(event) {
 		var video = $('input.video').val();
 

@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+	$(document).on('paste','[contenteditable]',function(e) {
+		e.preventDefault();
+		var text = (e.originalEvent || e).clipboardData.getData('text/plain') || prompt('Paste something..');
+		window.document.execCommand('insertText', false, text);
+	});
+
 	$('.editor').each( function(index, element) {
 		$(element).wysiwyg({
 				classes: 'editor',
