@@ -47,7 +47,8 @@ exports.redirect = function(req, res) {
 		if (themes.length == 0) return res.status(500).render('error', {status: 500});
 		Theme.populate(themes[0], {path: 'sub'}, function(err, theme) {
 			Theme.findOne({'_id': theme.sub[0]._id}).exec(function(err, sub_theme) {
-				res.redirect('/lectures/' + theme.sym + '/' + sub_theme._short_id)
+				if (!sub_theme) return res.status(500).render('error', {status: 500});
+				res.redirect('/lectures/' + theme.sym + '/' + sub_theme._short_id);
 			});
 		});
 	});
@@ -58,7 +59,8 @@ exports.redirect_sym = function(req, res) {
 
 	Theme.findOne({sym: sym}).exec(function(err, theme) {
 		Theme.populate(theme, {path: 'sub'}, function(err, theme) {
-			res.redirect('/lectures/' + theme.sym + '/' + theme.sub[0]._short_id)
+			if (theme.sub.length == 0) return res.status(500).render('error', {status: 500});
+			res.redirect('/lectures/' + theme.sym + '/' + theme.sub[0]._short_id);
 		});
 	});
 }
