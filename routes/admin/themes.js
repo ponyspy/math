@@ -4,6 +4,7 @@ var Study = require('../../models/main.js').Study;
 var path = require('path');
 var async = require('async');
 var del = require('del');
+var shortid = require('shortid');
 
 var __appdir = path.dirname(require.main.filename);
 
@@ -35,7 +36,7 @@ exports.add_form = function(req, res) {
   var theme = new Theme();
 
   theme.title = post.title;
-  theme.sym = post.sym ? post.sym : undefined;
+  theme.sym = post.sym ? post.sym : shortid.generate();
   theme.numbering = post.numbering;
 
   theme.save(function(err, theme) {
@@ -64,7 +65,9 @@ exports.edit_form = function(req, res) {
   Theme.findById(id).exec(function(err, theme) {
 
     theme.title = post.title;
-    theme.sym = post.sym ? post.sym : undefined;
+    if (post.sym && post.sym != theme.sym) {
+      theme.sym = post.sym
+    }
     theme.numbering = post.numbering;
 
     theme.save(function(err, theme) {
