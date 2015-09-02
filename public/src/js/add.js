@@ -6,7 +6,7 @@ var parseYouTubeId = function(url) {
 	} else {
 	  return '';
 	}
-}
+};
 
 $(document).ready(function() {
 	$('form').on('submit', function(event) {

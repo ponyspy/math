@@ -8,7 +8,7 @@ $(document).ready(function() {
 	function scrollLoader(event) {
 		if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 			$.ajax({url: '/other', method: 'POST', data: {context: context}, async: false }).done(function(data) {
-				if (data != '') {
+				if (data !== '') {
 					$('.studys_other').append(data).find('.social-likes').socialLikes();
 					context.skip += 10;
 				}
