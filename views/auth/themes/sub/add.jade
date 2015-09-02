@@ -13,7 +13,7 @@ block content_scripts
 
 block content
 	.form_block
-		a.back_link(href='/auth/themes') < Назад
+		a.back_link(href='/auth/themes/' + parent_theme._id + '/sub') < Назад
 		.title ДОБАВИТЬ ПОДТЕМУ
 		form(action="", method="post")
 			.form_title Заголовок:

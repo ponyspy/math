@@ -19,8 +19,8 @@ block content
 			.form_title Заголовок:
 			input.form_text(type='text', name='title')
 			.form_title Синоним:
-			input(type='text', name='sym')
-			.form_title Нумерация:
+			input(type='text', name='sym', placeholder='обязательно')
+			.form_title Нумерация подтем:
 			| отступ:
 			select(name='numbering[offset]')
 				each option,i in new Array(10)
