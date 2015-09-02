@@ -14,14 +14,16 @@ var express = require('express'),
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
-app.locals.pretty = true;
-app.set('json spaces', 2);
-mongoose.set('debug', false);
+if (process.env.NODE_ENV != 'production') {
+	app.use(express.static(__dirname + '/public'));
+	app.locals.pretty = true;
+	app.set('json spaces', 2);
+	mongoose.set('debug', false);
+}
 
 var MongoStore = require('connect-mongo')(session);
 var upload = multer({ dest: __dirname + '/uploads/' });
 
-app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
