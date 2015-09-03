@@ -32,7 +32,7 @@ app.use(cookieParser());
 var cpUpload = upload.fields([{ name: 'image', maxCount: 1 }, { name: 'attach', maxCount: 8 }]);
 
 app.use(session({
-	key: 'math.sess',
+	key: 'session',
 	resave: false,
 	saveUninitialized: false,
 	secret: 'keyboard cat',
