@@ -58,6 +58,7 @@ exports.redirect_sym = function(req, res) {
 	var sym = req.params.theme_sym;
 
 	Theme.findOne({sym: sym}).exec(function(err, theme) {
+		if (!theme) return res.status(500).render('error', {status: 500});
 		Theme.populate(theme, {path: 'sub'}, function(err, theme) {
 			if (theme.sub.length == 0) return res.status(500).render('error', {status: 500});
 			res.redirect('/lectures/' + theme.sym + '/' + theme.sub[0]._short_id);
