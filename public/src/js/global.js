@@ -9,7 +9,7 @@ $(document).ready(function() {
 		},
 		getResult: function (result) {
 			$.post('/search', {search: result}).done(function(data) {
-				$('.search_results').find('.column_main_block').empty().append(data.studys);
+				$('.search_results').find('.column_main_block').empty().append(data.studys).find('.social-likes').socialLikes();
 
 				$('.search_block').find('.categorys_block').hide().empty();
 				if (data.categorys.length > 0) {
