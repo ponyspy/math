@@ -24,10 +24,9 @@ $(document).ready(function() {
 			context.limit = 20;
 			context.category = window.location.hash === '' ? 'all' : window.location.hash.replace('#','');
 
-			var $category_item = $('.' + context.category);
-			var index = $category_item.index('.category_item');
+			$('.category_item').removeClass('current');
+			$('.category_item.' + context.category).addClass('current');
 
-			$('.category_item').removeClass('current').eq(index).addClass('current');
 			$.ajax({url: '/other', method: 'POST', data: {context: context}, async: false }).done(function(data) {
 				var elems = $(data);
 				context.skip = elems.length;
