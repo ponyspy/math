@@ -12,13 +12,11 @@ block content_scripts
 
 block content
 	form(action="/write", method="post", enctype="multipart/form-data")
-		.form_block
-			//- .form_title ваш e-mail:
-			input(type='text', name='email', placeholder='Ваш e-mail')
+		.form_block.email_form
+			input.email(type='text', name='email', placeholder='Ваш e-mail')
 			svg(width='790px', height='10px', viewbox='0 0 790 10')
 				line(x1='5', x2='760', y1='5', y2='5', stroke='lightgrey', stroke-width='5', stroke-linecap='round', stroke-dasharray='0.66, 17')
-		.form_block
-			//- .form_title тема:
+		.form_block.theme_form
 			input(type='text', name='theme', placeholder='Тема')
 			svg(width='790px', height='10px', viewbox='0 0 790 10')
 				line(x1='5', x2='760', y1='5', y2='5', stroke='lightgrey', stroke-width='5', stroke-linecap='round', stroke-dasharray='0.66, 17')

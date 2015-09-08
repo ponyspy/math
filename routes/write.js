@@ -7,7 +7,7 @@ var __appdir = path.dirname(require.main.filename);
 
 transporter = nodemailer.createTransport({
 	auth: {
-		user: 'mailer@omnilingo.ru',
+		user: 'mailer@oschool.ru',
 		pass: 'cer3000',
 	},
 	host: 'smtp.yandex.ru',
@@ -22,9 +22,9 @@ exports.index = function(req, res) {
 
 exports.mail = function(req, res) {
 	var opts = {
-		from: 'Робот omnilingo <mailer@omnilingo.ru>',
-		replyTo: 'desade4me@gmail',  // req.body.email
-		to: 'desade4me@gmail.com',
+		from: 'Робот oschool <mailer@oschool.ru>',
+		replyTo: req.body.email,
+		to: 'inbox@oschool.ru',
 		subject: req.body.theme,
 		text: req.body.description,
 	}
