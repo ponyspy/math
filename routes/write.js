@@ -8,7 +8,7 @@ var __appdir = path.dirname(require.main.filename);
 transporter = nodemailer.createTransport({
 	auth: {
 		user: 'mailer@oschool.ru',
-		pass: 'cer3000',
+		pass: 'pwl4511',
 	},
 	host: 'smtp.yandex.ru',
 	port: '465',
@@ -37,6 +37,7 @@ exports.mail = function(req, res) {
 	}
 
 	transporter.sendMail(opts, function(err, info) {
+		if (!req.file) return res.redirect('/write');
 		del([req.file.path], function() {
 			res.redirect('/write');
 		});
