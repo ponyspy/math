@@ -9,15 +9,15 @@ $(document).ready(function() {
 		},
 		getResult: function (result) {
 			$.post('/search', {search: result}).done(function(data) {
-				$('.search_input').val() == ''
+				$('.search_input').val() === ''
 					? $('.search_results').find('.search_title').text('Что будем искать?')
 					: $('.search_results').find('.search_title').text('Ничего не найдено');
 
-				if (data.studys == '') {
+				if (data.studys === '') {
 					$('.search_results')
 						.find('.search_title').show().end()
 						.find('.column_main_block').empty().end()
-						.find('.search_nav').hide()
+						.find('.search_nav').hide();
 
 					return false;
 				}
