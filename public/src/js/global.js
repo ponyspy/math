@@ -9,14 +9,31 @@ $(document).ready(function() {
 		},
 		getResult: function (result) {
 			$.post('/search', {search: result}).done(function(data) {
-				$('.search_results').find('.column_main_block').empty().append(data.studys).find('.social-likes').socialLikes();
+				$('.search_input').val() == ''
+					? $('.search_results').find('.search_title').text('Что будем искать?')
+					: $('.search_results').find('.search_title').text('Ничего не найдено');
 
-				$('.search_block').find('.categorys_block').hide().empty();
+				if (data.studys == '') {
+					$('.search_results')
+						.find('.search_title').show().end()
+						.find('.column_main_block').empty().end()
+						.find('.search_nav').hide()
+
+					return false;
+				}
+
+				$('.search_results')
+					.find('.search_title').hide().end()
+					.find('.search_nav').show().end()
+					.find('.column_main_block').empty().append(data.studys).end()
+					.find('.social-likes').socialLikes().end()
+					.find('.categorys_block').hide().empty();
+
 				if (data.categorys.length > 0) {
-					$('.search_block').find('.categorys_block').show();
+					$('.search_results').find('.categorys_block').show();
 					data.categorys.forEach(function(category) {
 						var $category = $('<div/>', {'class': 'nav_item ' + category._id, 'text': category.title});
-						$('.search_block').find('.categorys_block').append($category);
+						$('.search_results').find('.categorys_block').append($category);
 					});
 				}
 			});
