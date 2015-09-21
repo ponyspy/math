@@ -67,7 +67,7 @@ $(document).ready(function() {
 				$('.search_input').removeClass('focus');
 			}
 		})
-		.on('mouseup.player', function(event) {
+		.on('mouseup.player touchend.player', function(event) {
 			var container = $('.preview_video');
 
 			if (!container.is(event.target)
