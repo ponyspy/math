@@ -25,6 +25,8 @@ mixin contentStudy(study)
 	.study_block
 		.study_title= study.title
 		.study_description!= study.description
+		if (!study.video && study.description_alt)
+			.study_description_alt!= study.description_alt
 		.study_body(class=study.video && 'video')
 			.study_links
 				each file in study.files
@@ -37,3 +39,5 @@ mixin contentStudy(study)
 					.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
 			if study.video
 				iframe(width='720', height='400', src='https://www.youtube.com/embed/' + study.video, frameborder='0', allowfullscreen='')
+		if (study.video && study.description_alt)
+			.study_description_alt!= study.description_alt

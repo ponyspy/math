@@ -30,6 +30,7 @@ var themeSchema = new Schema({
 var studySchema = new Schema({
 	title: { type: String, trim: true },
 	description: { type: String, trim: true },
+	description_alt: { type: String, trim: true },
 	type: { type: String, default: 'lectures' },
 	categorys: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 	status: String,

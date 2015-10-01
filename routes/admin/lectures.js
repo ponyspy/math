@@ -67,6 +67,7 @@ exports.add_form = function(req, res) {
 	study._short_id = shortid.generate();
 	study.title = post.title;
 	study.description = post.description;
+	study.description_alt = post.description_alt;
 	study.categorys = post.categorys == '' ? [] : post.categorys;
 	study.status = post.status;
 	study.video = post.video;
@@ -141,6 +142,7 @@ exports.edit_form = function(req, res) {
 
 		study.title = post.title;
 		study.description = post.description;
+		study.description_alt = post.description_alt;
 		study.categorys = post.categorys == '' ? [] : post.categorys;
 		study.status = post.status;
 		study.video = post.video;

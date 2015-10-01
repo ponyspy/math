@@ -25,6 +25,8 @@ block content
 			input.form_text(type='text', name='title', value=study.title)
 			.form_title Описание:
 			textarea.editor(name='description')= study.description
+			.form_title Описание (дополнительное):
+			textarea.editor(name='description_alt')= study.description_alt
 			.form_title Порядок:
 			select(name='order')
 				each option, i in theme.studys
