@@ -42,12 +42,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nrdn/sov_ist.git"
+    "url": "https://github.com/ponyspy/math.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nrdn/sov_ist/issues"
+    "url": "https://github.com/ponyspy/math/issues"
   },
-  "homepage": "https://github.com/nrdn/sov_ist"
+  "homepage": "https://github.com/ponyspy/math"
 }
