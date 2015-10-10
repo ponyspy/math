@@ -30,6 +30,47 @@ $(document).ready(function() {
 							image: '\uf0cd',
 							hotkey: 'u'
 					},
+          orderedList: {
+              title: 'Ordered list',
+              image: '\uf0cb', // <img src="path/to/image.png" width="16" height="16" alt="" />
+              //showstatic: true,    // wanted on the toolbar
+              showselection: false    // wanted on selection
+          },
+          unorderedList: {
+              title: 'Unordered list',
+              image: '\uf0ca', // <img src="path/to/image.png" width="16" height="16" alt="" />
+              //showstatic: true,    // wanted on the toolbar
+              showselection: false    // wanted on selection
+          },
+          header: {
+              title: 'Header',
+              image: '\uf1dc', // <img src="path/to/image.png" width="16" height="16" alt="" />
+              popup: function( $popup, $button ) {
+                      var list_headers = {
+                              // Name : Font
+                              'Header 2' : '<h2>',
+                              'Header 3' : '<h3>',
+                          };
+                      var $list = $('<div/>').addClass('wysiwyg-plugin-list')
+                                             .attr('unselectable','on');
+                      $.each( list_headers, function( name, format ) {
+                          var $link = $('<a/>').attr('href','#')
+                                               .css( 'font-family', format )
+                                               .html( name )
+                                               .click(function(event) {
+                                                  $(element).wysiwyg('shell').format(format).closePopup();
+                                                  // prevent link-href-#
+                                                  event.stopPropagation();
+                                                  event.preventDefault();
+                                                  return false;
+                                              });
+                          $list.append( $link );
+                      });
+                      $popup.append( $list );
+                     }
+              //showstatic: true,    // wanted on the toolbar
+              //showselection: false    // wanted on selection
+          },
 					removeformat: {
 							title: 'Remove format',
 							image: '\uf12d'

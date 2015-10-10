@@ -23,7 +23,7 @@ mixin contentItem(num, study)
 
 mixin contentStudy(study)
 	.study_block
-		.study_title= study.title
+		h1.study_title= study.title
 		.study_description!= study.description
 		if (!study.video && study.description_alt)
 			.study_description_alt!= study.description_alt
