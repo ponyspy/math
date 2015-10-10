@@ -48,8 +48,8 @@ $(document).ready(function() {
               popup: function( $popup, $button ) {
                       var list_headers = {
                               // Name : Font
-                              'Header 2' : '<h2>',
-                              'Header 3' : '<h3>',
+                              'Заголовок 2' : '<h2>',
+                              'Заголовок 3' : '<h3>',
                           };
                       var $list = $('<div/>').addClass('wysiwyg-plugin-list')
                                              .attr('unselectable','on');
