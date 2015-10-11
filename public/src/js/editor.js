@@ -9,7 +9,7 @@ $(document).ready(function() {
 	$('.editor').each( function(index, element) {
 		$(element).wysiwyg({
 				classes: 'editor',
-				toolbar: 'top',
+				toolbar: 'top-selection',
 				buttons: {
 				insertlink: {
 						title: 'Insert link',
@@ -34,13 +34,13 @@ $(document).ready(function() {
               title: 'Ordered list',
               image: '\uf0cb', // <img src="path/to/image.png" width="16" height="16" alt="" />
               //showstatic: true,    // wanted on the toolbar
-              showselection: false    // wanted on selection
+              // showselection: false    // wanted on selection
           },
           unorderedList: {
               title: 'Unordered list',
               image: '\uf0ca', // <img src="path/to/image.png" width="16" height="16" alt="" />
               //showstatic: true,    // wanted on the toolbar
-              showselection: false    // wanted on selection
+              // showselection: false    // wanted on selection
           },
           header: {
               title: 'Header',
