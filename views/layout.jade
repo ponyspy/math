@@ -11,15 +11,18 @@ html
 				.menu_block
 					a.menu_logo(href='/') Школа Опойцева
 					.menu_navigate
-						if session.user_id
-							a(class= (menu_current == 0 && 'current'), href="/auth") звездочет
-						a(class= (menu_current == 1 && 'current'), href="/lectures") лекции
+						a(class= (menu_current == 1 && 'current'), href="/lectures") лекции и уроки
 						a(class= (menu_current == 2 && 'current'), href="/about") об авторе
 						a(class= (menu_current == 3 && 'current'), href="/other") разное
 						a(class= (menu_current == 4 && 'current'), href="/write") написать
 				.social_block
 					a.fb(target='_blank', href='https://www.facebook.com/shkola.opoytseva')
 					a.vk(target='_blank', href='https://vk.com/oshkola')
+			if session.user_id
+				.star_menu
+					a(href="/auth") звездочет
+					.spacer /
+					a(href="/logout") выход
 			.search_block
 				input.search_input(type='text', placeholder='поиск...')
 				.search_results
@@ -27,7 +30,7 @@ html
 					.content_body_block
 						.column_left_block.search_nav
 							.nav_item.all.current все
-							.nav_item.lectures лекции
+							.nav_item.lectures лекции и уроки
 							.nav_item.other разное
 							.categorys_block
 						.column_main_block
