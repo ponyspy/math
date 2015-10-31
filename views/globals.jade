@@ -1,5 +1,14 @@
 - var parseDate = function(date) { return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('.') }
 
+mixin bookItem(pref, name, post, link)
+	.book_item
+		if pref
+			span.book_pref= pref
+		a.book_name(href=link, target='_blank')= name
+		if post
+			span.book_post= post
+
+
 mixin contentItem(num, study)
 	.content_item_block(class=attributes.type, class=attributes.categorys)
 		a.item_body(href=attributes.href)

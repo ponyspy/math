@@ -1,4 +1,5 @@
 extends ../layout
+include ../globals
 
 block title
 	title= 'Школа Опойцева — Об авторе'
@@ -66,24 +67,25 @@ block content
 				li Оптимизация
 			p Но изложение идёт и по второму кругу вплоть до ТФКП и Топологии, в которые закладываются удобоваримые сценарии, пригодные, в том числе, для самообразования.
 		.content_desc.hidden
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=190580', target='_blank') В. Босс. Интуиция и математика. 5-е изд.
+			br
+			+bookItem(null, 'В. Босс. Интуиция и математика.', '5-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=190580')
 			.books_separator В. БОСС. ЛЕКЦИИ ПО МАТЕМАТИКЕ
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=182035', target='_blank') том 1. Анализ. 5-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=202075', target='_blank') том 2. Дифференциальные уравнения. 4-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=182034', target='_blank') том 3. Линейная алгебра. 4-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=189770', target='_blank') том 4. Вероятность - Информация - Статистика. 4-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=166484', target='_blank') том 5. Функциональный анализ. 3-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=171689', target='_blank') том 6. Алгоритмы, логика, вычислимость. От Диофанта  до Тьюринга и Гёделя. 3-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=194775', target='_blank') том 7. Оптимизация. 4-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=185772', target='_blank') том 8. Теория групп. 3-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=106735', target='_blank') том 9. ТФКП. 2-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=185773', target='_blank') том 10. Перебор и эффективные алгоритмы. 3-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=170148', target='_blank') том 11. Уравнения математической физики. 3-е изд. испр.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=170840', target='_blank') том 12. Контрпримеры и парадоксы. 2-е изд. испр.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=180220', target='_blank') том 13. Топология. 2-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=180201', target='_blank') том 14. Теория чисел. 2-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=180756', target='_blank') том 15. Нелинейные операторы и неподвижные точки. 2-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=179187', target='_blank') том 16. Теория множеств. От Кантора до Коэна. 2-е изд.
+			+bookItem('том 1.', 'Анализ.', '5-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=182035')
+			+bookItem('том 2.', 'Дифференциальные уравнения.', '4-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=202075')
+			+bookItem('том 3.', 'Линейная алгебра.', '4-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=182034')
+			+bookItem('том 4.', 'Вероятность - Информация - Статистика.', '4-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=189770')
+			+bookItem('том 5.', 'Функциональный анализ.', '3-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=166484')
+			+bookItem('том 6.', 'Алгоритмы, логика, вычислимость. От Диофанта до Тьюринга и Геделя.', '3-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=171689')
+			+bookItem('том 7.', 'Оптимизация.', '4-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=194775')
+			+bookItem('том 8.', 'Теория групп.', '3-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=185772')
+			+bookItem('том 9.', 'ТФКП.', '2-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=106735')
+			+bookItem('том 10.', 'Перебор и эффективные алгоритмы.', '3-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=185773')
+			+bookItem('том 11.', 'Уравнения математической физики.', '3-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=170148')
+			+bookItem('том 12.', 'Контрпримеры и парадоксы.', '2-е изд. испр.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=170840')
+			+bookItem('том 13.', 'Топология.', '2-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=180220')
+			+bookItem('том 14.', 'Теория чисел.', '2-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=180201')
+			+bookItem('том 15.', 'Нелинейные операторы и неподвижные точки.', '2-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=180756')
+			+bookItem('том 16.', 'Теория множеств. От Кантора до Коэна.', '2-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=179187')
 			.books_separator В. БОСС. ЛЕКЦИИ ПО ТЕОРИИ УПРАВЛЕНИЯ
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=166388', target='_blank') том 1. Автоматическое регулирование. 2-е изд.
-			a(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=184301', target='_blank') том 2. Оптимальное управление
+			+bookItem('том 1.', 'Автоматическое регулирование.', '2-е изд.', 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=166388')
+			+bookItem('том 2.', 'Оптимальное управление.', null, 'http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=184301')
