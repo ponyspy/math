@@ -3,7 +3,7 @@ ul
 	margin 0
 	padding 0
 	li
-		padding-left 1em
+		padding-left 0.8em
 		text-indent -.7em
 		margin-bottom 5px
 		&:before
@@ -18,16 +18,34 @@ ul
 	display block
 
 .author_desc_column
-	width 470px
 	float left
 	margin-right 30px
+	&.left
+		width 220px
+	&.right
+		width 720px
+	.content_desc
+		&.hidden
+			display none
 	&:last-child
 		margin-right 0px
 	.author_desc
-		margin-top 25px
+		.a_books
+			cursor pointer
+			display inline
+			color #939598
+			text-decoration none
+			font 14pt/16pt 'GillSans'
+			&.clicked
+				color red
+			&:hover
+				color red
+		margin-bottom 20px
 		&.title
+			font-size 11pt
+			line-height 12pt
 			font-style italic
 		&.name
 			font 18pt/20pt 'Georgia'
 		&.big
-			font 14pt/16pt 'Georgia'
+			font 12pt/14pt 'Georgia'
