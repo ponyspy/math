@@ -1,10 +1,10 @@
 - var parseDate = function(date) { return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('.') }
 
 mixin bookItem(pref, name, post, link)
-	.book_item
+	a.book_item(href=link, target='_blank')
 		if pref
 			span.book_pref= pref
-		a.book_name(href=link, target='_blank')= name
+		span.book_name= name
 		if post
 			span.book_post= post
 
