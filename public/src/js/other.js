@@ -7,12 +7,13 @@ $(document).ready(function() {
 
 	function scrollLoader(event) {
 		if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+			$(window).off('scroll');
 			$.ajax({url: '/other', method: 'POST', data: {context: context}, async: false }).done(function(data) {
-				if (data !== '') {
+				if (data !== 'end') {
 					$('.studys_other').append(data).find('.social-likes').socialLikes();
 					context.skip += 10;
+					$(window).on('scroll', scrollLoader);
 				}
-				else $(window).off('scroll');
 			});
 		}
 	}

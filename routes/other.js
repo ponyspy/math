@@ -31,7 +31,11 @@ exports.get_items = function(req, res) {
 		: Study.find({'type': 'other', 'categorys': post.context.category});
 
 	Query.sort('-date').skip(post.context.skip).limit(post.context.limit).exec(function(err, studys) {
-		var opts = {studys: studys, host: req.hostname, compileDebug: false, debug: false, cache: true, pretty: false};
-		res.send(jade.renderFile(__appdir + '/views/other/get_studys.jade', opts));
+		if (studys.length > 0) {
+			var opts = {studys: studys, host: req.hostname, compileDebug: false, debug: false, cache: true, pretty: false};
+			res.send(jade.renderFile(__appdir + '/views/other/get_studys.jade', opts));
+		} else {
+			res.send('end');
+		}
 	});
 }
