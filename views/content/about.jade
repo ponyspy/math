@@ -1,8 +1,9 @@
 extends ../layout
 include ../globals
 
-block title
-	title= 'Школа Опойцева — Об авторе'
+block paths
+	- var content_title= 'Школа Опойцева — Об авторе'
+	- var content_description= 'Опойцев Валерий Иванович - доктор физико-математических наук профессор МФТИ гл. н. с. ИПУ РАН'
 	- var menu_current = 2
 
 block content_style
