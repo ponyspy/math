@@ -41,7 +41,7 @@ block content
 			.form_title Файлы PDF:
 			if study.files.length > 0
 				each file, i in study.files
-					input(type='checkbox', name='files_delete', value=i)
+					input(type='checkbox', name='files_delete[]', value=file.path)
 					!= ' удалить | '
 					a(href=file.path, target='_blank')=file.desc || 'файл ' + i
 					br
