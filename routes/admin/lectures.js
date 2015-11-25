@@ -152,7 +152,7 @@ exports.edit_form = function(req, res) {
 			filesDelete: function(callback) {
 				if (post.files_delete && post.files_delete.length > 0) {
 					async.forEachSeries(post.files_delete, function(path, callback) {
-						del([path], function() {
+						del(__appdir + '/public' + path, function() {
 							var num = study.files.map(function(e) { return e.path; }).indexOf(path);
 							study.files.splice(num, 1);
 							study.markModified('files');
