@@ -73,6 +73,7 @@ var admin_themes = require('./routes/admin/themes.js');
 var admin_themes_sub = require('./routes/admin/themes_sub.js');
 
 var globals = require('./routes/globals.js');
+var options = require('./routes/options.js');
 
 
 // ------------------------
@@ -330,11 +331,21 @@ app.route('/about').get(content.about);
 // *** Globals Routers Block ***
 // ------------------------
 
-
-
 // === Search Route
 app.route('/search')
 	 .post(globals.search)
+
+
+
+// ------------------------
+// *** Options Routers Block ***
+// ------------------------
+
+
+
+// === Backup load Route
+app.route('/backup')
+	 .get(checkAuth, options.backup)
 
 
 // ------------------------
