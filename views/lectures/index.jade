@@ -24,7 +24,7 @@ block content
 				else
 					a(class= (sub_theme._id.toString() == current_sub._id.toString() && 'current'), href='/lectures/' + current_theme.sym + '/' + sub_theme._short_id)= (i + current_theme.numbering.start - current_theme.numbering.offset) + ' — ' + sub_theme.title
 		.column_main_block
-			each study, i in studys
+			each study, i in current_sub.studys
 				- var num
 				if (sub_num < current_theme.numbering.offset)
 					- num = null

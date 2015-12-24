@@ -18,9 +18,9 @@ exports.index = function(req, res) {
 			if (!current_sub) return res.status(500).render('error', {status: 500});
 			var sub_num = current_theme.sub.map(function(e) { return e._short_id; }).indexOf(sub_id);
 
-			Study.where('_id').in(current_sub.studys).exec(function(err, studys) {
+			Study.populate(current_sub, {path: 'studys'}, function(err, current_sub) {
 				Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
-					res.render('lectures', {themes: themes, current_theme: current_theme, studys: studys, sub_num: sub_num, current_sub: current_sub});
+					res.render('lectures', {themes: themes, current_theme: current_theme, sub_num: sub_num, current_sub: current_sub});
 				});
 			});
 		});
