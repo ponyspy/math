@@ -2,17 +2,18 @@
 
 .content_title_block
 	width 970px
-	// background-color rgb(101, 208, 40)
 	overflow hidden
 	a
 		color grey
 		font 22pt/24pt 'GillSansLight'
 		float left
-		margin-right 30px
+		margin-right 25px
 		display block
 		text-decoration none
+		transition color .2s ease-in-out
 		&:hover
 		&.current
+			transition color .2s ease-in-out
 			color #EF3925
 
 // -- Boby block
@@ -24,8 +25,7 @@
 	.column_left_block
 		width 220px
 		min-height 100px
-		margin-top 3px
-		// background-color rgb(235, 190, 85)
+		margin-top 6px
 		float left
 		a
 		.nav_item
@@ -35,14 +35,14 @@
 			text-decoration none
 			font 14pt/16pt 'GillSans'
 			margin-bottom 15px
+			transition color .2s ease-in-out
 			&:hover
 			&.current
+				transition color .2s ease-in-out
 				color #EF3925
 	.column_main_block
 		width 720px
 		margin-left 30px
-		// min-height 500px
-		// background-color rgb(150, 135, 136)
 		float left
 
 // -- Item block
@@ -54,6 +54,7 @@
 	overflow hidden
 	&:hover
 		.item_title_block
+			transition color .2s ease-in-out
 			color #EF3925
 	.item_body
 		color black
@@ -62,6 +63,7 @@
 			font 18pt/20pt 'Georgia'
 			margin-bottom 10px
 			overflow hidden
+			transition color .2s ease-in-out
 			.item_num
 				float left
 				&:after
