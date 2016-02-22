@@ -1,7 +1,17 @@
 - var parseDate = function(date) { return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('.') }
 
-mixin bookItem(pref, name, post, link)
-	a.book_item(href=link, target='_blank')
+mixin themes_scroll()
+	.item_themes
+		.themes_outer
+			.themes_inner
+				each theme, i in ['школьная математика', 'высшая математика', 'физика', 'короткие задачи', 'длинные задачи', 'задачи средней длины', 'очень длинные задачи']
+					a.theme(href='#')
+						.theme_numb: .numb_inner= i+1
+						.theme_title= theme
+
+
+mixin bookItem(pref, name, post, book_id)
+	a.book_item(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=' + book_id, target='_blank', rel='nofollow')
 		if pref
 			span.book_pref= pref
 		span.book_name= name

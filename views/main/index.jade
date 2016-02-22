@@ -8,20 +8,27 @@ block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/main.css' + version)
 
 block content_scripts
-	script(type='text/javascript', src='/build/libs/js/plax.js' + version)
+	//- script(type='text/javascript', src='/build/libs/js/plax.js' + version)
 	script(type='text/javascript', src='/build/js/main.js' + version)
 
 block content
-	.rounds_group
-		each round in new Array(7)
-			.round
-	.man
-	.triangle
-		.line
-	.blocks_group
-		each block in new Array(7)
-			.block
-	.round_big
-	.round_small
-	.desc_block
-		| час, затраченный на понимание, экономит год жизни
+	.content_photo: .photo_inner
+	.content_body
+		.content_item
+			.item_title Лекции и Уроки
+			+themes_scroll()
+		.content_item
+			.item_title
+				span.desc_select.active О школе
+				span.desc_sep= ' / '
+				span.desc_select Книги
+			.item_desc.active
+				include ../content/about.jade
+			.item_desc
+				include ../content/books.jade
+		.content_item
+			.item_title Разное
+			.item_others
+				each other in new Array(6)
+					.other
+						p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed porro suscipit aliquid, sunt tempore possimus accusamus neque, enim dolore aliquam harum culpa magni commodi nostrum voluptatem ipsam ipsa officiis officia.

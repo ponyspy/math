@@ -1,106 +1,153 @@
-// -- Title block
-
-.content_title_block
-	width 970px
+.item_themes
+	max-width 1200px
 	overflow hidden
-	a
-		color grey
-		font 22pt/24pt 'GillSansLight'
-		float left
-		margin-right 25px
-		display block
-		text-decoration none
-		transition color .2s ease-in-out
-		&:hover
-		&.current
-			transition color .2s ease-in-out
-			color #EF3925
-
-// -- Boby block
-
-.content_body_block
-	margin-top 42px
-	overflow hidden
-	clear both
-	.column_left_block
-		width 220px
-		min-height 100px
-		margin-top 6px
-		float left
-		a
-		.nav_item
-			cursor pointer
-			display block
-			color rgb(147, 149, 152)
-			text-decoration none
-			font 14pt/16pt 'GillSans'
-			margin-bottom 15px
-			transition color .2s ease-in-out
-			&:hover
-			&.current
-				transition color .2s ease-in-out
-				color #EF3925
-	.column_main_block
-		width 720px
-		margin-left 30px
-		float left
-
-// -- Item block
-
-.content_item_block
-	padding-bottom 25px
-	text-decoration none
-	display block
-	overflow hidden
-	&:hover
-		.item_title_block
-			transition color .2s ease-in-out
-			color #EF3925
-	.item_body
-		color black
-		text-decoration none
-		.item_title_block
-			font 18pt/20pt 'Georgia'
-			margin-bottom 10px
-			overflow hidden
-			transition color .2s ease-in-out
-			.item_num
-				float left
-				&:after
-					content '—'
-					margin 0 10px 0 10px
-			.item_title
-				float left
-	.item_links
-		margin-top 10px
+	height 265px
+	.themes_outer
+		max-width 1200px
 		overflow hidden
-		float left
-		.link
-			float left
-			margin-right 15px
-			cursor pointer
-			display block
-			background-size cover
-			background-repeat no-repeat
-			&.video
-				width 35px
-				height 35px
-				background-image url('/images/design/icons/play.svg')
-			&.pdf
-				width 30px
-				height 35px
-				background-image url('/images/design/icons/pdf.svg')
-			.tooltip
-				display none
-				color grey
-				background-color lightgrey
-				padding 3px 5px 3px 5px
-			&:hover
-				.tooltip
-					display block
-					position fixed
+		height 250px
+		padding-bottom 20px
+		-webkit-overflow-scrolling: touch;
+		.themes_inner
+			white-space nowrap
+			vertical-align top
+			display inline-block
+			font-size 0
+			.theme
+				vertical-align top
+				font-size 0
+				display inline-block
+				width 200px
+				height 250px
+				margin-right 70px
+				text-decoration none
+				.theme_numb
+					background-color grey
 					overflow hidden
-	.item_counters
-		padding-top 21px
-		display block
-		float right
+					width 200px
+					height 200px
+					font 264pt/126pt 'Georgia'
+					color black
+					.numb_inner
+						margin-left -22px
+				.theme_title
+					color #939598
+					white-space normal
+					margin-top 10px
+					font 20pt/22pt 'GillSans Light'
+					transition color .2s ease-in-out
+				&:hover .theme_title
+					transition color .2s ease-in-out
+					color #c33825
+				&:last-child
+					margin-right 0px
+
+
+
+
+// // -- Title block
+
+// .content_title_block
+// 	width 970px
+// 	overflow hidden
+// 	a
+// 		color grey
+// 		font 22pt/24pt 'GillSansLight'
+// 		float left
+// 		margin-right 25px
+// 		display block
+// 		text-decoration none
+// 		transition color .2s ease-in-out
+// 		&:hover
+// 		&.current
+// 			transition color .2s ease-in-out
+// 			color #EF3925
+
+// // -- Boby block
+
+// .content_body_block
+// 	margin-top 42px
+// 	overflow hidden
+// 	clear both
+// 	.column_left_block
+// 		width 220px
+// 		min-height 100px
+// 		margin-top 6px
+// 		float left
+// 		a
+// 		.nav_item
+// 			cursor pointer
+// 			display block
+// 			color rgb(147, 149, 152)
+// 			text-decoration none
+// 			font 14pt/16pt 'GillSans'
+// 			margin-bottom 15px
+// 			transition color .2s ease-in-out
+// 			&:hover
+// 			&.current
+// 				transition color .2s ease-in-out
+// 				color #EF3925
+// 	.column_main_block
+// 		width 720px
+// 		margin-left 30px
+// 		float left
+
+// // -- Item block
+
+// .content_item_block
+// 	padding-bottom 25px
+// 	text-decoration none
+// 	display block
+// 	overflow hidden
+// 	&:hover
+// 		.item_title_block
+// 			transition color .2s ease-in-out
+// 			color #EF3925
+// 	.item_body
+// 		color black
+// 		text-decoration none
+// 		.item_title_block
+// 			font 18pt/20pt 'Georgia'
+// 			margin-bottom 10px
+// 			overflow hidden
+// 			transition color .2s ease-in-out
+// 			.item_num
+// 				float left
+// 				&:after
+// 					content '—'
+// 					margin 0 10px 0 10px
+// 			.item_title
+// 				float left
+// 	.item_links
+// 		margin-top 10px
+// 		overflow hidden
+// 		float left
+// 		.link
+// 			float left
+// 			margin-right 15px
+// 			cursor pointer
+// 			display block
+// 			background-size cover
+// 			background-repeat no-repeat
+// 			&.video
+// 				width 35px
+// 				height 35px
+// 				background-image url('/images/design/icons/play.svg')
+// 			&.pdf
+// 				width 30px
+// 				height 35px
+// 				background-image url('/images/design/icons/pdf.svg')
+// 			.tooltip
+// 				display none
+// 				color grey
+// 				background-color lightgrey
+// 				padding 3px 5px 3px 5px
+// 			&:hover
+// 				.tooltip
+// 					display block
+// 					position fixed
+// 					overflow hidden
+// 	.item_counters
+// 		padding-top 21px
+// 		display block
+// 		float right

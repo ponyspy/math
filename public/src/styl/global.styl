@@ -6,9 +6,10 @@
 body
 	margin 0
 	padding 0
-	&.stop_scroll
-		height 100%
-		overflow hidden
+	font 14pt/18pt 'Georgia'
+	// &.stop_scroll
+	// 	height 100%
+	// 	overflow hidden
 
 h1, h2, h3
 	margin 0
@@ -28,131 +29,60 @@ a
 		transition color .2s ease-in-out
 		color #EF3925
 
-.content_block
-	min-height 400px
-	clear both
-	position relative
-
-.main_block
-	// background url('/images/design/gridinator.png')
-	width 1280px
-	margin 0 auto
-	font 12pt/14pt 'Georgia'
-	padding 0 30px 0 30px
-	box-sizing border-box
-	padding-bottom 60px
-	transition: 0.3s -webkit-filter ease-in
-	&.preview
-		transition: 0.3s -webkit-filter ease-in
-		filter: blur(3px)
-	.star_menu
-		position absolute
-		overflow hidden
-		.spacer
-			color rgb(147, 149, 152)
-			margin-right 5px
-			float left
-		a
-			display block
-			float left
-			color rgb(147, 149, 152)
-			font 14pt/16pt 'GillSans'
-			text-decoration none
-			margin-right 5px
-			transition color .2s ease-in-out
-			&:hover
-				transition color .2s ease-in-out
-				color #EF3925
-
-.header_block
-	overflow hidden
+.menu_block
+	position fixed
+	top 0
+	z-index 99999
 	padding-top 10px
-	.menu_block
-		overflow hidden
-		width 970px
+	padding-bottom 5px
+	background-color rgba(13, 13, 13, 0.8)
+	color white
+	width 100%
+	.menu_inner
+		max-width 1200px
+		padding-left 40px
+		padding-right 40px
+		margin 0 auto
+	.logo
+		font 24pt/26pt 'Georgia'
+		cursor pointer
 		float left
-		.menu_logo
-			font 43pt/46pt 'Georgia'
-			text-decoration none
-			color black
-			float left
-		.menu_navigate
-			margin-top 34px
-			float right
-			overflow hidden
-			a
-				display block
-				float left
-				margin-left 25px
-				text-decoration none
-				color rgb(147, 149, 152)
-				font 16pt/18pt 'GillSans'
-				position relative
-				transition color .2s ease-in-out
-				&:after
-					content ''
-					width 82px
-					height 1px
-					top 15px
-					right -52px
-					background-color rgb(147, 149, 152)
-					position absolute
-					transform rotate(-70deg)
-					margin-left 10px
-				&:last-child:after
-					display none
-				&:hover
-				&.current
-					transition color .2s ease-in-out
-					color #EF3925
-	.social_block
-		margin-top 29px
-		margin-left 30px
-		float left
-		a
-			width 25px
-			height 25px
-			margin-right 15px
-			display block
-			float left
-			text-decoration none
-			background-position center
-			background-size cover
-			&.vk
-				background-image url('/images/design/icons/v.svg')
-			&.fb
-				background-image url('/images/design/icons/f.svg')
-
-.search_block
-	.search_input
-		background-color lightgrey
-		color #EF3925
-		margin-top 26px
-		margin-bottom 23px
-		padding 3px 3px 3px 7px
-		float right
-		margin-right 250px
+		transition color .2s ease-in-out
+		&:hover
+			transition color .2s ease-in-out
+			color #c33825
+		&.hide
+			display none
+	.menu_search
 		display block
-		width 210px
-		clear both
-		outline none
-		font 14pt/16pt 'GillSans'
-		transition .3s width
-		border none
-		&.focus
-			width 355px
-	.search_results
+		float left
+		display none
+		&.active
+			display block
+		.search_input
+			font 24pt/26pt 'Georgia'
+			margin 0
+			padding 0
+			border none
+			outline none
+			color white
+			background transparent
+			min-width 100px
+			max-width 210px
+	.menu_right
+		float right
+		margin-top 4px
+		a
+			margin-left 10px
+			img
+				height 30px
+	.menu_themes
+		padding-top 5px
 		clear both
 		display none
-		.search_title
-			font 22pt/24pt 'GillSansLight'
-			color #939598
-		.search_nav
-			display none
-		.categorys_block
-			border-top 2px solid rgb(147, 149, 152)
-			padding-top 15px
-			display none
+		padding-bottom 5px
+		&.active
+			display block
 
 .preview_block
 	width 100%
