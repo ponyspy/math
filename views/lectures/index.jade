@@ -13,9 +13,9 @@ block paths
 //- 	script(type='text/javascript', src='/build/js/studys.js' + version)
 
 block content
-	.content_title_block
-		each theme in themes
-			a(class= (theme.sym == current_theme.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
+	//- .content_title_block
+	//- 	each theme in themes
+	//- 		a(class= (theme.sym == current_theme.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
 	.content_body_block
 		.column_left_block
 			each sub_theme, i in current_theme.sub

@@ -1,13 +1,13 @@
 - var parseDate = function(date) { return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('.') }
 
-mixin themes_scroll()
+mixin themes_scroll(themes)
 	.item_themes
 		.themes_outer
 			.themes_inner
-				each theme, i in ['школьная математика', 'высшая математика', 'физика', 'короткие задачи', 'длинные задачи', 'задачи средней длины', 'очень длинные задачи']
-					a.theme(href='#')
+				each theme, i in themes
+					a.theme(href='/lectures/' + theme.sym)
 						.theme_numb: .numb_inner= i+1
-						.theme_title= theme
+						.theme_title= theme.title
 
 
 mixin bookItem(pref, name, post, book_id)

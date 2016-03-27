@@ -14,9 +14,9 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/study.js' + version)
 
 block content
-	.content_title_block
-		each theme in themes
-			a(class= (theme.sym == theme_parent.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
+	//- .content_title_block
+	//- 	each theme in themes
+	//- 		a(class= (theme.sym == theme_parent.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
 	.content_body_block
 		.column_left_block
 			each sub_theme, i in theme_parent.sub

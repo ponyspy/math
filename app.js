@@ -86,6 +86,20 @@ function checkAuth (req, res, next) {
 	req.session.user_id ? next() : res.redirect('/login');
 }
 
+app.use(function(req, res, next) {
+	var Theme = require('./models/main.js').Theme;
+
+	if (req.accepts('text/html')) {
+		Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
+			res.locals.themes = themes;
+			next();
+		});
+	} else {
+		res.locals.themes = [];
+		next();
+	}
+});
+
 
 // ------------------------
 // *** Main Routes Block ***
