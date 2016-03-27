@@ -42,9 +42,6 @@
 				&:last-child
 					margin-right 0px
 
-
-
-
 // -- Title block
 
 .content_title_block
@@ -65,20 +62,33 @@
 
 // -- Boby block
 
+// .content_block
+// 	background-color black
+
 .content_body_block
-	overflow hidden
-	clear both
-	margin 0 auto
-	max-width 1200px
-	padding-top 60px
-	padding-left 40px
-	padding-right 40px
-	position relative
+	// overflow hidden
+	// clear both
+	// margin 0 auto
+	// max-width 1280px
+	// padding-top 60px
+	// padding-left 40px
+	// padding-right 40px
+	// position relative
+	display table
 	.column_left_block
-		width 220px
-		min-height 100px
-		margin-top 6px
-		float left
+		// padding-top 60px
+		width 320px
+		// min-height 100px
+		// margin-top 6px
+		// float left
+		// position absolute
+		vertical-align: top;
+		display table-cell
+		position relative
+		background-color black
+		.left_inner
+			padding-top 80px
+			padding-right 30px
 		a
 		.nav_item
 			cursor pointer
@@ -93,9 +103,26 @@
 				transition color .2s ease-in-out
 				color #EF3925
 	.column_main_block
-		width 720px
-		margin-left 30px
-		float left
+		// padding-top 60px
+		width 1024px
+		position relative
+		display table-cell
+		// left 260px
+		// margin-left 30px
+		// padding-left 30px
+		// float left
+		background-color white
+		.main_inner
+			padding-top 80px
+			padding-left 30px
+			padding-right 30px
+
+.left_inner, .main_inner
+	padding-top 80px
+	padding-bottom 40px
+	padding-left 40px
+	padding-right 40px
+
 
 // -- Item block
 
