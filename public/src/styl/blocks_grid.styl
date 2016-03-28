@@ -58,26 +58,23 @@
 		&:hover
 		&.current
 			transition color .2s ease-in-out
-			color #EF3925
+			color #c33825
 
 // -- Boby block
-
-// .content_block
-// 	background-color black
 
 .content_body_block
 	// overflow hidden
 	// clear both
-	// margin 0 auto
-	// max-width 1280px
+	margin 0 auto
+	max-width 1280px
 	// padding-top 60px
 	// padding-left 40px
-	// padding-right 40px
+	padding-right 40px
 	// position relative
 	display table
 	.column_left_block
 		// padding-top 60px
-		width 320px
+		width 250px
 		// min-height 100px
 		// margin-top 6px
 		// float left
@@ -87,8 +84,10 @@
 		position relative
 		background-color black
 		.left_inner
+			width 250px
 			padding-top 80px
-			padding-right 30px
+			padding-right 40px
+			padding-left 40px
 		a
 		.nav_item
 			cursor pointer
@@ -101,7 +100,7 @@
 			&:hover
 			&.current
 				transition color .2s ease-in-out
-				color #EF3925
+				color #c33825
 	.column_main_block
 		// padding-top 60px
 		width 1024px
@@ -111,17 +110,14 @@
 		// margin-left 30px
 		// padding-left 30px
 		// float left
-		background-color white
+		background-color #f0edf2
+		&.close
+			position relative
+			left -330px
 		.main_inner
 			padding-top 80px
-			padding-left 30px
-			padding-right 30px
-
-.left_inner, .main_inner
-	padding-top 80px
-	padding-bottom 40px
-	padding-left 40px
-	padding-right 40px
+			padding-left 40px
+			padding-right 40px
 
 
 // -- Item block
@@ -134,7 +130,7 @@
 	&:hover
 		.item_title_block
 			transition color .2s ease-in-out
-			color #EF3925
+			color #c33825
 	.item_body
 		color black
 		text-decoration none

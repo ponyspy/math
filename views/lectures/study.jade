@@ -23,6 +23,6 @@ block content
 				if (i < theme_parent.numbering.offset || sub_theme.overlay)
 					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + sub_theme._short_id)= sub_theme.title
 				else
-					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + sub_theme._short_id)= (i + theme_parent.numbering.start - theme_parent.numbering.offset) + ' — ' + sub_theme.title
+					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + sub_theme._short_id)= (i + theme_parent.numbering.start - theme_parent.numbering.offset) + '. ' + sub_theme.title
 		.column_main_block: .main_inner
 			+contentStudy(study)
