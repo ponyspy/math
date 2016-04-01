@@ -94,17 +94,17 @@ $(document).ready(function() {
 		// 		$('.search_input').removeClass('focus');
 		// 	}
 		// })
-		// .on('mouseup.player touchend.player', function(event) {
-		// 	var container = $('.preview_video');
+		.on('mouseup.player touchend.player', function(event) {
+			var container = $('.preview_video');
 
-		// 	if (!container.is(event.target)
-		// 			&& container.has(event.target).length === 0)
-		// 	{
-		// 			$('.preview_block').fadeOut(300).empty();
-		// 			$('.main_block').removeClass('preview');
-		// 			$('body').removeClass('stop_scroll');
-		// 	}
-		// })
+			if (!container.is(event.target)
+					&& container.has(event.target).length === 0)
+			{
+					$('.preview_block').fadeOut(300).empty();
+					$('.main_block').removeClass('preview');
+					$('body').removeClass('stop_scroll');
+			}
+		})
 		// .on('keyup.hotkeys', function(event) {
 		// 	if (event.shiftKey && event.which == 70) {
 		// 		if (!$('input, textarea, [contenteditable]').is(':focus')) {
@@ -115,30 +115,30 @@ $(document).ready(function() {
 		// 		$(this).trigger('mouseup.search');
 		// 	}
 		// })
-		// .on('mousemove', '.link.pdf', function(event) {
-		// 	var x = (event.clientX + 20),
-		// 			y = (event.clientY + 20);
+		.on('mousemove', '.link.pdf', function(event) {
+			var x = (event.clientX + 20),
+					y = (event.clientY + 20);
 
-		// 	$(this).children('.tooltip').css({top: y, left: x});
-		// })
-		// .on('click', '.link', function() {
-		// 	if ($(this).hasClass('video')) {
-		// 		var id = $(this).attr('video_id');
-		// 		var url = 'https://www.youtube.com/embed/' + id;
-		// 		var video = $('<iframe>', {'class': 'preview_video', 'width':'720px', 'height': '400px', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
+			$(this).children('.tooltip').css({top: y, left: x});
+		})
+		.on('click', '.link', function() {
+			if ($(this).hasClass('video')) {
+				var id = $(this).attr('video_id');
+				var url = 'https://www.youtube.com/embed/' + id;
+				var video = $('<iframe>', {'class': 'preview_video', 'width':'720px', 'height': '400px', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
 
-		// 		$('.preview_block').empty().append(video).promise().done(function() {
-		// 			$('.main_block').addClass('preview');
-		// 			$('.preview_block').delay(100).fadeIn(300);
-		// 		});
-		// 		$('body').addClass('stop_scroll');
-		// 	}
+				$('.preview_block').empty().append(video).promise().done(function() {
+					$('.main_block').addClass('preview');
+					$('.preview_block').delay(100).fadeIn(300);
+				});
+				$('body').addClass('stop_scroll');
+			}
 
-		// 	if ($(this).hasClass('pdf')) {
-		// 		var path = $(this).attr('file_path');
-		// 		window.open(path, '_blank');
-		// 	}
-		// })
+			if ($(this).hasClass('pdf')) {
+				var path = $(this).attr('file_path');
+				window.open(path, '_blank');
+			}
+		})
 		// .on('click', '.search_nav .nav_item', function() {
 		// 	var type = $(this).attr('class').split(' ')[1];
 		// 	$('.search_nav .nav_item').removeClass('current');
