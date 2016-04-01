@@ -64,23 +64,17 @@
 
 // -- Boby block
 
+html, body, .content_block, .content_body_block, .column_left_block, .column_main_block
+	height 100%
+
 .content_body_block
-	// overflow hidden
-	// clear both
 	margin 0 auto
 	max-width 1280px
-	// padding-top 60px
-	// padding-left 40px
 	padding-right 40px
 	// position relative
 	display table
 	.column_left_block
-		// padding-top 60px
 		width 250px
-		// min-height 100px
-		// margin-top 6px
-		// float left
-		// position absolute
 		vertical-align: top;
 		display table-cell
 		position relative
@@ -90,6 +84,7 @@
 			padding-top 80px
 			padding-right 40px
 			padding-left 40px
+			padding-bottom 40px
 		a
 		.nav_item
 			cursor pointer
@@ -120,6 +115,8 @@
 			padding-top 80px
 			padding-left 40px
 			padding-right 40px
+			padding-bottom 40px
+			hyphens auto
 
 
 // -- Item block
