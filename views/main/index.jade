@@ -12,7 +12,11 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/main.js' + version)
 
 block content
-	.content_photo: .photo_inner
+	.content_photo
+		.photo_inner
+			.photo
+			.photo_desc
+				| Читает лекции, ведёт уроки и пишет «конспекты» Опойцев Валерий Иванович доктор физико-математических наук профессор МФТИ гл. н. с. ИПУ РАН
 	.content_body
 		.content_item
 			.item_title Лекции и Уроки

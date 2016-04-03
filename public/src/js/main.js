@@ -10,6 +10,13 @@ $(document).ready(function() {
 			$(window).scrollTop() + $(window).height() + 600 >= $(document).height()
 				? $('.other').slice(0, 6).clone().insertAfter('.other:last')
 				: false;
+		})
+		.on('scroll', function() {
+			var factor = 1 + $(window).scrollTop() / $(window).height();
+
+			factor >= 1
+				? $('.photo').css('transform', 'scale(' + factor +')')
+				: false;
 		});
 
 		$('.desc_select').on('click', function() {

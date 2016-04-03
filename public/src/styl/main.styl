@@ -4,26 +4,42 @@
 	width 100%
 	overflow hidden
 	.photo_inner
-		z-index 0
+		z-index 999
 		cursor pointer
 		position relative
 		max-width 1200px
-		height 600px
+		height 630px
 		margin 0 auto
-		background-image url('/images/design/backgrounds/iam.jpg')
-		background-position top
-		background-size cover
-		background-repeat no-repeat
+		overflow hidden
+		.photo
+			z-index 0
+			position relative
+			max-width 1200px
+			height 630px
+			background-image url('/images/design/backgrounds/iam.jpg')
+			background-position top
+			background-size cover
+			background-repeat no-repeat
+		.photo_desc
+			position absolute
+			max-width 1200px
+			padding-top 20px
+			padding-bottom 20px
+			padding-left 40px
+			padding-right 40px
+			background-color rgba(13, 13, 13, 0.8)
+			color white
+			bottom 0
 .content_body
 	max-width 1200px
 	padding-left 40px
 	padding-right 40px
 	margin 0 auto
 	position relative
-	top 600px
+	top 630px
 	background-color white
 	.content_item
-		min-height 200px
+		// min-height 200px
 		padding-top 40px
 		.item_title
 			font 24pt/26pt 'Georgia'
@@ -48,7 +64,10 @@
 			img
 				margin-top 50px
 				margin-bottom 50px
-				width 100%
+				width 80%
+				display block
+				padding-top 40px
+				padding-bottom 40px
 		.item_others
 			max-width 1024px
 			.other
