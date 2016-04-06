@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	$('.menu_block').on('click', function() {
-		$('.content_body_block').toggleClass('close');
+	$('.panel_open').on('click', function() {
+		$('.content_body_block').toggleClass('open');
 	});
 
 

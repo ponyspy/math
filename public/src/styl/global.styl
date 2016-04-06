@@ -98,3 +98,23 @@ a
 		bottom 0
 		margin auto
 		position fixed
+
+.panel_open
+	width 60px
+	height 60px
+	border-radius 120px
+	background-color #c33825
+	position fixed
+	bottom 40px
+	right 20px
+	z-index 999999999
+	display none
+	background-image url('/images/design/icons/menu.svg')
+	background-position center
+	background-size 80%
+	background-repeat no-repeat
+	transition .3s linear
+	&:hover
+		background-color black
+		transition .3s linear
+		transform rotate(90deg)

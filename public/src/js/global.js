@@ -91,9 +91,9 @@ $(document).ready(function() {
 
 	$('.logo').on('click', function() {
 		$('.menu_themes').toggleClass('active');
-		$('body').animate({
-			'scrollTop': 0
-		}, 400);
+		// $('body').animate({
+		// 	'scrollTop': 0
+		// }, 400);
 	});
 
 	$('.search').on('click', function() {
