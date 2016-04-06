@@ -59,6 +59,30 @@ $(document).ready(function() {
 	// 	$('.search_input').addClass('focus');
 	// });
 
+		// var deltaX = 0;
+		// var w = $('.themes_outer')[0].scrollWidth;
+
+		// $('.item_themes')
+		// 	.on('mousemove', function(e) {
+		// 		var x = e.clientX - w / 2;
+		// 		deltaX = x * 0.1;
+		// 	})
+		// 	.on('blur mouseleave', function(e) {
+		// 		deltaX = 0;
+		// 	});
+
+
+		// (function step() {
+		// 	if (deltaX) {
+		// 		$('.item_themes').children('.themes_outer').scrollLeft(function(i, v) {
+		// 			return v + deltaX;
+		// 		});
+		// 	}
+
+		// 	requestAnimationFrame(step);
+		// })();
+
+
 	$('.item_themes').on('mousemove', function(e) {
 		var $this = $(this);
 

@@ -64,23 +64,23 @@
 
 // -- Boby block
 
-html, body, .content_block, .content_body_block, .column_left_block, .column_main_block
+html, body, .content_block, .content_body_block, .column_left_block
 	height 100%
 
 .content_body_block
 	margin 0 auto
-	max-width 1280px
+	max-width 1240px
 	padding-right 40px
-	// position relative
-	display table
+	position relative
+	// background-color #f0edf2
 	.column_left_block
-		width 250px
-		vertical-align: top;
-		display table-cell
-		position relative
+		width 340px
 		background-color black
+		position fixed
+		overflow scroll
+		-webkit-overflow-scrolling: touch;
+		z-index 9
 		.left_inner
-			width 250px
 			padding-top 80px
 			padding-right 40px
 			padding-left 40px
@@ -99,24 +99,18 @@ html, body, .content_block, .content_body_block, .column_left_block, .column_mai
 				transition color .2s ease-in-out
 				color #c33825
 	.column_main_block
-		// padding-top 60px
-		width 1024px
-		position relative
-		display table-cell
-		// left 260px
-		// margin-left 30px
-		// padding-left 30px
-		// float left
-		background-color #f0edf2
-		&.close
-			position relative
-			left -330px
+		margin-left 340px
 		.main_inner
 			padding-top 80px
 			padding-left 40px
-			padding-right 40px
+			// padding-right 40px
 			padding-bottom 40px
 			hyphens auto
+	&.close
+		.column_left_block
+			display none
+		.column_main_block
+			margin-left 0px
 
 
 // -- Item block
