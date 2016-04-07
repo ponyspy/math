@@ -11,15 +11,18 @@ html
 				.logo Школа Опойцева
 				.menu_search
 					input.search_input(type='text', placeholder='Поиск...')
-					.search_results
 				.menu_right
 					a.search(href='#'): img(src='/images/design/icons/search.svg')
-					a(href='#'): img(src='/images/design/icons/mail.svg')
-					//- a(href='#'): img(src='img/icons/fb.svg')
-					//- a(href='#'): img(src='img/icons/vk.svg')
+					a.mail(href='#'): img(src='/images/design/icons/mail.svg')
+					//- a(href='#'): img(src='/images/design/icons/fb.svg')
+					//- a(href='#'): img(src='/images/design/icons/vk.svg')
 				.menu_themes
 					+themes_scroll(themes)(home=true)
-		.search_block
+		.search_results: .search_inner
+			.categorys_block.search_nav.
+			.search_title Что будем искать?
+			.search_items
+			.search_nav
 		.content_block
 			block content
 		//- include counters
