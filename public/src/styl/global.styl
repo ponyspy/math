@@ -1,15 +1,15 @@
-.search_input::-webkit-input-placeholder {color: white;}
-.search_input::-moz-placeholder          {color: white;}/* Firefox 19+ */
-.search_input:-moz-placeholder           {color: white;}/* Firefox 18- */
-.search_input:-ms-input-placeholder      {color: white;}
+.search_input::-webkit-input-placeholder {color: rgb(147, 149, 152);}
+.search_input::-moz-placeholder          {color: rgb(147, 149, 152);}/* Firefox 19+ */
+.search_input:-moz-placeholder           {color: rgb(147, 149, 152);}/* Firefox 18- */
+.search_input:-ms-input-placeholder      {color: rgb(147, 149, 152);}
 
 body
 	margin 0
 	padding 0
 	font 14pt/18pt 'Georgia'
-	// &.stop_scroll
-	// 	height 100%
-	// 	overflow hidden
+	&.stop_scroll
+		height 100%
+		overflow hidden
 
 h1, h2, h3
 	margin 0
@@ -86,24 +86,52 @@ a
 
 .search_results
 	display none
-	position fixed
+	position absolute
 	width 100%
-	padding-top 75px
-	top 0
-	bottom 0
+	height 100%
 	overflow scroll
 	z-index 99
 	background-color rgba(13, 13, 13, 0.9)
-	.search_title
-		font-size 18pt
-		color white
+	// -webkit-overflow-scrolling touch
 	.search_inner
+		padding-top 75px
 		padding-left 40px
 		padding-right 40px
 		max-width 1200px
 		margin 0 auto
-	.item_title
-	.item_description
+	.search_items *
+		color white!important
+	.search_nav
+		display none
+		width 100%
+		padding-top 15px
+		padding-bottom 15px
+		background-color rgba(13, 13, 13, 0.9)
+		color white
+		overflow hidden
+		position fixed
+		left 0
+		bottom 0
+		.nav_inner
+			max-width 1200px
+			margin 0 auto
+			padding-left 40px
+			padding-right 40px
+			.categorys_block
+				float left
+			.nav_item
+				margin-right 25px
+				float left
+				cursor pointer
+				color rgb(147, 149, 152)
+				font 14pt/16pt 'GillSans'
+				transition color .2s ease-in-out
+				&:hover
+				&.current
+					transition color .2s ease-in-out
+					color #c33825
+	.search_title
+		font-size 18pt
 		color white
 
 .preview_block

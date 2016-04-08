@@ -19,10 +19,13 @@ html
 				.menu_themes
 					+themes_scroll(themes)(home=true)
 		.search_results: .search_inner
-			.categorys_block.search_nav.
 			.search_title Что будем искать?
 			.search_items
-			.search_nav
+			.search_nav: .nav_inner
+				.nav_item.all.current все
+				.nav_item.lectures лекции и уроки
+				.nav_item.other разное
+				.categorys_block: .categorys_inner
 		.content_block
 			block content
 		//- include counters

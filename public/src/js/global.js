@@ -26,7 +26,7 @@ $(document).ready(function() {
 					.find('.search_title').hide().end()
 					.find('.search_nav').show().end()
 					.find('.search_items').empty().append(data.studys).end()
-					.find('.social-likes').socialLikes().end()
+					// .find('.social-likes').socialLikes().end()
 					.find('.categorys_block').hide().empty();
 
 				if (data.categorys.length > 0) {
@@ -103,6 +103,8 @@ $(document).ready(function() {
 	$('.search').on('click', function() {
 		$('.logo').toggleClass('hide');
 		$('.menu_search').toggleClass('active').children('.search_input').focus();
+		$('.panel_open').hide();
+		$('body').addClass('stop_scroll');
 	});
 
 	$(document)
@@ -110,10 +112,12 @@ $(document).ready(function() {
 			$('.menu_themes').removeClass('active');
 		})
 		.on('mouseup touchend', function(event) {
-			if (!/menu_block|theme|search_item|item_title|item_description/.test(event.target.className)) {
+			if (!/menu_block|theme|search_input|search_item|item_title|item_description|search_nav|nav_item/.test(event.target.className)) {
 				$('.logo').removeClass('hide');
 				$('.menu_themes, .menu_search').removeClass('active');
 				$('.search_results').hide();
+				$('.panel_open').show();
+				$('body').removeClass('stop_scroll');
 			}
 		})
 		// .on('mouseup.search', function(event) {
@@ -168,12 +172,12 @@ $(document).ready(function() {
 				window.open(path, '_blank');
 			}
 		})
-		// .on('click', '.search_nav .nav_item', function() {
-		// 	var type = $(this).attr('class').split(' ')[1];
-		// 	$('.search_nav .nav_item').removeClass('current');
-		// 	$(this).addClass('current');
-		// 	type == 'all'
-		// 		? $('.search_items').children('.search_item').show()
-		// 		: $('.search_items').children('.search_item').show().not('.' + type).hide();
-		// });
+		.on('click', '.search_nav .nav_item', function() {
+			var type = $(this).attr('class').split(' ')[1];
+			$('.search_nav .nav_item').removeClass('current');
+			$(this).addClass('current');
+			type == 'all'
+				? $('.search_items').children('.search_item').show()
+				: $('.search_items').children('.search_item').show().not('.' + type).hide();
+		});
 });
