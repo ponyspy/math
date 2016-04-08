@@ -116,7 +116,7 @@ $(document).ready(function() {
 				$('.logo').removeClass('hide');
 				$('.menu_themes, .menu_search').removeClass('active');
 				$('.search_results').hide();
-				$('.panel_open').show();
+				$('.panel_open').removeAttr('style');
 				$('body').removeClass('stop_scroll');
 			}
 		})
