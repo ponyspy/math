@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$('.panel_open').on('click', function() {
+		$(this).toggleClass('active');
 		$('.content_body_block').toggleClass('open');
 	});
 
