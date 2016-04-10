@@ -34,7 +34,7 @@ a
 	top 0
 	z-index 99999
 	padding-top 10px
-	padding-bottom 5px
+	padding-bottom 9px
 	background-color rgba(13, 13, 13, 0.8)
 	color white
 	width 100%
@@ -45,6 +45,7 @@ a
 		margin 0 auto
 	.logo
 		font 24pt/26pt 'Georgia'
+		padding-bottom 2px
 		cursor pointer
 		float left
 		transition color .2s ease-in-out
@@ -71,11 +72,20 @@ a
 			max-width 210px
 	.menu_right
 		float right
-		margin-top 4px
+		margin-top 9px
 		a
-			margin-left 10px
-			img
-				height 30px
+			margin-left 12px
+			width 26px
+			height 26px
+			display block
+			float left
+			background-repeat no-repeat
+			background-position 50% 50%
+			background-size 65%
+			&.search
+				background-image url('/images/design/icons/search2.svg')
+			&.mail
+				background-image url('/images/design/icons/mail2.svg')
 	.menu_themes
 		padding-top 5px
 		clear both
