@@ -6,11 +6,11 @@ $(document).ready(function() {
 	// $.plax.enable();
 
 	$(document)
-		.on('scroll', function() {
-			$(window).scrollTop() + $(window).height() + 600 >= $(document).height()
-				? $('.other').slice(0, 6).clone().insertAfter('.other:last')
-				: false;
-		})
+		// .on('scroll', function() {
+		// 	$(window).scrollTop() + $(window).height() + 600 >= $(document).height()
+		// 		? $('.other').slice(0, 6).clone().insertAfter('.other:last')
+		// 		: false;
+		// })
 		.on('scroll', function() {
 			var factor = 1 + $(window).scrollTop() / $(window).height();
 

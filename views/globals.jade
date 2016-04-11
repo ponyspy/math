@@ -4,8 +4,13 @@ mixin themes_scroll(themes)
 	.item_themes
 		.themes_outer
 			.themes_inner
-				if attributes.home
-					a.theme(href='/'): img.theme_numb.home(src='/images/design/icons/home.svg')
+				if attributes.menu
+					a.theme.home(href='/')
+						.theme_numb
+						.theme_title главная
+					a.theme.other(href='/other')
+						.theme_numb
+						.theme_title разное
 				each theme, i in themes
 					a.theme(href='/lectures/' + theme.sym)
 						.theme_numb: .numb_inner= i+1

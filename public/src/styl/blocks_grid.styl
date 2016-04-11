@@ -21,6 +21,20 @@
 				height 250px
 				margin-right 70px
 				text-decoration none
+				&.home
+					.theme_numb
+						background none
+						background-position center
+						background-size cover
+						background-repeat no-repeat
+						background-image url('/images/design/icons/home.svg')
+					.theme_title
+						margin-left 40px
+				&.other .theme_numb
+					background-position center
+					background-size cover
+					background-repeat no-repeat
+					background-image url('/images/design/icons/other.svg')
 				.theme_numb
 					background-color grey
 					overflow hidden
@@ -28,8 +42,6 @@
 					height 200px
 					font 264pt/126pt 'Georgia'
 					color black
-					&.home
-						background none
 					.numb_inner
 						margin-left -22px
 				.theme_title
