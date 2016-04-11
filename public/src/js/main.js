@@ -28,7 +28,7 @@ $(document).ready(function() {
 
 		$('.photo_inner').on('click', function() {
 			$('body').animate({
-				'scrollTop': $('.content_item').eq(0).offset().top - $('.menu_block').height() - 15
+				'scrollTop': $('.content_item').eq(0).offset().top - $('.menu_block').height() - 12
 			}, 400);
 		});
 });
