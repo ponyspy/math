@@ -14,10 +14,11 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/study.js' + version)
 
 block content
+	.panel_open
 	.content_body_block
-		.column_left_block
+		.column_left_block: .left_inner
 			a(href='/other') все
 			each category in categorys
 				a(href='/other#' + category._id.toString())= category.title
-		.column_main_block
+		.column_main_block: .main_inner
 			+contentStudy(study)
