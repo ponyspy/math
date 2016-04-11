@@ -11,9 +11,10 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/other.js' + version)
 
 block content
+	.panel_open
 	.content_body_block
-		.column_left_block
+		.column_left_block: .left_inner
 			a.category_item(class='all', href='#') все
 			each category in categorys
 				a.category_item(class=category._id.toString(), href='#' + category._id.toString())= category.title
-		.column_main_block.studys_other
+		.column_main_block: .main_inner.studys_other

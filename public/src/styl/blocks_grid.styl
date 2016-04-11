@@ -128,24 +128,18 @@ html, body, .content_block, .content_body_block, .column_left_block
 	display block
 	overflow hidden
 	&:hover
-		.item_title_block
+		.item_title
 			transition color .2s ease-in-out
 			color #c33825
 	.item_body
 		color black
 		text-decoration none
-		.item_title_block
+		.item_title
 			font 18pt/20pt 'Georgia'
 			margin-bottom 10px
 			overflow hidden
 			transition color .2s ease-in-out
-			.item_num
-				float left
-				&:after
-					content '—'
-					margin 0 10px 0 10px
-			.item_title
-				float left
+			hyphens none
 	.item_links
 		margin-top 10px
 		overflow hidden

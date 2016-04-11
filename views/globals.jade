@@ -29,10 +29,7 @@ mixin bookItem(pref, name, post, book_id)
 mixin contentItem(num, study)
 	.content_item_block(class=attributes.type, class=attributes.categorys)
 		a.item_body(href=attributes.href)
-			.item_title_block
-				if num
-					.item_num= num
-				.item_title= study.title
+			.item_title= num ? (num + ' — ' + study.title) : study.title
 			.item_description!= study.description
 		.item_links
 			if study.video
