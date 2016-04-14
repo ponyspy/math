@@ -8,13 +8,13 @@ mixin themes_scroll(themes)
 					a.theme.home(href='/')
 						.theme_numb
 						.theme_title главная
-					a.theme.other(href='/other')
-						.theme_numb
-						.theme_title разное
 				each theme, i in themes
 					a.theme(href='/lectures/' + theme.sym)
 						.theme_numb: .numb_inner= i+1
 						.theme_title= theme.title
+				a.theme.other(href='/other')
+					.theme_numb
+					.theme_title разное
 
 
 mixin bookItem(pref, name, post, book_id)

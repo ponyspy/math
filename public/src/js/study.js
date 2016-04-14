@@ -7,6 +7,7 @@ $(document).ready(function() {
 	$('.column_left_block').on('mousemove', function(e) {
 		var $this = $(this);
 
-		$this.scrollTop(e.pageY - $this.height() / 1.6);
+    var percent = e.pageY / $this.height() * 1.1 - 0.25;
+    $this.scrollTop($this.children('.left_inner').height() * percent);
 	});
 });

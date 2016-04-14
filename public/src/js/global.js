@@ -64,9 +64,10 @@ $(document).ready(function() {
 
 
 	$('.item_themes').on('mousemove', function(e) {
-		var $this = $(this);
+		var $this = $(this).children('.themes_outer');
 
-		$this.children('.themes_outer').scrollLeft(e.pageX - $this.width() / 2);
+		var percent = e.pageX / $this.width() * 1.1 - 0.25;
+		$this.scrollLeft($this.children('.themes_inner').width() * percent);
 	});
 
 	$('.logo').on('click', function() {
