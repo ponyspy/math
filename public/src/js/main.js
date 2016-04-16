@@ -5,13 +5,18 @@ $(document).ready(function() {
 	// $('.blocks_group').plaxify({'xRange': 40, 'yRange': 0, 'invert': true, 'useTransform': false});
 	// $.plax.enable();
 
+	var $photo_inner = $('.photo_inner');
+	var $photo = $('.photo');
+
 	$(document)
 		.on('scroll', function() {
-			var factor = 1 + $(window).scrollTop() / $(window).height();
+			var factor = -100 * $(window).scrollTop() / ($(window).height() + $photo_inner.height())
 
-			factor >= 1
-				? $('.photo').css('transform', 'scale(' + factor +')')
-				: false;
+			if (factor <= 0) {
+				factor = factor + '%';
+
+				$photo.css({'top': factor, 'bottom': factor, 'left': factor, 'right': factor});
+			}
 		});
 
 		$('.photo_inner').on('click', function() {
