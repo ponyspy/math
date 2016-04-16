@@ -102,7 +102,7 @@ a
 	overflow scroll
 	z-index 99
 	background-color rgba(13, 13, 13, 0.9)
-	// -webkit-overflow-scrolling touch
+	-webkit-overflow-scrolling touch
 	.search_inner
 		padding-top 75px
 		padding-left 40px
@@ -152,12 +152,16 @@ a
 	z-index 999
 	display none
 	.preview_video
-		top 0
-		left 0
-		right 0
-		bottom 0
-		margin auto
-		position fixed
+		position relative
+		padding-bottom 56.25% /* 16:9 */
+		padding-top 0px
+		height 0
+		.video
+			position absolute
+			top 50px
+			left 0
+			width 100%
+			height 100%
 
 .panel_open
 	width 60px

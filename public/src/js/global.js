@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	$(document).on('touchmove', 'body.stop_scroll', false);
+
 	var search = {
 		val: '', buf: '',
 		checkResult: function() {
@@ -54,13 +56,9 @@ $(document).ready(function() {
 		});
 
 	$('.search_input').on('focusin', function(event) {
-		// $('.content_block').hide();
 		$('.search_results').fadeIn(300);
 		$('.search_input').addClass('focus');
 	});
-
-
-
 
 
 	$('.item_themes').on('mousemove', function(e) {
@@ -72,6 +70,7 @@ $(document).ready(function() {
 
 	$('.logo').on('click', function() {
 		$('.menu_themes').toggleClass('active');
+		$('.panel_open').hide();
 	});
 
 	$('.search').on('click', function() {
@@ -84,6 +83,7 @@ $(document).ready(function() {
 	$(document)
 		.on('scroll', function() {
 			$('.menu_themes').removeClass('active');
+			$('.panel_open').removeAttr('style');
 		})
 		.on('mouseup touchend', function(event) {
 			if (!/menu_block|theme|search_input|search_item|item_title|item_description|search_nav|nav_item/.test(event.target.className)) {
@@ -100,8 +100,7 @@ $(document).ready(function() {
 			if (!container.is(event.target)
 					&& container.has(event.target).length === 0)
 			{
-					$('.preview_block').fadeOut(300).empty();
-					$('.main_block').removeClass('preview');
+					$('.preview_block').fadeOut(300).children('.preview_video').empty();
 					$('body').removeClass('stop_scroll');
 			}
 		})
@@ -125,10 +124,9 @@ $(document).ready(function() {
 			if ($(this).hasClass('video')) {
 				var id = $(this).attr('video_id');
 				var url = 'https://www.youtube.com/embed/' + id;
-				var video = $('<iframe>', {'class': 'preview_video', 'width':'720px', 'height': '400px', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
+				var video = $('<iframe>', {'class': 'video', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
 
-				$('.preview_block').empty().append(video).promise().done(function() {
-					$('.main_block').addClass('preview');
+				$('.preview_video').empty().append(video).promise().done(function() {
 					$('.preview_block').delay(100).fadeIn(300);
 				});
 				$('body').addClass('stop_scroll');
