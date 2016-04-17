@@ -39,9 +39,9 @@ mixin contentItem(num, study)
 					if file.desc != ''
 						.tooltip= file.desc
 		.item_counters
-			.social-likes.social-likes_horizontal.social-likes_flat(data-url='http://' + host + attributes.href, data-title=study.title)
-				.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
-				.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
+			.social-likes.social-likes_horizontal(data-counters='no', data-url='http://' + host + attributes.href, data-title=study.title)
+				.facebook(title='Опубликовать ссылку на Фейсбуке') Facebook
+				.vkontakte(title='Опубликовать ссылку во Вконтакте') ВКонтакте
 
 
 mixin contentStudy(study)
