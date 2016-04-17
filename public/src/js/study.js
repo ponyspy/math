@@ -5,10 +5,12 @@ $(document).ready(function() {
 		$('.body').toggleClass('stop_scroll');
 	});
 
-	$('.column_left_block').on('mousemove', function(e) {
-		var $this = $(this);
+	if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+		$('.column_left_block').on('mousemove', function(e) {
+			var $this = $(this);
 
-    var percent = e.clientY / $this.height() * 1.1 - 0.25;
-    $this.scrollTop($this.children('.left_inner').height() * percent);
-	});
+			var percent = e.clientY / $this.height() * 1.1 - 0.25;
+			$this.scrollTop($this.children('.left_inner').height() * percent);
+		});
+	}
 });
