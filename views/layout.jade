@@ -12,10 +12,12 @@ html
 				.menu_search
 					input.search_input(type='text', placeholder='Поиск...')
 				.menu_right
+					a.share(href='#')
 					a.search(href='#')
-					a.mail(href='#')
-					//- a.fb(href='#')
-					//- a.vk(href='#')
+				.right_drop
+					a.mail(href='/write')
+					a.fb(href='https://www.facebook.com/shkola.opoytseva', target='_blank')
+					a.vk(href='https://vk.com/oshkola', target='_blank')
 				.menu_themes
 					+themes_scroll(themes)(menu=true)
 		.search_results: .search_inner
