@@ -28,7 +28,7 @@ $(document).ready(function() {
 					.find('.search_title').hide().end()
 					.find('.search_nav').show().end()
 					.find('.search_items').empty().append(data.studys).end()
-					// .find('.social-likes').socialLikes().end()
+					.find('.social-likes').socialLikes().end()
 					.find('.categorys_block').hide().empty();
 
 				if (data.categorys.length > 0) {
@@ -55,9 +55,18 @@ $(document).ready(function() {
 			clearInterval(search.interval);
 		});
 
+
 	$('.search_input').on('focusin', function(event) {
-		$('.search_results').fadeIn(300);
-		$('.search_input').addClass('focus');
+		$(document).on('keyup.key_search', function(event) {
+			if (event.which == 27) {
+					if ($('.search_input').val() === '') {
+						$('.search').trigger('click');
+						$(document).off('keyup.key_search');
+					} else {
+						$('.search_input').val('').trigger('keyup');
+					}
+			}
+		});
 	});
 
 	if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -76,10 +85,18 @@ $(document).ready(function() {
 
 	$('.search').on('click', function() {
 		$('.logo').toggleClass('hide');
-		$('.menu_search').toggleClass('active').children('.search_input').focus();
-		// $('.search_results').toggle();
-		$('.panel_open').hide();
-		$('body').addClass('stop_scroll');
+		if ($('.menu_search').hasClass('active')) {
+			$('.menu_search').toggleClass('active').children('.search_input').blur();
+			$('.search_results').fadeOut(300);
+			$('.panel_open').removeAttr('style');
+			$('body').removeClass('stop_scroll');
+		} else {
+			$('.menu_themes').removeClass('active');
+			$('.menu_search').toggleClass('active').children('.search_input').focus();
+			$('.search_results').fadeIn(300);
+			$('.panel_open').hide();
+			$('body').addClass('stop_scroll');
+		}
 	});
 
 	$('.share').on('click', function() {
@@ -97,7 +114,7 @@ $(document).ready(function() {
 
 				$('.logo').removeClass('hide');
 				$('.menu_themes, .menu_search').removeClass('active');
-				$('.search_results').hide();
+				$('.search_results').fadeOut(300);
 				$('.panel_open').removeAttr('style');
 				$('.preview_block').fadeOut(300).children('.preview_video').empty();
 				$('body').removeClass('stop_scroll');

@@ -10,7 +10,7 @@ $(document).ready(function() {
 
 	$(document)
 		.on('scroll', function() {
-			var factor = -100 * $(window).scrollTop() / ($(window).height() + $photo_inner.height())
+			var factor = -100 * $(window).scrollTop() / ($(window).height() + $photo_inner.height());
 
 			if (factor <= 0) {
 				factor = factor + '%';

@@ -1,12 +1,4 @@
-mixin bookItem(pref, name, post, book_id)
-	a.book_item(href='http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=' + book_id, target='_blank', rel='nofollow')
-		if pref
-			span.book_pref= pref
-		span.book_name= name
-		if post
-			span.book_post= post
-
-
+include ../globals.jade
 
 +bookItem(null, 'Опойцев В.И. «Школа Опойцева: Математический анализ»', null, '213615')
 +bookItem(null, 'В. Босс. Интуиция и математика.', '5-е изд.', '190580')
