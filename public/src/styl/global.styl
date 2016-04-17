@@ -119,8 +119,13 @@ a
 		padding-right 40px
 		max-width 1200px
 		margin 0 auto
-	.search_items *
-		color white!important
+	.search_items
+		.search_item
+			.item_title
+			.item_description
+				color white!important
+			&:hover .item_title
+				color #c33825!important
 	.search_nav
 		display none
 		width 100%
