@@ -73,7 +73,7 @@ $(document).ready(function() {
 		$('.item_themes').on('mousemove', function(e) {
 			var $this = $(this).children('.themes_outer');
 
-			var percent = e.clientX / $this.width() * 1.1 - 0.25;
+			var percent = (e.pageX - $this.offset().left) / $this.width() * 1.1 - 0.25;
 			$this.scrollLeft($this.children('.themes_inner').width() * percent);
 		});
 	}
