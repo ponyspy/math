@@ -116,7 +116,7 @@ $(document).ready(function() {
 				$('.menu_themes, .menu_search').removeClass('active');
 				$('.search_results').fadeOut(300);
 				$('.panel_open').removeAttr('style');
-				$('.preview_block').fadeOut(300).children('.preview_video').empty();
+				$('.preview_block').fadeOut(300).find('.preview_video').empty();
 				$('body').removeClass('stop_scroll');
 
 				event.stopPropagation();
