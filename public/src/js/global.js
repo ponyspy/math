@@ -110,13 +110,13 @@ $(document).ready(function() {
 			$('.panel_open').removeAttr('style');
 		})
 		.on('mouseup touchend', function(event) {
-				if ($(event.target).closest('.menu_block, .search_inner, .preview_video').length) return;
+				if ($(event.target).closest('.menu_block, .search_inner, .preview_video, .preview_pdf').length) return;
 
 				$('.logo').removeClass('hide');
 				$('.menu_themes, .menu_search').removeClass('active');
 				$('.search_results').fadeOut(300);
 				$('.panel_open').removeAttr('style');
-				$('.preview_block').fadeOut(300).find('.preview_video').empty();
+				$('.preview_block').fadeOut(300).find('.preview_video, .preview_pdf').empty();
 				$('body').removeClass('stop_scroll');
 
 				event.stopPropagation();
@@ -132,6 +132,8 @@ $(document).ready(function() {
 				var id = $(this).attr('video_id');
 				var url = 'https://www.youtube.com/embed/' + id;
 				var video = $('<iframe>', {'class': 'video', 'frameborder': 0, 'allowfullscreen': true, 'src': url});
+
+				$(this).parent().children('.pdf').clone().appendTo('.preview_pdf');
 
 				$('.preview_video').empty().append(video).promise().done(function() {
 					$('.preview_block').delay(100).fadeIn(300);
