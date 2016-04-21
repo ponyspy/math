@@ -72,6 +72,8 @@ var admin_other_studys = require('./routes/admin/other.js');
 var admin_themes = require('./routes/admin/themes.js');
 var admin_themes_sub = require('./routes/admin/themes_sub.js');
 
+var admin_books = require('./routes/admin/books.js');
+
 var globals = require('./routes/globals.js');
 var options = require('./routes/options.js');
 
@@ -301,6 +303,16 @@ app.route('/auth/other/edit/:id')
 app.route('/auth/other/remove')
 	 .post(checkAuth, admin_other_studys.remove);
 
+
+// ------------------------
+// *** Admin Books Routes Block ***
+// ------------------------
+
+
+// === Admin books edit Route
+app.route('/auth/books')
+	.get(checkAuth, admin_books.edit)
+	.post(checkAuth, admin_books.edit_form);
 
 
 // ------------------------
