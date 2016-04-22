@@ -58,7 +58,7 @@ mixin metaStudy()
 
 mixin contentStudy(study)
 	if study.video
-		.study_video
+		.study_video: .video_inner
 			iframe.video(width='100%', height='512px', src='https://www.youtube.com/embed/' + study.video, frameborder='0', allowfullscreen='')
 	.study_block
 		if study.video && study.files.length > 0
