@@ -1,7 +1,7 @@
 {
-  "name": "sov_ist",
-  "version": "1.0.0",
-  "description": "sov_ist ====",
+  "name": "oschool",
+  "version": "1.1.0",
+  "description": "oschool ====",
   "main": "app.js",
   "dependencies": {
     "accepts": "^1.1.0",
