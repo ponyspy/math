@@ -10,7 +10,7 @@ var __appdir = path.dirname(require.main.filename);
 
 
 exports.edit = function(req, res) {
-  fs.readFile(__appdir + '/views/main/books.json', function(err, books) {
+  fs.readFile(__appdir + '/books.json', function(err, books) {
     res.render('auth/books/index.jade', {books: books});
   });
 }
@@ -18,7 +18,7 @@ exports.edit = function(req, res) {
 exports.edit_form = function(req, res) {
   var books = req.body.books;
 
-  fs.writeFile(__appdir + '/views/main/books.json', books, function(err) {
+  fs.writeFile(__appdir + '/books.json', books, function(err) {
     res.redirect('back');
   });
 }

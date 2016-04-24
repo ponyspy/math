@@ -5,7 +5,7 @@ var __appdir = path.dirname(require.main.filename);
 
 exports.index = function(req, res) {
 	try {
-		var books = JSON.parse(fs.readFileSync(__appdir + '/views/main/books.json'));
+		var books = JSON.parse(fs.readFileSync(__appdir + '/books.json'));
 	} catch(e) {
 		var books = [];
 	}
