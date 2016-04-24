@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="300px" height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
-<g>
-	<defs>
-		<rect id="SVGID_1_" x="1.391" width="298.613" height="298.606"/>
-	</defs>
-	<clipPath id="SVGID_2_">
-		<use xlink:href="#SVGID_1_"  overflow="visible"/>
-	</clipPath>
-	<path clip-path="url(#SVGID_2_)" fill="none" stroke="#FFFFFF" d="M150.694,295c80.468,0,145.704-65.229,145.704-145.7
-		c0-80.458-65.235-145.693-145.704-145.693C70.232,3.607,4.998,68.841,4.998,149.3C4.998,229.771,70.232,295,150.694,295z"/>
-	<path clip-path="url(#SVGID_2_)" fill="none" stroke="#FFFFFF" stroke-width="15" d="M166.802,173.984
-		c27.756,0,50.257-22.501,50.257-50.257c0-27.749-22.501-50.25-50.257-50.25c-27.76,0-50.261,22.501-50.261,50.25
-		C116.541,151.483,139.042,173.984,166.802,173.984z"/>
+	 width="36px" height="36px" viewBox="0 0 36 36" enable-background="new 0 0 36 36" xml:space="preserve">
+<g id="search_1_">
+	<g id="search">
+		<path fill="white" d="M35.525,31.228l-8.88-8.882c1.444-2.238,2.298-4.895,2.298-7.752c0-7.909-6.438-14.343-14.346-14.343
+			c-7.911,0-14.343,6.434-14.343,14.343c0,7.911,6.433,14.344,14.343,14.344c2.856,0,5.513-0.849,7.752-2.294l8.88,8.88
+			c0.295,0.297,0.782,0.297,1.076,0l3.22-3.221C35.824,32.008,35.824,31.523,35.525,31.228z M4.81,14.593
+			c0-5.396,4.391-9.788,9.788-9.788c5.398,0,9.787,4.392,9.787,9.788c0,5.398-4.389,9.789-9.787,9.789
+			C9.2,24.382,4.81,19.991,4.81,14.593z"/>
+	</g>
 </g>
-<line fill="none" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round" x1="116.872" y1="178.014" x2="86.305" y2="208.581"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
 </svg>
