@@ -13,6 +13,10 @@ html
 				.logo Школа Опойцева
 				.menu_search
 					input.search_input(type='text', placeholder='Поиск...')
+				if session.user_id
+					.menu_stargazer
+						a(href='/auth') звездочет
+						a(href='/logout') выход
 				.menu_right
 					a.share(href='#')
 					a.search(href='#')
