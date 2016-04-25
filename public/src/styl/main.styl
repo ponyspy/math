@@ -1,90 +1,103 @@
-html, body, .main_block
-	height 100%
+.content_photo
+	top 0
+	position fixed
+	width 100%
 	overflow hidden
-
-.content_block
+	.photo_inner
+		z-index 999
+		cursor pointer
+		position relative
+		max-width 1200px
+		height 630px
+		margin 0 auto
+		overflow hidden
+		.photo
+			z-index 0
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
+			margin auto
+			background-image url('/images/design/backgrounds/iam.jpg')
+			background-size cover
+			background-repeat no-repeat
+			background-position center
+		.photo_desc
+			font 13pt/14pt 'GillSans'
+			position absolute
+			max-width 1200px
+			padding-top 17px
+			padding-bottom 15px
+			padding-left 40px
+			padding-right 38.7px
+			background-color rgba(13, 13, 13, 0.8)
+			color #939598
+			bottom 0
+.content_body
+	max-width 1200px
+	padding-left 40px
+	padding-right 40px
+	padding-bottom 40px
+	margin 0 auto
 	position relative
-
-.triangle
-	width 0
-	height 0
-	border-bottom 250px solid #EF3925
-	border-left 720px solid transparent
-	position absolute
-	z-index 3
-	top 230px
-	.line
-		position absolute
-		width 763px
-		height 1px
-		border-top 2px dashed white
-		top 133px
-		left -745px
-		transform rotate(-19.2deg)
-
-.man
-	width 40px
-	height 120px
-	top 122px
-	left 690px
-	background-image url('/images/design/backgrounds/man.png')
-	position absolute
-	background-position center
-	background-size cover
-	z-index 4
-
-.rounds_group
-	position absolute
-	z-index 1
-	top 70px
-	left 300px
-	.round
-		width 30px
-		height 30px
-		border-radius 30px
-		float left
-		margin-right 45px
-		background-color grey
-
-.blocks_group
-	// transition top .1111111s linear
-	// transition left .1111111s linear
-	position absolute
-	top 290px
-	z-index 2
-	.block
-		width 85px
-		height 23px
-		background-color black
-		float left
-		margin-right 60px
-
-.round_big
-	// transition top .1111111s linear
-	// transition left .1111111s linear
-	position absolute
-	left 70px
-	z-index 0
-	width 550px
-	height 550px
-	border-radius 550px
-	background-color lightgrey
-
-.round_small
-	position absolute
-	z-index 3
-	top 298px
-	left 350px
-	width 50px
-	height 50px
-	border-radius 40px
+	top 630px
 	background-color white
+	.content_item
+		// min-height 200px
+		padding-top 40px
+		.item_title
+			font 24pt/26pt 'Georgia'
+			margin-bottom 40px
+		.item_desc
+			hyphens auto
+			ul
+				list-style-type none
+				padding 0
+				// padding-left 20px
+				li
+					&:before
+						content '—'
+						padding-right 6px
+			.section
+				width 50%
+				position relative
+				box-sizing border-box
+				// background-color #c33825
+				&.left
+					left 0
+					padding-right 20px
+				&.right
+					left 50%
+					padding-left 20px
+			&.active
+				display block
+			img
+				width 100%
+				display block
+				padding-top 40px
+				padding-bottom 40px
 
-.desc_block
-	position absolute
-	width 300px
-	top 440px
-	left 750px
-	width value
-	font 16pt/18pt 'GillSansLight'
-	color rgb(237, 70, 47)
+.books_separator
+	font 16pt/18pt 'Georgia'
+	margin-bottom 20px
+	margin-top 20px
+
+.book_item
+	-webkit-hyphens: none;
+	margin-bottom 10px
+	display block
+	color black
+	text-decoration none
+	transition color .2s ease-in-out
+	&:hover
+		transition color .2s ease-in-out
+		color #c33825
+	.book_pref
+		margin-right 10px
+	.book_name
+		font 14pt/22pt 'Georgia'
+		margin-right 5px
+	.book_post
+		font-style italic
+		display inline-block

@@ -11,19 +11,14 @@ block content_scripts
 	script(type='text/javascript', src='/build/js/write.js' + version)
 
 block content
-	form(action="/write", method="post", enctype="multipart/form-data")
-		.form_block.email_form
-			input.email(type='text', name='email', placeholder='Ваш e-mail')
-			svg(width='790px', height='10px', viewbox='0 0 790 10')
-				line(x1='5', x2='760', y1='5', y2='5', stroke='lightgrey', stroke-width='5', stroke-linecap='round', stroke-dasharray='0.66, 17')
-		.form_block.theme_form
-			input(type='text', name='theme', placeholder='Тема')
-			svg(width='790px', height='10px', viewbox='0 0 790 10')
-				line(x1='5', x2='760', y1='5', y2='5', stroke='lightgrey', stroke-width='5', stroke-linecap='round', stroke-dasharray='0.66, 17')
-		textarea(name='description', placeholder='Что хотите написать?')
-		svg(width='730px', height='4px', viewbox='0 0 730 10')
-			line(x1='-530', x2='2000', y1='5', y2='5', stroke='lightgrey', stroke-width='35', stroke-linecap='square', stroke-dasharray='0.85, 80')
-		input.file(type='file', name='attach')
-		.plane_block
-			.plane_text отправить
-			.plane
+	form.form_block(action="/write", method="post", enctype="multipart/form-data")
+		.form_inner
+			input.form_email(type='text', name='email', placeholder='Ваш e-mail')
+			input.form_theme(type='text', name='theme', placeholder='Тема')
+			.form_description
+				.description_input(placeholder='Что хотите написать?', contenteditable=true)
+				textarea.description_form(name='description')
+		.panel_block: .panel_inner
+			.form_file
+				input.file(type='file', name='attach')
+			.form_submit

@@ -6,7 +6,7 @@ $(document).ready(function() {
 	};
 
 	function scrollLoader(event) {
-		if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+		if ($(window).scrollTop() + $(window).height() + 600 >= $(document).height()) {
 			$(window).off('scroll');
 			$.ajax({url: '/other', method: 'POST', data: {context: context}, async: false }).done(function(data) {
 				if (data !== 'end') {

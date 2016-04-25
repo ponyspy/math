@@ -2,11 +2,11 @@
 /db*
 /maket*
 /subl*
-/views/static/content*
 /locales*
 /public/build/js*
 /public/build/css*
 /public/robots.txt
 /public/sitemap.xml
 .DS_Store
+books.json
 backup.tar

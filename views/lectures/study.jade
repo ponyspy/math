@@ -8,21 +8,24 @@ block paths
 	- var menu_current = 1
 
 block content_style
+	link(rel='stylesheet', type='text/css', href='/build/libs/css/jqmath-0.4.3.css' + version)
 	link(rel='stylesheet', type='text/css', href='/build/css/study.css' + version)
 
 block content_scripts
+	script(type='text/javascript', src='/build/libs/js/jqmath-etc-0.4.3.min.js' + version)
 	script(type='text/javascript', src='/build/js/study.js' + version)
 
 block content
-	.content_title_block
-		each theme in themes
-			a(class= (theme.sym == theme_parent.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
+	//- .content_title_block
+	//- 	each theme in themes
+	//- 		a(class= (theme.sym == theme_parent.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
+	.panel_open
 	.content_body_block
-		.column_left_block
+		.column_left_block: .left_inner
 			each sub_theme, i in theme_parent.sub
 				if (i < theme_parent.numbering.offset || sub_theme.overlay)
 					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + sub_theme._short_id)= sub_theme.title
 				else
-					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + sub_theme._short_id)= (i + theme_parent.numbering.start - theme_parent.numbering.offset) + ' — ' + sub_theme.title
-		.column_main_block
+					a(class= ((theme_sub._id.toString() == sub_theme._id.toString()) && 'current'), href='/lectures/' + theme_parent.sym + '/' + sub_theme._short_id)= (i + theme_parent.numbering.start - theme_parent.numbering.offset) + '. ' + sub_theme.title
+		.column_main_block: .main_inner
 			+contentStudy(study)

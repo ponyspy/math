@@ -1,53 +1,45 @@
+.content_body_block
+	max-width 1280px
+	padding-right 0px
+
 .column_main_block
 	position relative
-	.study_block
-		width 720px
-		.study_title
-			font 18pt/20pt 'Georgia'
-			margin-bottom 10px
-		.study_description
-			margin-bottom 20px
-		.study_description_alt
-			margin-top 20px
-			margin-bottom 20px
-		.study_body
-			position relative
-			&.video
-				.study_counters
-					margin 0
+	.main_inner
+		padding-top 48px!important
+		padding-left 0px!important
+		padding-right 0px!important
+		padding-bottom 31px!important
+		.study_video
+			margin-top 2px
+			max-width 900px
+			.video_inner
+				position relative
+				padding-bottom 56.25% /* 16:9 */
+				padding-top 0px
+				height 0
+				.video
 					position absolute
-					bottom 4px
-					left 750px
-				.study_links
-					position absolute
-					left 750px
-					.link
-						margin-bottom 15px
-						&.pdf
-							width 40px
-							height 48px
-
-.study_counters
-	float right
-	margin-top 11px
-.study_links
-	float left
-	.link
-		cursor pointer
-		display block
-		background-size cover
-		background-repeat no-repeat
-		&.pdf
-			width 30px
-			height 35px
-			background-image url('/images/design/icons/pdf.svg')
-		.tooltip
-			display none
-			color grey
-			background-color lightgrey
-			padding 3px 5px 3px 5px
-		&:hover
-			.tooltip
-				display block
-				position fixed
+					top 0
+					left 0
+					width 100%
+					height 100%
+		.study_block
+			padding-left 40px
+			padding-right 40px
+			.study_title
+				hyphens none
+				font 24pt/26pt 'Georgia'
+				margin-top 30px
+				margin-bottom 30px
+			.study_description
+				margin-top 20px
+			.study_body
+				position relative
+			.study_meta
 				overflow hidden
+				padding-top 15px
+				.study_counters
+					float right
+					margin-top 11px
+				.study_links
+					float left

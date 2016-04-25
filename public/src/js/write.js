@@ -6,12 +6,22 @@ var validate = {
 };
 
 $(document).ready(function() {
-	$('.plane_block').on('click', function() {
-		var email = $('.email').val();
+	$('.form_submit').on('click', function() {
+		var email = $('.form_email').val();
 		if (validate.email(email)) {
+			$('.description_form').val($('.description_input').text());
 			$('form').submit();
 		} else {
-			$('.email_form svg').find('line').css('stroke', 'red');
+			$('.form_email').css('border-bottom', '1px solid red');
 		}
 	});
+
+
+	$('.description_input').focusout(function(){
+		var element = $(this);
+		if (!element.text().replace(' ', '').length) {
+				element.empty();
+		}
+	});
+
 });

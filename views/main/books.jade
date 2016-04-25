@@ -1,0 +1,7 @@
+include ../globals.jade
+
+each book in books
+	if book.separator
+		.books_separator= book.separator
+	else
+		+bookItem(book.prefix, book.title, book.postfix, book._id)

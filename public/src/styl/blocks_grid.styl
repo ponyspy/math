@@ -1,3 +1,61 @@
+.item_themes
+	max-width 1200px
+	overflow hidden
+	height 265px
+	.themes_outer
+		max-width 1200px
+		overflow hidden
+		height 250px
+		padding-bottom 20px
+		-webkit-overflow-scrolling: touch;
+		.themes_inner
+			white-space nowrap
+			vertical-align top
+			display inline-block
+			font-size 0
+			.theme
+				vertical-align top
+				font-size 0
+				display inline-block
+				width 200px
+				height 250px
+				margin-right 70px
+				text-decoration none
+				&.home
+					.theme_numb
+						background none
+						background-position center
+						background-size cover
+						background-repeat no-repeat
+						background-image url('/images/design/icons/home.svg')
+					.theme_title
+						margin-left 40px
+				&.other .theme_numb
+					background-position center
+					background-size cover
+					background-repeat no-repeat
+					background-image url('/images/design/icons/other.svg')
+				.theme_numb
+					background-color grey
+					overflow hidden
+					width 200px
+					height 200px
+					font 264pt/126pt 'Georgia'
+					color black
+					.numb_inner
+						margin-left -22px
+				.theme_title
+					color #939598
+					white-space normal
+					margin-top 10px
+					font 20pt/22pt 'GillSans Light'
+					transition color .2s ease-in-out
+				&:hover .theme_title
+					transition color .2s ease-in-out
+					color #c33825
+				&:last-child
+					margin-right 0px
+
 // -- Title block
 
 .content_title_block
@@ -14,19 +72,30 @@
 		&:hover
 		&.current
 			transition color .2s ease-in-out
-			color #EF3925
+			color #c33825
 
 // -- Boby block
 
+html, body, .content_block, .content_body_block, .column_left_block
+	height 100%
+
 .content_body_block
-	margin-top 42px
-	overflow hidden
-	clear both
+	margin 0 auto
+	max-width 1240px
+	padding-right 40px
+	position relative
 	.column_left_block
-		width 220px
-		min-height 100px
-		margin-top 6px
-		float left
+		width 340px
+		background-color black
+		position fixed
+		overflow hidden
+		-webkit-overflow-scrolling: touch;
+		z-index 9
+		.left_inner
+			padding-top 91px
+			padding-right 40px
+			padding-left 40px
+			padding-bottom 40px
 		a
 		.nav_item
 			cursor pointer
@@ -39,11 +108,15 @@
 			&:hover
 			&.current
 				transition color .2s ease-in-out
-				color #EF3925
+				color #c33825
 	.column_main_block
-		width 720px
-		margin-left 30px
-		float left
+		margin-left 340px
+		.main_inner
+			padding-top 85px
+			padding-left 40px
+			padding-bottom 36px
+			hyphens auto
+
 
 // -- Item block
 
@@ -53,54 +126,49 @@
 	display block
 	overflow hidden
 	&:hover
-		.item_title_block
+		.item_title
 			transition color .2s ease-in-out
-			color #EF3925
+			color #c33825
 	.item_body
 		color black
 		text-decoration none
-		.item_title_block
+		.item_title
 			font 18pt/20pt 'Georgia'
 			margin-bottom 10px
 			overflow hidden
 			transition color .2s ease-in-out
-			.item_num
-				float left
-				&:after
-					content '—'
-					margin 0 10px 0 10px
-			.item_title
-				float left
+			hyphens none
 	.item_links
 		margin-top 10px
 		overflow hidden
 		float left
-		.link
-			float left
-			margin-right 15px
-			cursor pointer
-			display block
-			background-size cover
-			background-repeat no-repeat
-			&.video
-				width 35px
-				height 35px
-				background-image url('/images/design/icons/play.svg')
-			&.pdf
-				width 30px
-				height 35px
-				background-image url('/images/design/icons/pdf.svg')
-			.tooltip
-				display none
-				color grey
-				background-color lightgrey
-				padding 3px 5px 3px 5px
-			&:hover
-				.tooltip
-					display block
-					position fixed
-					overflow hidden
 	.item_counters
-		padding-top 21px
+		padding-top 20px
 		display block
 		float right
+
+.link
+	float left
+	margin-right 15px
+	cursor pointer
+	display block
+	background-size contain
+	background-repeat no-repeat
+	&.video
+		width 35px
+		height 35px
+		background-image url('/images/design/icons/play.svg')
+	&.pdf
+		width 30px
+		height 35px
+		background-image url('/images/design/icons/pdf.svg')
+	.tooltip
+		display none
+		color grey
+		background-color lightgrey
+		padding 3px 5px 3px 5px
+	&:hover
+		.tooltip
+			display block
+			position fixed
+			overflow hidden

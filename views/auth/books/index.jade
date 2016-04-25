@@ -1,0 +1,46 @@
+extends ../../layout
+include ../forms.jade
+
+block title
+	title РЕДАКТИРОВАТЬ КНИГИ
+
+block content_style
+	link(rel='stylesheet', type='text/css', href='/build/css/add.css')
+
+block content_scripts
+	script(type='text/javascript', src='/build/js/add.js')
+
+
+block content
+	.form_block
+		a.back_link(href='/auth') < Назад
+		.title РЕДАКТИРОВАТЬ КНИГИ
+		form(action="", method="post")
+			.form_title Пример:
+			input(type='button', value='показать', onclick="$('pre').slideToggle()")
+			pre(style='display: none;'): code.
+				[
+					{
+						"title": "Опойцев В.И. «Школа Опойцева: Математический анализ»",
+						"_id": 213615
+					},
+					{
+						"title": "В. Босс. Интуиция и математика.",
+						"postfix": "5-е изд.",
+						"_id": 190580
+					},
+					{
+						"separator": "В. БОСС. ЛЕКЦИИ ПО МАТЕМАТИКЕ"
+					},
+					{
+						"prefix": "том 1.",
+						"title": "Анализ.",
+						"postfix": "5-е изд.",
+						"_id": 212979
+					}
+				]
+			.form_title Книги:
+			textarea(name='books', style='width:900px; height:480px;')= books
+			br
+			br
+			input(type='submit', value='отправить')

@@ -1,38 +1,39 @@
 doctype html
 html
 	head
+		include globals
 		block paths
 		include header
 	body
-		.preview_block
-		.main_block
-			.header_block
-				.menu_block
-					a.menu_logo(href='/') Школа Опойцева
-					.menu_navigate
-						a(class= (menu_current == 1 && 'current'), href="/lectures") лекции и уроки
-						a(class= (menu_current == 2 && 'current'), href="/about") об авторе
-						a(class= (menu_current == 3 && 'current'), href="/other") разное
-						a(class= (menu_current == 4 && 'current'), href="/write") написать
-				.social_block
-					a.fb(target='_blank', href='https://www.facebook.com/shkola.opoytseva')
-					a.vk(target='_blank', href='https://vk.com/oshkola')
-			if session.user_id
-				.star_menu
-					a(href="/auth") звездочет
-					.spacer /
-					a(href="/logout") выход
-			.search_block
-				input.search_input(type='text', placeholder='поиск...')
-				.search_results
-					.search_title Что будем искать?
-					.content_body_block
-						.column_left_block.search_nav
-							.nav_item.all.current все
-							.nav_item.lectures лекции и уроки
-							.nav_item.other разное
-							.categorys_block
-						.column_main_block
-			.content_block
-				block content
-		include counters
+		.preview_block: .preview_inner
+			.preview_video
+			.preview_pdf
+		.menu_block
+			.menu_inner
+				.logo Школа Опойцева
+				.menu_search
+					input.search_input(type='text', placeholder='Поиск...')
+				if session.user_id
+					.menu_stargazer
+						a(href='/auth') звездочет
+						a(href='/logout') выход
+				.menu_right
+					a.share(href='#')
+					a.search(href='#')
+				.right_drop
+					a.mail(href='/write')
+					a.fb(href='https://www.facebook.com/shkola.opoytseva', target='_blank')
+					a.vk(href='https://vk.com/oshkola', target='_blank')
+				.menu_themes
+					+themes_scroll(themes)(menu=true)
+		.search_results: .search_inner
+			.search_title Что будем искать?
+			.search_items
+			.search_nav: .nav_inner
+				.nav_item.all.current все
+				.nav_item.lectures лекции и уроки
+				.nav_item.other разное
+				.categorys_block: .categorys_inner
+		.content_block
+			block content
+		//- include counters

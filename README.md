@@ -1,5 +1,5 @@
 # Opoytcev School
-Virtual lessons and Lectures
+Online lessons and lectures
 
 [oschool.ru](http://oschool.ru)
 

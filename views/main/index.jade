@@ -8,20 +8,23 @@ block content_style
 	link(rel='stylesheet', type='text/css', href='/build/css/main.css' + version)
 
 block content_scripts
-	script(type='text/javascript', src='/build/libs/js/plax.js' + version)
+	//- script(type='text/javascript', src='/build/libs/js/plax.js' + version)
 	script(type='text/javascript', src='/build/js/main.js' + version)
 
 block content
-	.rounds_group
-		each round in new Array(7)
-			.round
-	.man
-	.triangle
-		.line
-	.blocks_group
-		each block in new Array(7)
-			.block
-	.round_big
-	.round_small
-	.desc_block
-		| час, затраченный на понимание, экономит год жизни
+	.content_photo
+		.photo_inner
+			.photo
+			.photo_desc
+				| Читает лекции, ведёт уроки и пишет «конспекты» Опойцев Валерий Иванович доктор физико-математических наук профессор МФТИ гл. н. с. ИПУ РАН
+	.content_body
+		.content_item
+			.item_title Лекции и Уроки
+			+themes_scroll(themes)
+		.content_item
+			.item_title О школе
+			.item_desc
+				include about.jade
+			.item_title Книги
+			.item_desc
+				include books.jade

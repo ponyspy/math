@@ -9,21 +9,22 @@ block paths
 //- block content_style
 //- 	link(rel='stylesheet', type='text/css', href='/build/css/studys.css' + version)
 
-//- block content_scripts
-//- 	script(type='text/javascript', src='/build/js/studys.js' + version)
+block content_scripts
+	script(type='text/javascript', src='/build/js/study.js' + version)
 
 block content
-	.content_title_block
-		each theme in themes
-			a(class= (theme.sym == current_theme.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
+	//- .content_title_block
+	//- 	each theme in themes
+	//- 		a(class= (theme.sym == current_theme.sym && 'current'), href='/lectures/' + theme.sym)=theme.title
+	.panel_open
 	.content_body_block
-		.column_left_block
+		.column_left_block: .left_inner
 			each sub_theme, i in current_theme.sub
 				if (i < current_theme.numbering.offset || sub_theme.overlay)
 					a(class= (sub_theme._id.toString() == current_sub._id.toString() && 'current'), href='/lectures/' + current_theme.sym + '/' + sub_theme._short_id)= sub_theme.title
 				else
-					a(class= (sub_theme._id.toString() == current_sub._id.toString() && 'current'), href='/lectures/' + current_theme.sym + '/' + sub_theme._short_id)= (i + current_theme.numbering.start - current_theme.numbering.offset) + ' — ' + sub_theme.title
-		.column_main_block
+					a(class= (sub_theme._id.toString() == current_sub._id.toString() && 'current'), href='/lectures/' + current_theme.sym + '/' + sub_theme._short_id)= (i + current_theme.numbering.start - current_theme.numbering.offset) + '. ' + sub_theme.title
+		.column_main_block: .main_inner
 			each study, i in current_sub.studys
 				- var num
 				if (sub_num < current_theme.numbering.offset)

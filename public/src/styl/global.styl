@@ -1,11 +1,12 @@
-.search_input::-webkit-input-placeholder {color: white;}
-.search_input::-moz-placeholder          {color: white;}/* Firefox 19+ */
-.search_input:-moz-placeholder           {color: white;}/* Firefox 18- */
-.search_input:-ms-input-placeholder      {color: white;}
+.search_input::-webkit-input-placeholder {color: rgb(147, 149, 152);}
+.search_input::-moz-placeholder          {color: rgb(147, 149, 152);}/* Firefox 19+ */
+.search_input:-moz-placeholder           {color: rgb(147, 149, 152);}/* Firefox 18- */
+.search_input:-ms-input-placeholder      {color: rgb(147, 149, 152);}
 
 body
 	margin 0
 	padding 0
+	font 14pt/18pt 'Georgia'
 	&.stop_scroll
 		height 100%
 		overflow hidden
@@ -26,133 +27,154 @@ a
 	transition color .2s ease-in-out
 	&:hover
 		transition color .2s ease-in-out
-		color #EF3925
+		color #c33825
 
-.content_block
-	min-height 400px
-	clear both
-	position relative
-
-.main_block
-	// background url('/images/design/gridinator.png')
-	width 1280px
-	margin 0 auto
-	font 12pt/14pt 'Georgia'
-	padding 0 30px 0 30px
-	box-sizing border-box
-	padding-bottom 60px
-	transition: 0.3s -webkit-filter ease-in
-	&.preview
-		transition: 0.3s -webkit-filter ease-in
-		filter: blur(3px)
-	.star_menu
-		position absolute
-		overflow hidden
-		.spacer
-			color rgb(147, 149, 152)
-			margin-right 5px
-			float left
-		a
-			display block
-			float left
-			color rgb(147, 149, 152)
-			font 14pt/16pt 'GillSans'
-			text-decoration none
-			margin-right 5px
+.menu_block
+	position fixed
+	top 0
+	z-index 99999
+	padding-top 6px
+	padding-bottom 6px
+	background-color rgba(13, 13, 13, 0.8)
+	color white
+	width 100%
+	.menu_inner
+		max-width 1200px
+		padding-left 40px
+		padding-right 40px
+		margin 0 auto
+	.logo
+		font 24pt/26pt 'Georgia'
+		cursor pointer
+		float left
+		transition color .2s ease-in-out
+		&:hover
 			transition color .2s ease-in-out
+			color #c33825
+		&.hide
+			display none
+	.menu_stargazer
+		float left
+		margin-top 10px
+		margin-left 10px
+		a
+			margin-left 10px
+			font 14pt/16pt 'GillSans'
+			color white
+			&:last-child:after
+				content ''
+			&:after
+				content '/'
+				margin-left 10px
+				color white
 			&:hover
 				transition color .2s ease-in-out
-				color #EF3925
-
-.header_block
-	overflow hidden
-	padding-top 10px
-	.menu_block
-		overflow hidden
-		width 970px
+				color #c33825
+	.menu_search
+		display block
 		float left
-		.menu_logo
-			font 43pt/46pt 'Georgia'
-			text-decoration none
-			color black
-			float left
-		.menu_navigate
-			margin-top 34px
-			float right
-			overflow hidden
-			a
-				display block
+		display none
+		&.active
+			display block
+		.search_input
+			font 24pt/26pt 'Georgia'
+			margin 0
+			padding 0
+			border none
+			outline none
+			color white
+			background transparent
+			min-width 100px
+			max-width 210px
+	.menu_right
+	.right_drop
+		float right
+		margin-top 6px
+		a
+			margin-left 10px
+			width 26px
+			height 26px
+			display inline-block
+			background-repeat no-repeat
+			background-position 50% 50%
+			background-size 65%
+			&.search
+				background-image url('/images/design/icons/search.svg')
+			&.share
+				background-image url('/images/design/social/share.svg')
+				display none
+				background-size 60%
+			&.mail
+				background-image url('/images/design/social/email.svg')
+			&.vk
+				background-image url('/images/design/social/vk.svg')
+				background-size 50%
+			&.fb
+				background-image url('/images/design/social/fb.svg')
+				background-size 55%
+	.menu_themes
+		padding-top 5px
+		clear both
+		display none
+		padding-bottom 5px
+		&.active
+			display block
+
+.search_results
+	display none
+	position absolute
+	width 100%
+	height 100%
+	overflow scroll
+	z-index 99
+	background-color rgba(13, 13, 13, 0.9)
+	-webkit-overflow-scrolling touch
+	.search_inner
+		padding-top 86px
+		padding-left 40px
+		padding-right 40px
+		padding-bottom 80px
+		max-width 1200px
+		margin 0 auto
+	.search_items
+		.search_item
+			.item_title
+			.item_description
+				color white!important
+			&:hover .item_title
+				color #c33825!important
+	.search_nav
+		display none
+		width 100%
+		padding-top 15px
+		padding-bottom 15px
+		background-color rgba(13, 13, 13, 0.9)
+		color white
+		overflow hidden
+		position fixed
+		left 0
+		bottom 0
+		.nav_inner
+			max-width 1200px
+			margin 0 auto
+			padding-left 40px
+			padding-right 40px
+			.categorys_block
 				float left
-				margin-left 25px
-				text-decoration none
+			.nav_item
+				margin-right 25px
+				float left
+				cursor pointer
 				color rgb(147, 149, 152)
-				font 16pt/18pt 'GillSans'
-				position relative
+				font 14pt/16pt 'GillSans'
 				transition color .2s ease-in-out
-				&:after
-					content ''
-					width 82px
-					height 1px
-					top 15px
-					right -52px
-					background-color rgb(147, 149, 152)
-					position absolute
-					transform rotate(-70deg)
-					margin-left 10px
-				&:last-child:after
-					display none
 				&:hover
 				&.current
 					transition color .2s ease-in-out
-					color #EF3925
-	.social_block
-		margin-top 29px
-		margin-left 30px
-		float left
-		a
-			width 25px
-			height 25px
-			margin-right 15px
-			display block
-			float left
-			text-decoration none
-			background-position center
-			background-size cover
-			&.vk
-				background-image url('/images/design/icons/v.svg')
-			&.fb
-				background-image url('/images/design/icons/f.svg')
-
-.search_block
-	.search_input
-		background-color lightgrey
-		color #EF3925
-		margin-top 26px
-		margin-bottom 23px
-		padding 3px 3px 3px 7px
-		float right
-		margin-right 250px
-		display block
-		width 210px
-		clear both
-		outline none
-		font 14pt/16pt 'GillSans'
-		transition .3s width
-		border none
-		&.focus
-			width 355px
-	.search_results
-		clear both
-		display none
-		.search_title
-			font 22pt/24pt 'GillSansLight'
-			color #939598
-		.search_nav
-			display none
-		.categorys_block
-			border-top 2px solid rgb(147, 149, 152)
-			padding-top 15px
-			display none
+					color #c33825
+	.search_title
+		font-size 18pt
+		color white
 
 .preview_block
 	width 100%
@@ -161,10 +183,51 @@ a
 	background-color rgba(0, 0, 0, 0.9);
 	z-index 999
 	display none
-	.preview_video
+	.preview_inner
 		top 0
 		left 0
 		right 0
 		bottom 0
 		margin auto
-		position fixed
+		position absolute
+		width 60%
+		height 60%
+		&:hover .preview_pdf
+			opacity 1
+		.preview_pdf
+			overflow hidden
+			opacity 0
+			padding-top 10px
+			&:hover
+				opacity 1
+		.preview_video
+			position relative
+			padding-bottom 56.25% /* 16:9 */
+			padding-top 0px
+			height 0
+			.video
+				position absolute
+				top 0
+				left 0
+				width 100%
+				height 100%
+
+.panel_open
+	width 60px
+	height 60px
+	border-radius 120px
+	background-color #c33825
+	position fixed
+	bottom 40px
+	right 20px
+	z-index 999999999
+	display none
+	background-image url('/images/design/icons/menu.svg')
+	background-position center
+	background-size 80%
+	background-repeat no-repeat
+	transition .3s linear
+	&.active
+		background-color black
+		transition .3s linear
+		transform rotate(90deg)
