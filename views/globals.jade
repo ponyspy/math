@@ -64,9 +64,7 @@ mixin contentStudy(study)
 		if study.video && study.files.length > 0
 			+metaStudy()
 		h1.study_title= study.title
-		if (study.video && study.description_alt)
-			.study_description!= study.description_alt
-		else
-			.study_description!= study.description
+		.study_description!= study.description
+		.study_description!= study.description_alt
 		if !study.video || study.files.length == 0
 			+metaStudy()
