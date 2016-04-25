@@ -71,6 +71,18 @@ $(document).ready(function() {
               //showstatic: true,    // wanted on the toolbar
               //showselection: false    // wanted on selection
           },
+          subscript: {
+              title: 'Subscript',
+              image: '\uf12c', // <img src="path/to/image.png" width="16" height="16" alt="" />
+              //showstatic: true,    // wanted on the toolbar
+              // showselection: true    // wanted on selection
+          },
+          superscript: {
+              title: 'Superscript',
+              image: '\uf12b', // <img src="path/to/image.png" width="16" height="16" alt="" />
+              //showstatic: true,    // wanted on the toolbar
+              // showselection: true    // wanted on selection
+          },
 					removeformat: {
 							title: 'Remove format',
 							image: '\uf12d'
