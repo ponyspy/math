@@ -31,4 +31,15 @@ $(document).ready(function() {
 		}
 	});
 
+	$('.file').on('change', function() {
+		$('.form_file').addClass('change');
+		$('.form_file').on('click', function(e) {
+			var $file = $('.file');
+			$file.replaceWith($file.val('').clone(true));
+			$('.form_file').removeClass('change');
+			$(this).off();
+			return false;
+		});
+	});
+
 });
