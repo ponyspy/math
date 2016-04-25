@@ -24,4 +24,11 @@ $(document).ready(function() {
 		}
 	});
 
+	$(window).on('load', function() {
+		if (window.location.hash == '#send') {
+			var $result = $('<div/>', {'class': 'form_result', 'text': 'Письмо отправлено'})
+			$('.content_block').empty().append($result);
+		}
+	});
+
 });

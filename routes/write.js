@@ -39,7 +39,7 @@ exports.mail = function(req, res) {
 	transporter.sendMail(opts, function(err, info) {
 		if (!req.file) return res.redirect('/write');
 		del([req.file.path], function() {
-			res.redirect('/write');
+			res.redirect('/write#send');
 		});
 	});
 }
