@@ -32,7 +32,7 @@ exports.get_items = function(req, res) {
 
 	Query.sort('-date').skip(++post.context.skip).limit(++post.context.limit).exec(function(err, studys) {
 		if (studys && studys.length > 0) {
-			var opts = {studys: studys, host: req.hostname, compileDebug: false, debug: false, cache: true, pretty: false};
+			var opts = {studys: studys, session: req.session, host: req.hostname, compileDebug: false, debug: false, cache: true, pretty: false};
 			res.send(jade.renderFile(__appdir + '/views/other/get_studys.jade', opts));
 		} else {
 			res.send('end');
