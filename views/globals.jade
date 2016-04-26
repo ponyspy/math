@@ -39,7 +39,7 @@ mixin contentItem(num, study)
 					if file.desc != ''
 						.tooltip= file.desc
 		.item_counters
-			.social-likes.social-likes_horizontal(data-counters='no', data-url='http://' + host + attributes.href, data-title=study.title)
+			.social-likes.social-likes_horizontal(data-counters= (session.user_id ? 'yes' : 'no'), data-url='http://' + host + attributes.href, data-title=study.title)
 				.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
 				.vkontakte(title='Поделиться ссылкой во Вконтакте') ВКонтакте
 
@@ -52,7 +52,7 @@ mixin metaStudy()
 					if file.desc != ''
 						.tooltip= file.desc
 		.study_counters
-			.social-likes.social-likes_horizontal(data-counters='no', data-title=study.title)
+			.social-likes.social-likes_horizontal(data-counters= (session.user_id ? 'yes' : 'no'), data-title=study.title)
 				.facebook(title='Поделиться ссылкой на Фейсбуке') Facebook
 				.vkontakte(title='Поделиться ссылкой во Вконтакте') Вконтакте
 
