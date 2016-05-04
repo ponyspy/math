@@ -4,6 +4,11 @@
 }
 
 @font-face {
+	font-family: 'Georgia Bold';
+	src: url('/fonts/Georgia_Bold.ttf');
+}
+
+@font-face {
 	font-family: 'GillSans';
 	src: url('/fonts/GillSansC.otf');
 }
