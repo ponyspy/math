@@ -19,7 +19,7 @@ var __appdir = path.dirname(require.main.filename);
 
 
 exports.list = function(req, res) {
-	Study.where('type').equals('other').exec(function(err, studys) {
+	Study.where('type').equals('other').sort('-date').exec(function(err, studys) {
 		res.render('auth/other/', {studys: studys});
 	});
 }
