@@ -17,6 +17,17 @@ $(document).ready(function() {
 		return true;
 	});
 
+	$('.lecture').on('click', function() {
+		$('.editor').find('img').each(function(index, el) {
+			var $this = $(this);
+
+			$.post('/image_upload', { base64: $this.attr('src') }).done(function(data) {
+				$this.attr('src', 'cool.png');
+				alert(data);
+			});
+		});
+	});
+
 	function snakeForward () {
 		var $snake = $(this).parent('.snake_outer').children('.snake');
 		$snake.first().clone()

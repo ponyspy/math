@@ -10,11 +10,22 @@ $(document).ready(function() {
 		$(element).wysiwyg({
 				classes: 'editor',
 				toolbar: 'top-selection',
+        maxImageSize: [600, 300],
+        forceImageUpload: false,
+        onImageUpload: function( insert_image ) {
+          $(insert_image).appendTo('body')
+        },
 				buttons: {
 				insertlink: {
 						title: 'Insert link',
 						image: '\uf08e',
 				},
+        insertimage: index == 0 ? false : {
+            title: 'Insert image',
+            image: '\uf030', // <img src="path/to/image.png" width="16" height="16" alt="" />
+            //showstatic: true,    // wanted on the toolbar
+            // showselection: index == 2 ? true : false    // wanted on selection
+        },
 				 bold: {
 							title: 'Bold (Ctrl+B)',
 							image: '\uf032',
@@ -93,6 +104,7 @@ $(document).ready(function() {
 						image: '\uf00c'
 				},
 				// placeholder: 'Type your text here...',
+        selectImage: 'Click or drop image',
 				placeholderUrl: 'www.example.com',
 		});
 	});

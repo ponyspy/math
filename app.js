@@ -1,3 +1,6 @@
+var fs = require('fs');
+var gm = require('gm').subClass({ imageMagick: true });
+
 var mongoose = require('mongoose');
 		mongoose.connect('localhost', 'main');
 
@@ -24,8 +27,8 @@ if (process.env.NODE_ENV != 'production') {
 var MongoStore = require('connect-mongo')(session);
 var upload = multer({ dest: __dirname + '/uploads/' });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '30mb' }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(methodOverride());
 app.use(cookieParser());
 
@@ -275,6 +278,21 @@ app.route('/auth/themes/:id/sub/edit/:sub_id/studys/edit/:study_id')
 app.route('/auth/lecture/remove')
 	 .post(checkAuth, admin_lectures_studys.remove);
 
+
+// === Admin lectures studys images Route
+app.route('/image_upload')
+	 .post(function(req ,res) {
+	 	var base64 = req.body.base64.replace(/^data:image\/(png|gif|svg\+xml|jpeg);base64,/, "");
+	 	var buffer = new Buffer(base64, 'base64');
+
+	 	// gm(buffer).write(__dirname + '/out.png', function() {
+	 	// 	res.send('cool');
+	 	// });
+
+	 	fs.writeFile(__dirname + '/out.svg', buffer, 'binary', function(err) {
+	 		res.send('cool');
+	 	});
+	 });
 
 
 // ------------------------
