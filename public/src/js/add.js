@@ -17,15 +17,16 @@ $(document).ready(function() {
 		return true;
 	});
 
-	$('.lecture').on('click', function() {
+	$('.form_submit').on('click', function() {
 		$('.editor').find('img').each(function(index, el) {
 			var $this = $(this);
 
 			$.post('/image_upload', { base64: $this.attr('src') }).done(function(data) {
-				$this.attr('src', 'cool.png');
-				alert(data);
+				$this.attr('src', data);
 			});
 		});
+
+		// $('form').submit();
 	});
 
 	function snakeForward () {

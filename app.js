@@ -1,6 +1,3 @@
-var fs = require('fs');
-var gm = require('gm').subClass({ imageMagick: true });
-
 var mongoose = require('mongoose');
 		mongoose.connect('localhost', 'main');
 
@@ -280,19 +277,7 @@ app.route('/auth/lecture/remove')
 
 
 // === Admin lectures studys images Route
-app.route('/image_upload')
-	 .post(function(req ,res) {
-	 	var base64 = req.body.base64.replace(/^data:image\/(png|gif|svg\+xml|jpeg);base64,/, "");
-	 	var buffer = new Buffer(base64, 'base64');
-
-	 	// gm(buffer).write(__dirname + '/out.png', function() {
-	 	// 	res.send('cool');
-	 	// });
-
-	 	fs.writeFile(__dirname + '/out.svg', buffer, 'binary', function(err) {
-	 		res.send('cool');
-	 	});
-	 });
+app.route('/image_upload').post(options.images);
 
 
 // ------------------------

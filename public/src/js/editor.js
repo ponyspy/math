@@ -11,16 +11,16 @@ $(document).ready(function() {
 				classes: 'editor',
 				toolbar: 'top-selection',
         maxImageSize: [600, 300],
-        forceImageUpload: false,
-        onImageUpload: function( insert_image ) {
-          $(insert_image).appendTo('body')
-        },
+        // forceImageUpload: false,
+        // onImageUpload: function( insert_image ) {
+
+        // },
 				buttons: {
 				insertlink: {
 						title: 'Insert link',
 						image: '\uf08e',
 				},
-        insertimage: index == 0 ? false : {
+        insertimage: index === 0 ? false : {
             title: 'Insert image',
             image: '\uf030', // <img src="path/to/image.png" width="16" height="16" alt="" />
             //showstatic: true,    // wanted on the toolbar
