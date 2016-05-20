@@ -10,22 +10,22 @@ $(document).ready(function() {
 		$(element).wysiwyg({
 				classes: 'editor',
 				toolbar: 'top-selection',
-        maxImageSize: [600, 300],
-        // forceImageUpload: false,
-        // onImageUpload: function( insert_image ) {
+				maxImageSize: [600, 300],
+				// forceImageUpload: false,
+				// onImageUpload: function( insert_image ) {
 
-        // },
+				// },
 				buttons: {
 				insertlink: {
 						title: 'Insert link',
 						image: '\uf08e',
 				},
-        insertimage: index === 0 ? false : {
-            title: 'Insert image',
-            image: '\uf030', // <img src="path/to/image.png" width="16" height="16" alt="" />
-            //showstatic: true,    // wanted on the toolbar
-            // showselection: index == 2 ? true : false    // wanted on selection
-        },
+				insertimage: index === 0 ? false : {
+						title: 'Insert image',
+						image: '\uf030', // <img src="path/to/image.png" width="16" height="16" alt="" />
+						//showstatic: true,    // wanted on the toolbar
+						// showselection: index == 2 ? true : false    // wanted on selection
+				},
 				 bold: {
 							title: 'Bold (Ctrl+B)',
 							image: '\uf032',
@@ -41,59 +41,77 @@ $(document).ready(function() {
 							image: '\uf0cd',
 							hotkey: 'u'
 					},
-          orderedList: {
-              title: 'Ordered list',
-              image: '\uf0cb', // <img src="path/to/image.png" width="16" height="16" alt="" />
-              //showstatic: true,    // wanted on the toolbar
-              // showselection: false    // wanted on selection
-          },
-          unorderedList: {
-              title: 'Unordered list',
-              image: '\uf0ca', // <img src="path/to/image.png" width="16" height="16" alt="" />
-              //showstatic: true,    // wanted on the toolbar
-              // showselection: false    // wanted on selection
-          },
-          header: {
-              title: 'Header',
-              image: '\uf1dc', // <img src="path/to/image.png" width="16" height="16" alt="" />
-              popup: function( $popup, $button ) {
-                      var list_headers = {
-                              // Name : Font
-                              'Заголовок 2' : '<h2>',
-                              'Заголовок 3' : '<h3>',
-                          };
-                      var $list = $('<div/>').addClass('wysiwyg-plugin-list')
-                                             .attr('unselectable','on');
-                      $.each( list_headers, function( name, format ) {
-                          var $link = $('<a/>').attr('href','#')
-                                               .css( 'font-family', format )
-                                               .html( name )
-                                               .click(function(event) {
-                                                  $(element).wysiwyg('shell').format(format).closePopup();
-                                                  // prevent link-href-#
-                                                  event.stopPropagation();
-                                                  event.preventDefault();
-                                                  return false;
-                                              });
-                          $list.append( $link );
-                      });
-                      $popup.append( $list );
-                     }
-              //showstatic: true,    // wanted on the toolbar
-              //showselection: false    // wanted on selection
-          },
-          subscript: {
-              title: 'Subscript',
-              image: '\uf12c', // <img src="path/to/image.png" width="16" height="16" alt="" />
-              //showstatic: true,    // wanted on the toolbar
-              // showselection: true    // wanted on selection
-          },
-          superscript: {
-              title: 'Superscript',
-              image: '\uf12b', // <img src="path/to/image.png" width="16" height="16" alt="" />
-              //showstatic: true,    // wanted on the toolbar
-              // showselection: true    // wanted on selection
-          },
+					alignleft: {
+							title: 'Left',
+							image: '\uf036', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							//showstatic: true,    // wanted on the toolbar
+							// showselection: false    // wanted on selection
+					},
+					aligncenter: {
+							title: 'Center',
+							image: '\uf037', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							//showstatic: true,    // wanted on the toolbar
+							// showselection: false    // wanted on selection
+					},
+					alignright: {
+							title: 'Right',
+							image: '\uf038', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							//showstatic: true,    // wanted on the toolbar
+							// showselection: false    // wanted on selection
+					},
+					orderedList: {
+							title: 'Ordered list',
+							image: '\uf0cb', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							//showstatic: true,    // wanted on the toolbar
+							// showselection: false    // wanted on selection
+					},
+					unorderedList: {
+							title: 'Unordered list',
+							image: '\uf0ca', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							//showstatic: true,    // wanted on the toolbar
+							// showselection: false    // wanted on selection
+					},
+					header: {
+							title: 'Header',
+							image: '\uf1dc', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							popup: function( $popup, $button ) {
+											var list_headers = {
+															// Name : Font
+															'Заголовок 2' : '<h2>',
+															'Заголовок 3' : '<h3>',
+													};
+											var $list = $('<div/>').addClass('wysiwyg-plugin-list')
+																						 .attr('unselectable','on');
+											$.each( list_headers, function( name, format ) {
+													var $link = $('<a/>').attr('href','#')
+																							 .css( 'font-family', format )
+																							 .html( name )
+																							 .click(function(event) {
+																									$(element).wysiwyg('shell').format(format).closePopup();
+																									// prevent link-href-#
+																									event.stopPropagation();
+																									event.preventDefault();
+																									return false;
+																							});
+													$list.append( $link );
+											});
+											$popup.append( $list );
+										 }
+							//showstatic: true,    // wanted on the toolbar
+							//showselection: false    // wanted on selection
+					},
+					subscript: {
+							title: 'Subscript',
+							image: '\uf12c', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							//showstatic: true,    // wanted on the toolbar
+							// showselection: true    // wanted on selection
+					},
+					superscript: {
+							title: 'Superscript',
+							image: '\uf12b', // <img src="path/to/image.png" width="16" height="16" alt="" />
+							//showstatic: true,    // wanted on the toolbar
+							// showselection: true    // wanted on selection
+					},
 					removeformat: {
 							title: 'Remove format',
 							image: '\uf12d'
@@ -104,7 +122,7 @@ $(document).ready(function() {
 						image: '\uf00c'
 				},
 				// placeholder: 'Type your text here...',
-        selectImage: 'Click or drop image',
+				selectImage: 'Click or drop image',
 				placeholderUrl: 'www.example.com',
 		});
 	});
