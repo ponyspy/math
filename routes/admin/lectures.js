@@ -9,6 +9,7 @@ var async = require('async');
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
+var jsdom = require('jsdom');
 
 var __appdir = path.dirname(require.main.filename);
 
@@ -67,13 +68,36 @@ exports.add_form = function(req, res) {
 	study._short_id = shortid.generate();
 	study.title = post.title;
 	study.description = post.description;
-	study.description_alt = post.description_alt;
+	// study.description_alt = post.description_alt;
 	study.categorys = post.categorys == '' ? [] : post.categorys;
 	study.status = post.status;
 	study.video = post.video;
 
 
 	async.series({
+		imagesUpload: function(callback) {
+			var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
+
+			jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
+				var $ = window.$;
+
+				$('img').each(function(index, el) {
+					var image_id = $(this).attr('src');
+					var file = files.images.filter(function(image) { return image.originalname == image_id })[0];
+ 					var name = file.originalname + '.' + mime.extension(file.mimetype);
+
+					$(this).attr('src', '/preview/' + name);
+
+				 	fs.renameSync(file.path, __appdir + '/public/preview/' + name);
+				});
+
+				var html = $('body').html();
+
+				study.description_alt = html;
+
+				callback(null, 'images');
+			});
+		},
 		filesUpload: function(callback) {
 			if (files.attach && files.attach.length > 0) {
 				async.forEachOfSeries(files.attach, function(file, i, callback) {
@@ -106,7 +130,8 @@ exports.add_form = function(req, res) {
 				}
 
 				theme.save(function(err, theme) {
-					res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
+					res.send('cool');
+					// res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
 				});
 			});
 		});

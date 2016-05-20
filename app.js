@@ -24,12 +24,12 @@ if (process.env.NODE_ENV != 'production') {
 var MongoStore = require('connect-mongo')(session);
 var upload = multer({ dest: __dirname + '/uploads/' });
 
-app.use(bodyParser.json({ limit: '30mb' }));
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 app.use(cookieParser());
 
-var cpUpload = upload.fields([{ name: 'image', maxCount: 1 }, { name: 'attach', maxCount: 8 }]);
+var cpUpload = upload.fields([{ name: 'images', maxCount: 8 }, { name: 'attach', maxCount: 8 }]);
 
 app.use(session({
 	key: 'session',
@@ -275,9 +275,6 @@ app.route('/auth/themes/:id/sub/edit/:sub_id/studys/edit/:study_id')
 app.route('/auth/lecture/remove')
 	 .post(checkAuth, admin_lectures_studys.remove);
 
-
-// === Admin lectures studys images Route
-app.route('/image_upload').post(options.images);
 
 
 // ------------------------
