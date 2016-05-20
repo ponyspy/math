@@ -81,12 +81,15 @@ exports.add_form = function(req, res) {
 			jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
 				var $ = window.$;
 
-				$('img').each(function(index, el) {
-					var image_id = $(this).attr('src');
-					var file = files.images.filter(function(image) { return image.originalname == image_id })[0];
+				$('.image_upload').each(function(index, el) {
+					var $this = $(this);
+
+					$this.removeClass('image_upload');
+					var image_id = $this.attr('src');
+					var file = files.images.filter(function(image) { return image.originalname == image_id; })[0];
  					var name = file.originalname + '.' + mime.extension(file.mimetype);
 
-					$(this).attr('src', '/preview/' + name);
+					$this.attr('src', '/preview/' + name);
 
 				 	fs.renameSync(file.path, __appdir + '/public/preview/' + name);
 				});

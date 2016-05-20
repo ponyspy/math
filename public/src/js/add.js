@@ -32,28 +32,34 @@ $(document).ready(function() {
 
 	$('.form_submit').on('click', function() {
 		$(this).off();
-		var $images = $('.editor').find('img');
+
 		var video = $('input.video').val();
 		var images = [];
 
 		$('input.video').val(parseYouTubeId(video));
 
-		$images.each(function(index, el) {
+		$('.editor').find('img').each(function(index, el) {
 			var $this = $(this);
+
+			var image_data = $this.attr('src');
 			var image_id = Date.now().toString();
+
+			if (!/base64/.test(image_data)) {
+				return true;
+			}
 
 			images.push({
 				id: image_id,
-				buffer: $this.attr('src')
+				buffer: image_data
 			});
 
-			$this.attr('src', image_id).removeAttr('title').removeAttr('alt');
+			$this.attr('src', image_id).removeAttr('title').removeAttr('alt').addClass('image_upload');
 		});
 
 		setTimeout(function() {
 			var form_data = new FormData($('form')[0]);
 
-			$images.each(function(index, el) {
+			$('.editor').find('.image_upload').each(function(index, el) {
 				var image_id = $(this).attr('src');
 
 				var image = images.filter(function(image) { return image.id == image_id; })[0];
@@ -73,7 +79,7 @@ $(document).ready(function() {
 					location.reload();
 				}
 			});
-		}, 1000)
+		}, 1000);
 
 	});
 
