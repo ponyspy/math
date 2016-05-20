@@ -68,7 +68,6 @@ exports.add_form = function(req, res) {
 	study._short_id = shortid.generate();
 	study.title = post.title;
 	study.description = post.description;
-	// study.description_alt = post.description_alt;
 	study.categorys = post.categorys == '' ? [] : post.categorys;
 	study.status = post.status;
 	study.video = post.video;
@@ -76,30 +75,35 @@ exports.add_form = function(req, res) {
 
 	async.series({
 		imagesUpload: function(callback) {
-			var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
+			if (files.images && files.images.length > 0) {
+				var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
 
-			jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
-				var $ = window.$;
+				jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
+					var $ = window.$;
 
-				$('.image_upload').each(function(index, el) {
-					var $this = $(this);
+					$('.image_upload').each(function(index, el) {
+						var $this = $(this);
 
-					$this.removeClass('image_upload');
-					var image_id = $this.attr('src');
-					var file = files.images.filter(function(image) { return image.originalname == image_id; })[0];
- 					var name = file.originalname + '.' + mime.extension(file.mimetype);
+						$this.removeClass('image_upload');
+						var image_id = $this.attr('src');
+						var file = files.images.filter(function(image) { return image.originalname == image_id; })[0];
+	 					var file_name = file.originalname + '.' + mime.extension(file.mimetype);
+	 					var dir_name = '/images/studys/' + study._id.toString();
 
-					$this.attr('src', '/preview/' + name);
+						$this.attr('src', dir_name + '/' + file_name);
 
-				 	fs.renameSync(file.path, __appdir + '/public/preview/' + name);
+						mkdirp(__appdir + '/public' + dir_name, function() {
+							fs.renameSync(file.path, __appdir + '/public/' + dir_name + '/' + file_name);
+						});
+					});
+
+					post.description_alt = $('body').html();
+
+					callback(null, 'images');
 				});
-
-				var html = $('body').html();
-
-				study.description_alt = html;
-
-				callback(null, 'images');
-			});
+			} else {
+				callback(null, false);
+			}
 		},
 		filesUpload: function(callback) {
 			if (files.attach && files.attach.length > 0) {
@@ -124,6 +128,7 @@ exports.add_form = function(req, res) {
 			}
 		}
 	}, function(results) {
+		study.description_alt = post.description_alt;
 		study.save(function(err, study) {
 			Theme.findById(req.params.sub_id).exec(function(err, theme) {
 				if (theme.studys.length == +post.order) {
@@ -133,7 +138,7 @@ exports.add_form = function(req, res) {
 				}
 
 				theme.save(function(err, theme) {
-					res.send('cool');
+					res.send('ok');
 					// res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
 				});
 			});
