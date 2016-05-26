@@ -41,7 +41,8 @@ var imagesUpload = function(study, post, files, callback) {
 			$('.image_upload').each(function(index, el) {
 				var $this = $(this);
 
-				$this.removeClass('image_upload');
+				$this.removeAttr('class').removeAttr('height').css('max-width', $this.attr('width') + 'px').attr('width', '100%');
+
 				var image_id = $this.attr('src');
 				var file = files.images.filter(function(image) { return image.originalname == image_id; })[0];
 				var file_name = file.originalname + '.' + mime.extension(file.mimetype);
