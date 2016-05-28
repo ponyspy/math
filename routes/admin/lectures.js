@@ -2,16 +2,13 @@ var Study = require('../../models/main.js').Study;
 var Theme = require('../../models/main.js').Theme;
 var Category = require('../../models/main.js').Category;
 
-var shortid = require('shortid');
-var mkdirp = require('mkdirp');
-var del = require('del');
-var async = require('async');
-var fs = require('fs');
-var path = require('path');
-var mime = require('mime');
-var jsdom = require('jsdom');
+var imagesUpload = require('./__params.js').imagesUpload;
+var filesUpload = require('./__params.js').filesUpload;
+var filesDelete = require('./__params.js').filesDelete;
 
-var __appdir = path.dirname(require.main.filename);
+var shortid = require('shortid');
+var async = require('async');
+var del = require('del');
 
 
 // ------------------------
@@ -30,80 +27,6 @@ var move = function (array, from, to) {
 	}
 	array[to] = target;
 }
-
-var imagesUpload = function(study, post, files, callback) {
-	if (files.images && files.images.length > 0) {
-		var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
-
-		jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
-			var $ = window.$;
-
-			$('.image_upload').each(function(index, el) {
-				var $this = $(this);
-
-				$this.removeAttr('class').removeAttr('height').css('max-width', $this.attr('width') + 'px').attr('width', '100%');
-
-				var image_id = $this.attr('src');
-				var file = files.images.filter(function(image) { return image.originalname == image_id; })[0];
-				var file_name = file.originalname + '.' + mime.extension(file.mimetype);
-				var dir_name = '/images/studys/' + study._id.toString();
-
-				$this.attr('src', dir_name + '/' + file_name);
-
-				mkdirp(__appdir + '/public' + dir_name, function() {
-					fs.renameSync(file.path, __appdir + '/public/' + dir_name + '/' + file_name);
-				});
-			});
-
-			post.description_alt = $('body').html();
-
-			callback(null, 'images');
-		});
-	} else {
-		callback(null, false);
-	}
-};
-
-var filesUpload = function(study, post, files, callback) {
-	if (files.attach && files.attach.length > 0) {
-		async.forEachOfSeries(files.attach, function(file, i, callback) {
-			var dir_name = '/files/studys/' + study._id.toString();
-			var file_name = Date.now() + '.' + mime.extension(file.mimetype);
-
-			mkdirp(__appdir + '/public' + dir_name, function() {
-				fs.rename(file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
-					study.files.push({
-						path: dir_name + '/' + file_name,
-						desc: post.attach_desc[i] || ''
-					});
-					callback();
-				});
-			});
-		}, function() {
-			callback(null, 'files');
-		});
-	} else {
-		callback(null, false);
-	}
-};
-
-var filesDelete = function(study, post, files, callback) {
-	if (post.files_delete && post.files_delete.length > 0) {
-		async.forEachSeries(post.files_delete, function(path, callback) {
-			del(__appdir + '/public' + path, function() {
-				var num = study.files.map(function(e) { return e.path; }).indexOf(path);
-				study.files.splice(num, 1);
-				study.markModified('files');
-				callback();
-			});
-		}, function() {
-			callback(null, 'delete');
-		});
-	} else {
-		callback(null, false);
-	}
-};
-
 
 
 // ------------------------
@@ -197,7 +120,6 @@ exports.edit_form = function(req, res) {
 
 		study.title = post.title;
 		study.description = post.description;
-		study.description_alt = post.description_alt;
 		study.categorys = post.categorys == '' ? [] : post.categorys;
 		study.status = post.status;
 		study.video = post.video;

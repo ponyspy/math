@@ -10,11 +10,7 @@ $(document).ready(function() {
 		$(element).wysiwyg({
 				classes: 'editor',
 				toolbar: 'top-selection',
-				maxImageSize: [600, 300],
-				// forceImageUpload: false,
-				// onImageUpload: function( insert_image ) {
-
-				// },
+				maxImageSize: [600, 400],
 				buttons: {
 				insertlink: {
 						title: 'Insert link',
