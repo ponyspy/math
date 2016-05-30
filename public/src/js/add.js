@@ -29,7 +29,6 @@ var dataURItoBlob = function(dataURI) {
 };
 
 $(document).ready(function() {
-
 	$('.form_submit').on('click', function() {
 		$(this).off();
 

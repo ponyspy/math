@@ -1,14 +1,14 @@
 var Study = require('../../models/main.js').Study;
 var Category = require('../../models/main.js').Category;
 
-var shortid = require('shortid');
-var mkdirp = require('mkdirp');
-var del = require('del');
-var gm = require('gm').subClass({ imageMagick: true });
-var async = require('async');
-var fs = require('fs');
+var imagesUpload = require('./__params.js').imagesUpload;
+var filesUpload = require('./__params.js').filesUpload;
+var filesDelete = require('./__params.js').filesDelete;
+
 var path = require('path');
-var mime = require('mime');
+var shortid = require('shortid');
+var async = require('async');
+var del = require('del');
 
 var __appdir = path.dirname(require.main.filename);
 
@@ -50,47 +50,13 @@ exports.add_form = function(req, res) {
 	study.status = post.status;
 	study.video = post.video;
 
-	async.series({
-		imageUpload: function(callback) {
-			if (files.image && files.image.length > 0) {
-				var dir_name = '/images/studys/' + study._id.toString();
-				var file_name = Date.now() + '.' + mime.extension(files.image[0].mimetype);
-
-				mkdirp(__appdir + '/public' + dir_name, function() {
-					gm(files.image[0].path).resize(720, false).quality(100).write(__appdir + '/public' + dir_name + '/' + file_name, function() {
-						study.image = dir_name + '/' + file_name;
-						callback(null, 'image');
-					});
-				});
-			} else {
-				callback(null, false);
-			}
-		},
-		filesUpload: function(callback) {
-			if (files.attach && files.attach.length > 0) {
-				async.forEachOfSeries(files.attach, function(file, i, callback) {
-					var dir_name = '/files/studys/' + study._id.toString();
-					var file_name = Date.now() + '.' + mime.extension(file.mimetype);
-
-					mkdirp(__appdir + '/public' + dir_name, function() {
-						fs.rename(file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
-							study.files.push({
-								path: dir_name + '/' + file_name,
-								desc: post.attach_desc[i] || ''
-							});
-							callback();
-						});
-					});
-				}, function() {
-					callback(null, 'files');
-				});
-			} else {
-				callback(null, false);
-			}
-		}
-	}, function(results) {
+	async.series([
+			async.apply(imagesUpload, study, post, files),
+			async.apply(filesUpload, study, post, files)
+		], function(results) {
+		study.description_alt = post.description_alt;
 		study.save(function(err, study) {
-			res.redirect('back');
+			res.send('ok');
 		});
 	});
 }
@@ -124,63 +90,14 @@ exports.edit_form = function(req, res) {
 		study.status = post.status;
 		study.video = post.video;
 
-		async.series({
-			imageUpload: function(callback) {
-				if (files.image && files.image.length > 0) {
-					var dir_name = '/images/studys/' + study._id.toString();
-					var file_name = Date.now() + '.' + mime.extension(files.image[0].mimetype);
-
-					mkdirp(__appdir + '/public' + dir_name, function() {
-						gm(files.image[0].path).resize(720, false).quality(100).write(__appdir + '/public' + dir_name + '/' + file_name, function() {
-							study.image = dir_name + '/' + file_name;
-							callback(null, 'image');
-						});
-					});
-				} else {
-					callback(null, false);
-				}
-			},
-			filesDelete: function(callback) {
-				if (post.files_delete && post.files_delete.length > 0) {
-					async.forEachSeries(post.files_delete, function(path, callback) {
-						del(__appdir + '/public' + path, function() {
-							var num = study.files.map(function(e) { return e.path; }).indexOf(path);
-							study.files.splice(num, 1);
-							study.markModified('files');
-							callback();
-						});
-					}, function() {
-						callback(null, 'delete');
-					});
-				} else {
-					callback(null, false);
-				}
-			},
-			filesUpload: function(callback) {
-				if (files.attach && files.attach.length > 0) {
-					async.forEachOfSeries(files.attach, function(file, i, callback) {
-						var dir_name = '/files/studys/' + study._id.toString();
-						var file_name = Date.now() + '.' + mime.extension(file.mimetype);
-
-						mkdirp(__appdir + '/public' + dir_name, function() {
-							fs.rename(file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
-								study.files.push({
-									path: dir_name + '/' + file_name,
-									desc: post.attach_desc[i] || ''
-								});
-								callback();
-							});
-						});
-					}, function() {
-						callback(null, 'files');
-					});
-				} else {
-					callback(null, false);
-				}
-			}
-		}, function(results) {
+		async.series([
+			async.apply(imagesUpload, study, post, files),
+			async.apply(filesDelete, study, post, files),
+			async.apply(filesUpload, study, post, files)
+		], function(results) {
+			study.description_alt = post.description_alt;
 			study.save(function(err, study) {
-				res.redirect('back');
+				res.send('ok');
 			});
 		});
 	});

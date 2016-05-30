@@ -6,9 +6,12 @@ var imagesUpload = require('./__params.js').imagesUpload;
 var filesUpload = require('./__params.js').filesUpload;
 var filesDelete = require('./__params.js').filesDelete;
 
+var path = require('path');
 var shortid = require('shortid');
 var async = require('async');
 var del = require('del');
+
+var __appdir = path.dirname(require.main.filename);
 
 
 // ------------------------
