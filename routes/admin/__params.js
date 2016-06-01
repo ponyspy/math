@@ -10,6 +10,31 @@ var svgo = require('svgo');
 
 var __appdir = path.dirname(require.main.filename);
 
+var diff = function(a1, a2) {
+  return a1.concat(a2).filter(function(val, index, arr){
+    return arr.indexOf(val) === arr.lastIndexOf(val);
+  });
+};
+
+module.exports.imagesDelete = function(study, post, files, callback) {
+	var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
+
+	jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
+		var $ = window.$;
+
+		var dir_name = '/images/studys/' + study._id.toString();
+
+		var images_upload = $('img').filter(':not(.image_upload)').map(function() { return $(this).attr('src'); }).toArray();
+		var images_exists = fs.readdirSync(__appdir + '/public/' + dir_name).map(function(image) { return dir_name + '/' + image; });
+		var images_diff = diff(images_upload, images_exists).map(function(d_image) {
+			return __appdir + '/public' + d_image;
+		});
+
+		del.sync(images_diff);
+		callback(null, 'images_delete');
+	});
+};
+
 module.exports.imagesUpload = function(study, post, files, callback) {
 	if (files.images && files.images.length > 0) {
 		var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
@@ -56,7 +81,7 @@ module.exports.imagesUpload = function(study, post, files, callback) {
 				});
 			}, function() {
 				post.description_alt = $('body').html();
-				callback(null, 'images');
+				callback(null, 'images_upload');
 			});
 		});
 	} else {
@@ -81,7 +106,7 @@ module.exports.filesUpload = function(study, post, files, callback) {
 				});
 			});
 		}, function() {
-			callback(null, 'files');
+			callback(null, 'files_upload');
 		});
 	} else {
 		callback(null, false);
@@ -98,7 +123,7 @@ module.exports.filesDelete = function(study, post, files, callback) {
 				callback();
 			});
 		}, function() {
-			callback(null, 'delete');
+			callback(null, 'files_delete');
 		});
 	} else {
 		callback(null, false);

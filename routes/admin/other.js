@@ -1,6 +1,7 @@
 var Study = require('../../models/main.js').Study;
 var Category = require('../../models/main.js').Category;
 
+var imagesDelete = require('./__params.js').imagesDelete;
 var imagesUpload = require('./__params.js').imagesUpload;
 var filesUpload = require('./__params.js').filesUpload;
 var filesDelete = require('./__params.js').filesDelete;
@@ -91,6 +92,7 @@ exports.edit_form = function(req, res) {
 		study.video = post.video;
 
 		async.series([
+			async.apply(imagesDelete, study, post, files),
 			async.apply(imagesUpload, study, post, files),
 			async.apply(filesDelete, study, post, files),
 			async.apply(filesUpload, study, post, files)
