@@ -16,9 +16,10 @@ module.exports.imagesUpload = function(study, post, files, callback) {
 
 		jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
 			var $ = window.$;
+			var images = $('.image_upload').toArray();
 
-			$('.image_upload').each(function(index, el) {
-				var $this = $(this);
+			async.forEach(images, function(image, callback) {
+				var $this = $(image);
 
 				$this.removeAttr('class').removeAttr('height').css('max-width', $this.attr('width') + 'px').attr('width', '100%');
 
@@ -37,6 +38,7 @@ module.exports.imagesUpload = function(study, post, files, callback) {
 							SVGO.optimize(data, function(result) {
 								fs.writeFile(__appdir + '/public/' + dir_name + '/' + file_name, result.data, function(err) {
 									if (err) console.log(err);
+									callback();
 								});
 							});
 						});
@@ -47,15 +49,15 @@ module.exports.imagesUpload = function(study, post, files, callback) {
 							this.quality(size.width > 600 ? 80 : 100);
 							this.write(__appdir + '/public/' + dir_name + '/' + file_name, function(err) {
 								if (err) console.log(err);
+								callback();
 							});
 						});
 					}
 				});
+			}, function() {
+				post.description_alt = $('body').html();
+				callback(null, 'images');
 			});
-
-			post.description_alt = $('body').html();
-
-			callback(null, 'images');
 		});
 	} else {
 		callback(null, false);
