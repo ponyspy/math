@@ -7,14 +7,10 @@ var mime = require('mime');
 var jsdom = require('jsdom');
 var gm = require('gm').subClass({ imageMagick: true });
 var svgo = require('svgo');
+var diff = require('lodash/difference');
 
 var __appdir = path.dirname(require.main.filename);
 
-var diff = function(a1, a2) {
-  return a1.concat(a2).filter(function(val, index, arr){
-    return arr.indexOf(val) === arr.lastIndexOf(val);
-  });
-};
 
 module.exports.imagesDelete = function(study, post, files, callback) {
 	var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
@@ -29,7 +25,7 @@ module.exports.imagesDelete = function(study, post, files, callback) {
 
 			images_exists = images_exists.map(function(image) { return dir_name + '/' + image; });
 			var images_upload = $('img').filter(':not(.image_upload)').map(function() { return $(this).attr('src'); }).toArray();
-			var images_diff = diff(images_upload, images_exists).map(function(d_image) { return __appdir + '/public' + d_image; });
+			var images_diff = diff(images_exists, images_upload).map(function(d_image) { return __appdir + '/public' + d_image; });
 
 			del.sync(images_diff);
 			callback(null, 'images_delete');
