@@ -25,7 +25,7 @@ module.exports.imagesDelete = function(study, post, files, callback) {
 		var dir_name = '/images/studys/' + study._id.toString();
 
 		var images_upload = $('img').filter(':not(.image_upload)').map(function() { return $(this).attr('src'); }).toArray();
-		var images_exists = fs.readdirSync(__appdir + '/public/' + dir_name).map(function(image) { return dir_name + '/' + image; });
+		var images_exists = fs.readdirSync(__appdir + '/public' + dir_name).map(function(image) { return dir_name + '/' + image; });
 		var images_diff = diff(images_upload, images_exists).map(function(d_image) {
 			return __appdir + '/public' + d_image;
 		});
