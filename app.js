@@ -89,10 +89,10 @@ function checkAuth (req, res, next) {
 }
 
 app.use(function(req, res, next) {
-	var Theme = require('./models/main.js').Theme;
-
 	if (req.accepts('text/html')) {
-		Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
+		var Theme = require('./models/main.js').Theme;
+
+		Theme.where('parent').exists(false).sort('date').select('title sym').exec(function(err, themes) {
 			res.locals.themes = themes;
 			next();
 		});

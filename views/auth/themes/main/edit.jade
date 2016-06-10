@@ -29,6 +29,8 @@ block content
 			select(name='numbering[start]')
 				each option,i in new Array(10)
 					option(value=i, selected=(i == theme.numbering.start))= i
+			.form_title Дата публикации:
+			+form_calendar('date', theme.date)
 			br
 			br
 			input(type='submit', value='отправить')

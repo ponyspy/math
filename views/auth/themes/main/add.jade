@@ -30,6 +30,8 @@ block content
 			select(name='numbering[start]')
 				each option,i in new Array(10)
 					option(value=i)= i
+			.form_title Дата публикации:
+			+form_calendar('date')
 			br
 			br
 			input(type='submit', value='отправить')

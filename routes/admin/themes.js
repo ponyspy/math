@@ -15,7 +15,7 @@ var __appdir = path.dirname(require.main.filename);
 
 
 exports.list = function(req, res) {
-  Theme.find().where('parent').exists(false).exec(function(err, themes) {
+  Theme.find().where('parent').exists(false).sort('date').exec(function(err, themes) {
     res.render('auth/themes/main/index.jade', {themes: themes});
   });
 }
@@ -38,6 +38,7 @@ exports.add_form = function(req, res) {
   theme.title = post.title;
   theme.sym = post.sym ? post.sym : shortid.generate();
   theme.numbering = post.numbering;
+  theme.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date));
 
   theme.save(function(err, theme) {
     res.redirect('/auth/themes');
@@ -69,6 +70,7 @@ exports.edit_form = function(req, res) {
       theme.sym = post.sym
     }
     theme.numbering = post.numbering;
+    theme.date = new Date(Date.UTC(post.date.year, post.date.month, post.date.date));
 
     theme.save(function(err, theme) {
       res.redirect('/auth/themes');
