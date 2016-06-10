@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 	$('.editor').each( function(index, element) {
 		$(element).wysiwyg({
-				classes: 'editor',
+				class: 'editor',
 				toolbar: 'top-selection',
 				maxImageSize: [600, 400],
 				buttons: {
