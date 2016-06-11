@@ -92,7 +92,7 @@ app.use(function(req, res, next) {
 	if (req.accepts('text/html')) {
 		var Theme = require('./models/main.js').Theme;
 
-		Theme.where('parent').exists(false).sort('date').select('title sym').exec(function(err, themes) {
+		Theme.where('parent').exists(false).select('title sym').sort('date').exec(function(err, themes) {
 			res.locals.themes = themes;
 			next();
 		});

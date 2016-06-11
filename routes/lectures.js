@@ -19,9 +19,7 @@ exports.index = function(req, res) {
 			var sub_num = current_theme.sub.map(function(e) { return e._short_id; }).indexOf(sub_id);
 
 			Study.populate(current_sub, {path: 'studys'}, function(err, current_sub) {
-				Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
-					res.render('lectures', {themes: themes, current_theme: current_theme, sub_num: sub_num, current_sub: current_sub});
-				});
+				res.render('lectures', {current_theme: current_theme, sub_num: sub_num, current_sub: current_sub});
 			});
 		});
 	});
@@ -34,9 +32,7 @@ exports.lecture = function(req, res) {
 		if (!study) return res.status(500).render('error', {status: 500});
 		Theme.findOne({studys: study._id}).select('title parent').exec(function(err, theme_sub) {
 			Theme.findById(theme_sub.parent).populate({path: 'sub', select: 'title overlay _short_id'}).select('sym sub numbering').exec(function(err, theme_parent) {
-				Theme.where('parent').exists(false).select('title sym').exec(function(err, themes) {
-					res.render('lectures/study.jade', {study: study, theme_sub: theme_sub, theme_parent: theme_parent, themes: themes});
-				});
+				res.render('lectures/study.jade', {study: study, theme_sub: theme_sub, theme_parent: theme_parent});
 			});
 		});
 	});
