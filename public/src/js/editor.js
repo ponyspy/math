@@ -112,6 +112,15 @@ $(document).ready(function() {
 							title: 'Remove format',
 							image: '\uf12d'
 					},
+					preview: index != 1 ? false : {
+							title: 'Preview',
+							image: '❐',
+							click: function($button) {
+								window.open('/auth/lecture/preview', '', 'width=800, height=600, left=200, top=200')
+							},
+							showstatic: true,
+							showselection: true
+					},
 				},
 				submit: {
 						title: 'Submit',

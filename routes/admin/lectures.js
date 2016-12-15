@@ -46,6 +46,16 @@ exports.list = function(req, res) {
 
 
 // ------------------------
+// *** Preview Studys Block ***
+// ------------------------
+
+
+exports.preview = function(req, res) {
+	res.render('auth/lectures/preview.jade');
+}
+
+
+// ------------------------
 // *** Add Studys Block ***
 // ------------------------
 

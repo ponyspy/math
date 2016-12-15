@@ -276,6 +276,11 @@ app.route('/auth/lecture/remove')
 	 .post(checkAuth, admin_lectures_studys.remove);
 
 
+// === Admin @preview lectures studys Route
+app.route('/auth/lecture/preview')
+	 .get(checkAuth, admin_lectures_studys.preview);
+
+
 
 // ------------------------
 // *** Admin Other Routes Block ***
