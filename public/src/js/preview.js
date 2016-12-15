@@ -1,8 +1,8 @@
 $(function() {
 	if (window.opener && !window.opener.closed) {
 		var parent = window.opener.document;
-
-		var html = $(parent).find('.wysiwyg-container').eq(1).find('.wysiwyg-editor').clone().removeAttr('contenteditable');
+		var index = +window.location.hash.replace('#', '');
+		var html = $(parent).find('.wysiwyg-container').eq(index).find('.wysiwyg-editor').clone().removeAttr('contenteditable');
 
 		$('body').append(html).promise().done(function() {
 			var head = [
