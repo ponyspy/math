@@ -44,7 +44,8 @@ module.exports.imagesUpload = function(study, post, files, callback) {
 			async.forEach(images, function(image, callback) {
 				var $this = $(image);
 
-				$this.removeAttr('class').removeAttr('height').css('max-width', $this.attr('width') + 'px').attr('width', '100%');
+				// $this.removeAttr('class').removeAttr('height').css('max-width', $this.attr('width') + 'px').attr('width', '100%');
+				$this.removeAttr('class').removeAttr('width').removeAttr('height');
 
 				var image_id = $this.attr('src');
 				var file = files.images.filter(function(image) { return image.originalname == image_id; })[0];
