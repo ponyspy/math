@@ -1,7 +1,7 @@
 $(function() {
 	if (window.opener && !window.opener.closed) {
 		var parent = window.opener.document;
-		var index = +window.location.hash.replace('#', '');
+		var index = +window.location.href.split('/').pop();
 		var html = $(parent).find('.wysiwyg-container').eq(index).find('.wysiwyg-editor').clone().removeAttr('contenteditable');
 
 		$('body').append(html).promise().done(function() {

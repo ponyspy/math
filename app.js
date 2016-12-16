@@ -277,7 +277,7 @@ app.route('/auth/lecture/remove')
 
 
 // === Admin @preview lectures studys Route
-app.route('/auth/lecture/preview')
+app.route('/auth/lecture/preview/:numb')
 	 .get(checkAuth, admin_lectures_studys.preview);
 
 
