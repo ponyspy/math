@@ -103,6 +103,10 @@ $(document).ready(function() {
 		$('.right_drop').toggleClass('active');
 	});
 
+	$('.mail').on('click', function(event) {
+		window.open('/write', '', 'width=640, height=580, left=200, top=100');
+	});
+
 	$(document)
 		.on('scroll', function() {
 			$('.right_drop').removeClass('active');
