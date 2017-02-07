@@ -105,6 +105,8 @@ $(document).ready(function() {
 
 	$('.mail').on('click', function(event) {
 		window.open('/write', '', 'width=640, height=580, left=200, top=100');
+
+		return false;
 	});
 
 	$(document)
