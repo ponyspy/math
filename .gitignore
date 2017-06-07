@@ -1,7 +1,7 @@
 /node_modules*
 /db*
-/maket*
-/subl*
+/_maket_*
+/_sublime_*
 /locales*
 /public/build/js*
 /public/build/css*
@@ -10,3 +10,4 @@
 .DS_Store
 books.json
 backup.tar
+package-lock.json
