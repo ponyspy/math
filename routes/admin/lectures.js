@@ -2,7 +2,7 @@ var Study = require('../../models/main.js').Study;
 var Theme = require('../../models/main.js').Theme;
 var Category = require('../../models/main.js').Category;
 
-var imagesDelete = require('./__params.js').imagesDelete;
+var imagesPreview = require('./__params.js').imagesPreview;
 var imagesUpload = require('./__params.js').imagesUpload;
 var filesUpload = require('./__params.js').filesUpload;
 var filesDelete = require('./__params.js').filesDelete;
@@ -84,10 +84,9 @@ exports.add_form = function(req, res) {
 
 
 	async.series([
-			async.apply(imagesUpload, study, post, files),
+			async.apply(imagesUpload, study, post),
 			async.apply(filesUpload, study, post, files)
 		], function(err, results) {
-		study.description_alt = post.description_alt;
 		study.save(function(err, study) {
 			Theme.findById(req.params.sub_id).exec(function(err, theme) {
 				if (theme.studys.length == +post.order) {
@@ -97,8 +96,7 @@ exports.add_form = function(req, res) {
 				}
 
 				theme.save(function(err, theme) {
-					res.send('ok');
-					// res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
+					res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
 				});
 			});
 		});
@@ -118,7 +116,9 @@ exports.edit = function(req, res) {
 	Theme.findById(theme_id).exec(function(err, theme) {
 		Study.findById(study_id).exec(function(err, study) {
 			Category.find().exec(function(err, categorys) {
-				res.render('auth/lectures/edit.jade', {study: study, theme: theme, categorys: categorys});
+				imagesPreview(study, function(err, study) {
+					res.render('auth/lectures/edit.jade', {study: study, theme: theme, categorys: categorys});
+				});
 			});
 		});
 	});
@@ -140,20 +140,17 @@ exports.edit_form = function(req, res) {
 
 
 		async.series([
-			async.apply(imagesDelete, study, post, files),
-			async.apply(imagesUpload, study, post, files),
+			async.apply(imagesUpload, study, post),
 			async.apply(filesDelete, study, post, files),
 			async.apply(filesUpload, study, post, files)
 		], function(err, results) {
-			study.description_alt = post.description_alt;
 			study.save(function(err, study) {
 				Theme.findById(theme_id).exec(function(err, theme) {
 					var current_index = theme.studys.indexOf(study._id);
 					move(theme.studys, current_index, post.order);
 					theme.markModified('studys');
 					theme.save(function(err, theme) {
-						res.send('ok');
-						// res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
+						res.redirect('/auth/themes/' + req.params.id + '/sub/edit/' + req.params.sub_id + '/studys/');
 					});
 				});
 			});

@@ -129,6 +129,25 @@ $(document).ready(function() {
 				// placeholder: 'Type your text here...',
 				selectImage: 'Click or drop image',
 				placeholderUrl: 'www.example.com',
+				forceImageUpload: true,
+				onImageUpload: function(insert_image) {
+					var form_data = new FormData();
+					var image = this.files[0];
+
+					form_data.append('image', image);
+
+					$.ajax({
+						url: '/preview_image',
+						data: form_data,
+						cache: false,
+						contentType: false,
+						processData: false,
+						type: 'POST',
+						success: function(path){
+							insert_image(path);
+						}
+					});
+				}
 		});
 	});
 });

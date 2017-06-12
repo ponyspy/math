@@ -362,9 +362,11 @@ app.route('/about').get(content.about);
 // *** Globals Routers Block ***
 // ------------------------
 
+
+
 // === Search Route
 app.route('/search')
-	 .post(globals.search)
+	 .post(globals.search);
 
 
 
@@ -376,7 +378,13 @@ app.route('/search')
 
 // === Backup load Route
 app.route('/backup')
-	 .get(checkAuth, options.backup)
+	 .get(checkAuth, options.backup);
+
+
+// === Preview Route
+app.route('/preview_image')
+	 .post(checkAuth, upload.single('image'), options.preview);
+
 
 
 // ------------------------
@@ -384,36 +392,36 @@ app.route('/backup')
 // ------------------------
 
 
-app.use(function(req, res, next) {
-	var accept = accepts(req);
-	res.status(404);
+// app.use(function(req, res, next) {
+// 	var accept = accepts(req);
+// 	res.status(404);
 
-	// respond with html page
-	if (accept.types('html')) {
-		res.render('error', { url: req.url, status: 404 });
-		return;
-	}
+// 	// respond with html page
+// 	if (accept.types('html')) {
+// 		res.render('error', { url: req.url, status: 404 });
+// 		return;
+// 	}
 
-	// respond with json
-	if (accept.types('json')) {
-			res.send({
-			error: {
-				status: 'Not found'
-			}
-		});
-		return;
-	}
+// 	// respond with json
+// 	if (accept.types('json')) {
+// 			res.send({
+// 			error: {
+// 				status: 'Not found'
+// 			}
+// 		});
+// 		return;
+// 	}
 
-	// default to plain-text
-	res.type('txt').send('Not found');
-});
+// 	// default to plain-text
+// 	res.type('txt').send('Not found');
+// });
 
-app.use(function(err, req, res, next) {
-	var status = err.status || 500;
+// app.use(function(err, req, res, next) {
+// 	var status = err.status || 500;
 
-	res.status(status);
-	res.render('error', { error: err, status: status });
-});
+// 	res.status(status);
+// 	res.render('error', { error: err, status: status });
+// });
 
 
 // ------------------------

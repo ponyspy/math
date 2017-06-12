@@ -7,85 +7,66 @@ var mime = require('mime');
 var jsdom = require('jsdom');
 var gm = require('gm').subClass({ imageMagick: true });
 var svgo = require('svgo');
-var diff = require('lodash/difference');
 
 var __appdir = path.dirname(require.main.filename);
+var public_path = __appdir + '/public';
+var preview_path = __appdir + '/public/preview/';
 
 
-module.exports.imagesDelete = function(study, post, files, callback) {
+module.exports.imagesUpload = function(study, post, callback) {
 	var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
+	var dir_name = '/images/studys/' + study._id.toString();
 
-	jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
-		var $ = window.$;
+	del(public_path + dir_name, function(rm_path) {
+		jsdom.env(post.description_alt, { src: [jquery] }, function(err, window) {
+			var $ = window.$;
+			var images = $('img').toArray();
 
-		var dir_name = '/images/studys/' + study._id.toString();
+			async.forEach(images, function(image, callback) {
+				var $this = $(image);
+				var file_name = path.basename($this.attr('src'));
 
-		fs.readdir(__appdir + '/public' + dir_name, function(err, images_exists) {
-			if (err) return callback(null, false);
+				$this.removeAttr('width').removeAttr('height').removeAttr('alt');
+				$this.attr('src', dir_name + '/' + file_name);
 
-			images_exists = images_exists.map(function(image) { return dir_name + '/' + image; });
-			var images_upload = $('img').filter(':not(.image_upload)').map(function() { return $(this).attr('src'); }).toArray();
-			var images_diff = diff(images_exists, images_upload).map(function(d_image) { return __appdir + '/public' + d_image; });
-
-			del.sync(images_diff);
-			callback(null, 'images_delete');
+				mkdirp(public_path + dir_name, function() {
+					fs.createReadStream(preview_path + file_name).pipe(fs.createWriteStream(public_path + dir_name + '/' + file_name));
+					callback();
+				});
+			}, function() {
+					study.description_alt = $('body').html();
+					callback(null, study);
+			});
 		});
 	});
 };
 
-module.exports.imagesUpload = function(study, post, files, callback) {
-	if (files.images && files.images.length > 0) {
-		var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
 
-		jsdom.env(post.description_alt, {src: [jquery]}, function(err, window) {
-			var $ = window.$;
-			var images = $('.image_upload').toArray();
+module.exports.imagesPreview = function(study, callback) {
+	if (!study.description_alt) return callback(null, study);
 
-			async.forEach(images, function(image, callback) {
-				var $this = $(image);
+	var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
 
-				// $this.removeAttr('class').removeAttr('height').css('max-width', $this.attr('width') + 'px').attr('width', '100%');
-				$this.removeAttr('class').removeAttr('width').removeAttr('height');
+	jsdom.env(study.description_alt, { src: [jquery] }, function(err, window) {
+		var $ = window.$;
+		var images = $('img').toArray();
 
-				var image_id = $this.attr('src');
-				var file = files.images.filter(function(image) { return image.originalname == image_id; })[0];
-				var file_name = file.originalname + '.' + mime.extension(file.mimetype);
-				var dir_name = '/images/studys/' + study._id.toString();
+		async.forEach(images, function(image, callback) {
+			var $this = $(image);
 
-				$this.attr('src', dir_name + '/' + file_name);
+			var file_path = $this.attr('src');
+			var file_name = path.basename(file_path);
 
-				mkdirp(__appdir + '/public' + dir_name, function() {
-					if (mime.extension(file.mimetype) == 'svg') {
-						var SVGO = new svgo();
-						fs.readFile(file.path, function(err, data) {
-							if (err) console.log(err);
-							SVGO.optimize(data, function(result) {
-								fs.writeFile(__appdir + '/public/' + dir_name + '/' + file_name, result.data, function(err) {
-									if (err) console.log(err);
-									callback();
-								});
-							});
-						});
-					} else {
-						gm(file.path).size({bufferStream: true}, function(err, size) {
-							if (err) console.log(err);
-							this.resize(size.width > 600 ? 600 : false, false);
-							this.quality(size.width > 600 ? 80 : 100);
-							this.write(__appdir + '/public/' + dir_name + '/' + file_name, function(err) {
-								if (err) console.log(err);
-								callback();
-							});
-						});
-					}
-				});
-			}, function() {
-				post.description_alt = $('body').html();
-				callback(null, 'images_upload');
-			});
+			fs.createReadStream(public_path + file_path).pipe(fs.createWriteStream(preview_path + file_name));
+
+			$this.attr('src', '/preview/' + file_name);
+
+			callback();
+		}, function() {
+				study.description_alt = $('body').html();
+				callback(null, study);
 		});
-	} else {
-		callback(null, false);
-	}
+	});
 };
 
 
@@ -95,8 +76,8 @@ module.exports.filesUpload = function(study, post, files, callback) {
 			var dir_name = '/files/studys/' + study._id.toString();
 			var file_name = Date.now() + '.' + mime.extension(file.mimetype);
 
-			mkdirp(__appdir + '/public' + dir_name, function() {
-				fs.rename(file.path, __appdir + '/public' + dir_name + '/' + file_name, function() {
+			mkdirp(public_path + dir_name, function() {
+				fs.rename(file.path, public_path + dir_name + '/' + file_name, function() {
 					study.files.push({
 						path: dir_name + '/' + file_name,
 						desc: post.attach_desc[i] || ''
@@ -112,10 +93,11 @@ module.exports.filesUpload = function(study, post, files, callback) {
 	}
 };
 
+
 module.exports.filesDelete = function(study, post, files, callback) {
 	if (post.files_delete && post.files_delete.length > 0) {
 		async.forEachSeries(post.files_delete, function(path, callback) {
-			del(__appdir + '/public' + path, function() {
+			del(public_path + path, function() {
 				var num = study.files.map(function(e) { return e.path; }).indexOf(path);
 				study.files.splice(num, 1);
 				study.markModified('files');
