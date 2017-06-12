@@ -5,7 +5,6 @@ var gulp = require('gulp'),
 		gulpif = require('gulp-if'),
 		changed = require('gulp-changed'),
 		plumber = require('gulp-plumber'),
-		nodemon = require('gulp-nodemon'),
 		stylus = require('gulp-stylus'),
 		autoprefixer = require('gulp-autoprefixer'),
 		uglify = require('gulp-uglify'),
@@ -27,13 +26,10 @@ var paths = {
 		src: ['public/src/js/*.js'],
 		dest: 'public/build/js'
 	},
-	nodemon: {
-		ignore: ['public/*']
-	},
 	clean: {
 		pub: ['public/build/css/*', 'public/build/js/*']
 	}
-}
+};
 
 // Loggers Block
 
@@ -48,26 +44,16 @@ var error_logger = function(error) {
 		'----------- ERROR MESSAGE END -----------'.bold.red.inverse,
 		''
 	].join('\n'));
-}
+};
 
 var watch_logger = function(event) {
 	console.log('File ' + event.path.green + ' was ' + event.type.yellow + ', running tasks...');
-}
+};
 
 // Tasks Block
 
 gulp.task('clean', function(callback) {
 	return del(paths.clean.pub, callback);
-});
-
-
-gulp.task('nodemon', function() {
-	nodemon({
-		script: 'app.js',
-		ext: 'js',
-		ignore: paths.nodemon.ignore,
-		env: { 'NODE_ENV': Production ? 'production' : 'development' },
-	});
 });
 
 
@@ -91,7 +77,7 @@ gulp.task('scripts', function () {
 	return gulp
 		.src(paths.scripts.src)
 		.pipe(plumber(error_logger))
-		.pipe(jshint())
+		.pipe(jshint({ laxbreak: true, expr: true, '-W041': false }))
 		.pipe(jshint.reporter('jshint-stylish'))
 		.pipe(changed(paths.scripts.dest))
 		.pipe(gulpif(Production, uglify()))
@@ -113,12 +99,9 @@ gulp.task('production', function(callback) {
 // Run Block
 
 gulp.task('default', function(callback) {
-	runSequence('clean', ['stylus', 'scripts'], callback);
+	runSequence('clean', ['stylus', 'scripts'], 'watch', callback);
 });
 
 gulp.task('build', function(callback) {
 	runSequence('production', 'clean', ['stylus', 'scripts'], callback);
 });
-
-gulp.task('dev', ['watch', 'nodemon']);
-gulp.task('run', ['production', 'watch', 'nodemon']);
