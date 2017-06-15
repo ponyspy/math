@@ -3,7 +3,7 @@ var Study = require('../../models/main.js').Study;
 
 var path = require('path');
 var async = require('async');
-var del = require('del');
+var rimraf = require('rimraf');
 var shortid = require('shortid');
 
 var __appdir = path.dirname(require.main.filename);
@@ -93,7 +93,7 @@ exports.remove = function(req, res) {
         async.forEachSeries(themes_sub, function(theme_sub, callback) {
           async.forEachSeries(theme_sub.studys, function(study, callback) {
             Study.findByIdAndRemove(study._id).exec(function() {
-              del([__appdir + '/public/images/studys/' + study._id.toString(), __appdir + '/public/files/studys/' + study._id.toString()], function() {
+              rimraf('{' + [__appdir + '/public/images/studys/' + study._id.toString(), __appdir + '/public/files/studys/' + study._id.toString()].join(',') + '}', function() {
                 callback();
               });
             });

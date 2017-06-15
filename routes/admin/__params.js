@@ -1,5 +1,5 @@
 var mkdirp = require('mkdirp');
-var del = require('del');
+var rimraf = require('rimraf');
 var async = require('async');
 var fs = require('fs');
 var path = require('path');
@@ -17,7 +17,7 @@ module.exports.imagesUpload = function(study, post, callback) {
 	var jquery = fs.readFileSync(__appdir + '/public/build/libs/js/jquery-2.1.4.min.js', 'utf-8');
 	var dir_name = '/images/studys/' + study._id.toString();
 
-	del(public_path + dir_name, function(rm_path) {
+	rimraf(public_path + dir_name, function() {
 		jsdom.env(post.description_alt, { src: [jquery] }, function(err, window) {
 			var $ = window.$;
 			var images = $('img').toArray();
@@ -97,7 +97,7 @@ module.exports.filesUpload = function(study, post, files, callback) {
 module.exports.filesDelete = function(study, post, files, callback) {
 	if (post.files_delete && post.files_delete.length > 0) {
 		async.forEachSeries(post.files_delete, function(path, callback) {
-			del(public_path + path, function() {
+			rimraf(public_path + path, function() {
 				var num = study.files.map(function(e) { return e.path; }).indexOf(path);
 				study.files.splice(num, 1);
 				study.markModified('files');

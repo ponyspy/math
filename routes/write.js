@@ -1,6 +1,6 @@
 var path = require('path');
 var nodemailer = require('nodemailer');
-var del = require('del');
+var rimraf = require('rimraf');
 var mime = require('mime');
 
 var __appdir = path.dirname(require.main.filename);
@@ -38,7 +38,7 @@ exports.mail = function(req, res) {
 
 	transporter.sendMail(opts, function(err, info) {
 		if (!req.file) return res.redirect('/write');
-		del([req.file.path], function() {
+		rimraf(req.file.path, function() {
 			res.redirect('/write#send');
 		});
 	});
