@@ -9,7 +9,7 @@ var filesDelete = require('./__params.js').filesDelete;
 var path = require('path');
 var shortid = require('shortid');
 var async = require('async');
-var del = require('del');
+var rimraf = require('rimraf');
 
 var __appdir = path.dirname(require.main.filename);
 
@@ -114,7 +114,7 @@ exports.edit_form = function(req, res) {
 exports.remove = function(req, res) {
 	var id = req.body.id;
 	Study.findByIdAndRemove(id, function() {
-		del([__appdir + '/public/images/studys/' + id, __appdir + '/public/files/studys/' + id], function() {
+		rimraf('{' + [__appdir + '/public/images/studys/' + id, __appdir + '/public/files/studys/' + id].join(',') + '}', function() {
 			res.send('ok');
 		});
 	});

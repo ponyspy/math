@@ -3,7 +3,7 @@ var fs = require('fs');
 var gm = require('gm').subClass({ imageMagick: true });
 var mime = require('mime');
 var svgo = require('svgo');
-var del = require('del');
+var rimraf = require('rimraf');
 
 var __appdir = path.dirname(require.main.filename);
 
@@ -23,7 +23,7 @@ exports.preview = function(req, res) {
 		fs.readFile(file.path, function(err, data) {
 			SVGO.optimize(data, function(result) {
 				fs.writeFile(__appdir + '/public' + new_path, result.data, function(err) {
-					del(file.path, function() {
+					rimraf(file.path, function() {
 						res.send(new_path);
 					});
 				});
@@ -38,7 +38,7 @@ exports.preview = function(req, res) {
 			this.resize(meta.size.width > 600 ? 600 : false, false);
 			this.quality(meta.size.width >= 600 ? 82 : 100);
 			this.write(__appdir + '/public' + new_path, function (err) {
-				del(file.path, function() {
+				rimraf(file.path, function() {
 					res.send(new_path);
 				});
 			});

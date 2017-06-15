@@ -1,4 +1,4 @@
-var del = require('del');
+var rimraf = require('rimraf');
 var runSequence = require('run-sequence');
 
 var gulp = require('gulp'),
@@ -53,7 +53,7 @@ var watch_logger = function(event) {
 // Tasks Block
 
 gulp.task('clean', function(callback) {
-	return del(paths.clean.pub, callback);
+	return rimraf(paths.clean.pub, callback);
 });
 
 
