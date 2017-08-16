@@ -53,7 +53,7 @@ var watch_logger = function(event) {
 // Tasks Block
 
 gulp.task('clean', function(callback) {
-	return rimraf(paths.clean.pub, callback);
+	return rimraf('{' + paths.clean.pub.join(',') + '}', callback);
 });
 
 
