@@ -2,7 +2,7 @@
 	"apps": [
 		{
 			"name": "math",
-			"script": ".app.js",
+			"script": "./app.js",
 			"exec_mode": "fork",
 			"autorestart": true,
 			"min_uptime": "300s",
