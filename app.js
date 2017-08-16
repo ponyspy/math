@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-		mongoose.connect('localhost', 'main');
+		mongoose.connect('mongodb://localhost/main', { useMongoClient: true });
 
 var express = require('express'),
 		bodyParser = require('body-parser'),
