@@ -4,7 +4,7 @@ var async = require('async');
 var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
-var jsdom = require('jsdom');
+var jsdom = require('jsdom/lib/old-api.js');
 var gm = require('gm').subClass({ imageMagick: true });
 var svgo = require('svgo');
 
