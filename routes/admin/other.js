@@ -1,7 +1,7 @@
 var Study = require('../../models/main.js').Study;
 var Category = require('../../models/main.js').Category;
 
-var imagesDelete = require('./__params.js').imagesDelete;
+var imagesPreview = require('./__params.js').imagesPreview;
 var imagesUpload = require('./__params.js').imagesUpload;
 var filesUpload = require('./__params.js').filesUpload;
 var filesDelete = require('./__params.js').filesDelete;
@@ -52,7 +52,7 @@ exports.add_form = function(req, res) {
 	study.video = post.video;
 
 	async.series([
-			async.apply(imagesUpload, study, post, files),
+			async.apply(imagesUpload, study, post),
 			async.apply(filesUpload, study, post, files)
 		], function(results) {
 		study.description_alt = post.description_alt;
@@ -92,14 +92,13 @@ exports.edit_form = function(req, res) {
 		study.video = post.video;
 
 		async.series([
-			async.apply(imagesDelete, study, post, files),
-			async.apply(imagesUpload, study, post, files),
+			async.apply(imagesUpload, study, post),
 			async.apply(filesDelete, study, post, files),
 			async.apply(filesUpload, study, post, files)
 		], function(results) {
 			study.description_alt = post.description_alt;
 			study.save(function(err, study) {
-				res.send('ok');
+				res.redirect('/auth/other');
 			});
 		});
 	});
