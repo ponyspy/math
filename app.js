@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-		mongoose.connect('mongodb://localhost/main', { useMongoClient: true });
+		mongoose.connect('mongodb://localhost/math', { useMongoClient: true });
 
 var express = require('express'),
 		bodyParser = require('body-parser'),
