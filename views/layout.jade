@@ -1,10 +1,13 @@
 doctype html
 html
+	include counters
 	head
+		+counters_head()
 		include globals
-		block paths
 		include header
+		block paths
 	body
+		+counters_body_start()
 		.preview_block: .preview_inner
 			.preview_video
 			.preview_pdf
@@ -36,4 +39,4 @@ html
 				.categorys_block: .categorys_inner
 		.content_block
 			block content
-		include counters
+		+counters_body_end()
