@@ -3,9 +3,9 @@ html
 	include counters
 	head
 		+counters_head()
+		block paths
 		include globals
 		include header
-		block paths
 	body
 		+counters_body_start()
 		.preview_block: .preview_inner
