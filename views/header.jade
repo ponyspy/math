@@ -19,11 +19,11 @@ if content_title
 if content_description
 	meta(property='og:description', content=content_description)
 if content_video_youtube
-	meta(property="og:image", content='http://img.youtube.com/vi/' + content_video_youtube + '/hqdefault.jpg')
-	meta(property='og:video', content='https://www.youtube.com/v/' + content_video_youtube)
-	meta(property='og:video:type', content='application/x-shockwave-flash')
-	meta(property='og:video:width', content='520')
-	meta(property='og:video:height', content='300')
+	meta(property="og:image", content='https://img.youtube.com/vi/' + content_video_youtube + '/hqdefault.jpg')
+	//- meta(property='og:video', content='https://www.youtube.com/v/' + content_video_youtube)
+	//- meta(property='og:video:type', content='application/x-shockwave-flash')
+	//- meta(property='og:video:width', content='520')
+	//- meta(property='og:video:height', content='300')
 each image in content_images || []
 	meta(property='og:image' content='http://' + host + '/' + image)
 
